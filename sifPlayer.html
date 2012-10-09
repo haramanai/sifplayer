@@ -1,0 +1,40 @@
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+</head>
+<body onload="main()">
+<div id='sifPlayer'></div>
+<canvas id="canvas" width="320" height="240"></canvas>
+<script type='text/javascript' src="sifjson.js"></script>
+<script type='text/javascript' src="ticker.js"></script>
+<script type='text/javascript' src="tweenjs-0.3.0.min.js"></script>
+<script type='text/javascript' src="sifobject.js"></script>
+<script type='text/javascript'>
+function main() {
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var sif = sifJson.constructSifJson("test.sif");
+	var so = new SifObject(sif, canvas, ctx);
+	
+	var looper = { 
+		tick: function () {
+			clearCanvas(ctx, canvas);
+
+			so.draw();
+		
+		}
+	}
+	
+	createjs.Ticker.useRaf = true;
+	createjs.Ticker.addListener(looper);
+}
+
+function clearCanvas(context, canvas) {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  var w = canvas.width;
+  canvas.width = 1;
+  canvas.width = w;
+}
+</script>
+</body>
+</html>
