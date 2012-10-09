@@ -166,10 +166,17 @@ var p = SifObject.prototype;
 
 		}
 		if (layer.bline.loop === "true") {
-			this._bezierPart( layer.bline.entry[layer.bline.entry.length - 1].point.vector,
-							layer.bline.entry[0].point.vector,
-							layer.bline.entry[layer.bline.entry.length - 1].t2,
-							layer.bline.entry[0].t1);
+			if (layer.bline.entry[layer.bline.entry.length - 1].split.value === true) {
+				this._bezierPart( layer.bline.entry[layer.bline.entry.length - 1].point.vector,
+								layer.bline.entry[0].point.vector,
+								layer.bline.entry[layer.bline.entry.length - 1].t2,
+								layer.bline.entry[0].t1);
+			} else {
+				this._bezierPart( layer.bline.entry[layer.bline.entry.length - 1].point.vector,
+								layer.bline.entry[0].point.vector,
+								layer.bline.entry[layer.bline.entry.length - 1].t1,
+								layer.bline.entry[0].t1);
+			}
 		}
 		//ctx.closePath();
 		this.ctx.fill();
