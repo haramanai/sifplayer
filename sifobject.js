@@ -144,10 +144,7 @@ var p = SifObject.prototype;
 	}
 	
 	p._drawRegion = function (layer) {
-		var _p1;
-		var _p2;
-		var _cp1 = {}; //control point 1
-		var _cp2 = {}; //control point 2
+		
 		
 		
 		this.ctx.fillStyle = 'rgba('+ Math.round(layer.color.r) + ', ' + Math.round(layer.color.g) + ', ' + Math.round(layer.color.b) + ', ' + Math.round(layer.color.a) + ')';
@@ -157,16 +154,22 @@ var p = SifObject.prototype;
 		this._setBlendByLayer(layer);
 		this.ctx.beginPath();
 		this.ctx.moveTo(layer.bline.entry[0].point.vector.x, layer.bline.entry[0].point.vector.y);
+
 		for (var i = 0; i < layer.bline.entry.length - 1; i++) {
-			this._bezierPart( layer.bline.entry[i].point.vector, layer.bline.entry[i + 1].point.vector,
-							layer.bline.entry[i].t1, layer.bline.entry[i + 1].t2);
+			if (layer.bline.entry[i].split.value === true) {
+				this._bezierPart( layer.bline.entry[i].point.vector, layer.bline.entry[i + 1].point.vector,
+							layer.bline.entry[i].t2, layer.bline.entry[i + 1].t1);
+			} else {
+				this._bezierPart( layer.bline.entry[i].point.vector, layer.bline.entry[i + 1].point.vector,
+							layer.bline.entry[i].t1, layer.bline.entry[i + 1].t1);
+			}
 
 		}
 		if (layer.bline.loop === "true") {
 			this._bezierPart( layer.bline.entry[layer.bline.entry.length - 1].point.vector,
 							layer.bline.entry[0].point.vector,
-							layer.bline.entry[layer.bline.entry.length - 1].t1,
-							layer.bline.entry[0].t2);
+							layer.bline.entry[layer.bline.entry.length - 1].t2,
+							layer.bline.entry[0].t1);
 		}
 		//ctx.closePath();
 		this.ctx.fill();
@@ -217,10 +220,19 @@ var p = SifObject.prototype;
 	p._bezierPart = function (_p1, _p2, _t1, _t2) {
 		var _cp1 = {};
 		var _cp2 = {};
-		var _a = _t1.theta.value * Math.PI / 180.0;
+		var _a;
+		if (_t1.scalar) {
+			_a = (_t1.theta.value - 180) * Math.PI / 180.0;
+		} else {
+			_a = _t1.theta.value * Math.PI / 180.0;
+		}
 		_cp1.x = (Math.cos(_a) * _t1.radius.value) / 3 + _p1.x
 		_cp1.y = (Math.sin(_a) * _t1.radius.value) / 3 + _p1.y
-		_a = _t2.theta.value * Math.PI / 180.0;
+		if (_t2.scalar) {
+			_a = (_t2.theta.value - 180) * Math.PI / 180.0;
+		} else {
+			_a = _t2.theta.value * Math.PI / 180.0;
+		}
 		_cp2.x = -(Math.cos(_a) * _t2.radius.value) / 3 + _p2.x
 		_cp2.y = -(Math.sin(_a) * _t2.radius.value) / 3 + _p2.y
 			
@@ -353,7 +365,7 @@ var p = SifObject.prototype;
 		if (v.waypoint) {
 			var tw = createjs.Tween.get(v);
 			if (v.waypoint[0].time != 0) {
-				tw.to( {x: _vector.waypoint[0].x, y:_vector.waypoint[0].y},
+				tw.to( {x: v.waypoint[0].x, y: v.waypoint[0].y},
 				v.waypoint[0].time,
 				createjs.Ease.linear);
 			}
