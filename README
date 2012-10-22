@@ -1,0 +1,14 @@
+SIFPLAYER for HTML5 this is a lib to play an unzipped sif file on the html canvas.
+It uses the Ticker from the createjs.Easel (MIT license) and the createjs.Tween (MIT license) for the tweens.
+
+It is not complete future. 
+It is supports the type of layer:
+	Region
+	Import (image)
+	PasteCanvas
+	Scale
+	Translate
+	Rotate
+
+Many things to add limited time and open source of curse. 
+Run the sifPlayer.html to see it in action. Also it is an example of how to use this.
