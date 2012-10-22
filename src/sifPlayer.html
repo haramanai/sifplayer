@@ -4,7 +4,6 @@
 </head>
 <body onload="main()">
 <div id='sifPlayer'></div>
-<<<<<<< HEAD
 <canvas id="canvas" width="640" height="480"></canvas>
 <script type='text/javascript' src="libs/Ticker.js"></script>
 <script type='text/javascript' src="libs/tweenjs-0.3.0.min.js"></script>
@@ -24,33 +23,15 @@ function main() {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	var so = new sifPlayer.SifObject(xmlDoc, ctx , 0, 0, canvas.width, canvas.height, 'assets/');
-=======
-<canvas id="canvas" width="320" height="240"></canvas>
-<script type='text/javascript' src="sifjson.js"></script>
-<script type='text/javascript' src="Ticker.js"></script>
-<script type='text/javascript' src="tweenjs-0.3.0.min.js"></script>
-<script type='text/javascript' src="sifobject.js"></script>
-<script type='text/javascript'>
-function main() {
-	var canvas = document.getElementById('canvas');
-	var ctx = canvas.getContext('2d');
-	var sif = sifJson.constructSifJson("test.sif");
-	var so = new SifObject(sif, canvas, ctx);
->>>>>>> 561ea7934a0655f95c0310e853135aa670b40ca7
 	
 	var looper = { 
 		tick: function () {
 			clearCanvas(ctx, canvas);
-<<<<<<< HEAD
-=======
-
->>>>>>> 561ea7934a0655f95c0310e853135aa670b40ca7
 			so.draw();
 		
 		}
 	}
 	
-<<<<<<< HEAD
 	createjs.Ticker.useRaf = false;
 	createjs.Ticker.addListener(looper);
 }
@@ -69,12 +50,6 @@ function loadXML (file) {
 	return xmlDoc;
 }
 
-=======
-	createjs.Ticker.useRaf = true;
-	createjs.Ticker.addListener(looper);
-}
-
->>>>>>> 561ea7934a0655f95c0310e853135aa670b40ca7
 function clearCanvas(context, canvas) {
   context.clearRect(0, 0, canvas.width, canvas.height);
   var w = canvas.width;
