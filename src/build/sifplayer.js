@@ -1,17 +1,7 @@
-// namespace:
-// Requires sifPlayer
-
-(function() { 
-
-
-
 
 (function() { 
 	var sifPlayer = {
-	
-	sifObj: {},
 
-	
 	_secsToMillis: function(_s) {
 			return parseFloat(_s.replace("s",""))*1000;
 	},
@@ -19,11 +9,158 @@
 	_getLayer: function (parent, data) {
 		if (sifPlayer[data._type]) return new sifPlayer[data._type](parent, data);
 		console.log("EERRROOR  "  + data._type);
+		// Not supported LAYER
+		//alert(JSON.stringify(data));
+		return new sifPlayer.Layer();
 	},
 	
-	_getBlend: function (blend_method) {
+
+	
+	
+	_toSifValue: function( value ) {
+		var num = Number(value);
+		if (!isNaN(num)) return num;
+		if (value === 'true') return true;
+		if (value === 'false') return false;
+		//if a value or vector is using a def the first letter is ':' so we check to remove it.
+		if (value[0] === ":") return value.substr(1);
+		return value;
+	},
+
+	
+}
+	
+	
+
+window.sifPlayer = sifPlayer;
+}());
+/* ***
+ * LAYER
+ * 
+ * */
+ (function() { 
+	
+function Layer() {
+}
+
+var p = Layer.prototype;
+	
+	p.initLayer = function (parent, data) {
+		if (parent.sifPath) {
+			this.sifobj = parent;
+		} else {
+			this.parent = parent;
+			this.sifobj = parent.sifobj;
+		}
+	}
+	
+	p._setParam = function (param_name, param_type, param, dataIn) {
+		var w, tw, data;
+		var sifobj = this.sifobj;
+
+		/* ***
+		 * first we check if the data use a def
+		 * 
+		 * */
+		 if (dataIn._use) {
+			 data = {};
+			 data = sifobj.sif.canvas.defs[dataIn._use];
+		} else {
+			data = dataIn;
+		}
+		
+		param[param_name] = {}
+		switch (param_type) {
+			case 'vector':
+					
+				if (data.animated) {
+					w = data.animated.waypoint
+					param[param_name].x = w[0][param_type].x;
+					param[param_name].y = w[0][param_type].y;
+					tw = createjs.Tween.get(param[param_name]);
+						
+					if (w[0]._time !== "0s") {
+							tw.to( {x: w[0][param_type].x, y: w[0][param_type].y},
+								sifPlayer._secsToMillis(w[0]._time), 
+								createjs.Ease.linear);
+					}
+
+							
+					for (var i = 0; i < w.length - 1; i++) {
+						tw.to( {x: w[i + 1][param_type].x, y: w[i + 1][param_type].y},
+							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
+							createjs.Ease.linear);
+					}
+					sifobj.timeline.addTween(tw);
+				} else {
+					param[param_name].x = data[param_type].x;
+					param[param_name].y = data[param_type].y;
+				}
+				break;
+					
+			case 'color':
+				if (data.animated) {
+					w = data.animated.waypoint
+					param[param_name].r = w[0][param_type].r;
+					param[param_name].g = w[0][param_type].g;
+					param[param_name].b = w[0][param_type].b;
+					param[param_name].a = w[0][param_type].a;
+					tw = createjs.Tween.get(param[param_name]);
+						
+					if (w[0]._time !== "0s") {
+							tw.to( {r: w[0][param_type].r, g: w[0][param_type].g, b: w[0][param_type].b, a: w[0][param_type].a},
+								sifPlayer._secsToMillis(w[0]._time), 
+								createjs.Ease.linear);
+					}
+
+							
+					for (var i = 0; i < w.length - 1; i++) {
+						tw.to( {r: w[i + 1][param_type].r, g: w[i + 1][param_type].g, b: w[i + 1][param_type].b, a: w[i + 1][param_type].a},
+							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
+							createjs.Ease.linear);
+					}
+					
+					sifobj.timeline.addTween(tw);
+				} else {
+					param[param_name].r = data[param_type].r;
+					param[param_name].g = data[param_type].g;
+					param[param_name].b = data[param_type].b;
+					param[param_name].a = data[param_type].a;
+				}
+				break;
 				
-		switch (blend_method) {
+				
+			default: //real angle integer bool 
+				if (data.animated) {
+					w = data.animated.waypoint
+					param[param_name].value = w[0][param_type]._value
+					tw = createjs.Tween.get(param[param_name]);
+						
+					if (w[0]._time !== "0s") {
+							tw.to( {value: w[0][param_type]._value},
+								sifPlayer._secsToMillis(w[0]._time), 
+								createjs.Ease.linear);
+					}
+
+							
+					for (var i = 0; i < w.length - 1; i++) {
+						tw.to( {value: w[i + 1][param_type]._value},
+							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
+							createjs.Ease.linear);
+					}
+					sifobj.timeline.addTween(tw);
+				} else {
+					if (!data[param_type]) alert(JSON.stringify(data));
+					param[param_name].value = data[param_type]._value;
+				}
+				break;
+		}
+
+	}
+	
+	p._getBlend = function () {
+		var blend = this.blend_method.value;		
+		switch (blend) {
 			case 0:
 				//Composite
 				return 'source-over';
@@ -58,26 +195,18 @@
 				return 'source-over';
 				
 		}
-	},
-	
-	
-	_toSifValue: function( value ) {
-		var num = Number(value);
-		if (!isNaN(num)) return num;
-		if (value === 'true') return true;
-		if (value === 'false') return false;
-		//if a value or vector is using a def the first letter is ':' so we check to remove it.
-		if (value[0] === ":") return value.substr(1);
-		return value;
-	},
+	}
 
-	
-}
-	
-	
 
-window.sifPlayer = sifPlayer;
+
+sifPlayer.Layer = Layer;
 }());
+
+
+// namespace:
+// Requires sifPlayer
+
+(function() { 
 
 /*
  * SifObject
@@ -304,195 +433,6 @@ sifPlayer.SifObject = SifObject;
 }());
 
 /* ***
- * LAYER
- * 
- * */
- (function() { 
-	
-function Layer() {
-}
-
-var p = Layer.prototype;
-	
-	p.initLayer = function (parent, data) {
-		if (parent.sifPath) {
-			this.sifobj = parent;
-		} else {
-			this.parent = parent;
-			this.sifobj = parent.sifobj;
-		}
-	}
-	
-	p._setParam = function (param_name, param_type, param, dataIn) {
-		var w, tw, data;
-		var sifobj = this.sifobj;
-
-		/* ***
-		 * first we check if the data use a def
-		 * 
-		 * */
-		 if (dataIn._use) {
-			 data = {};
-			 data = sifobj.sif.canvas.defs[dataIn._use];
-		} else {
-			data = dataIn;
-		}
-		
-		param[param_name] = {}
-		switch (param_type) {
-			case 'vector':
-					
-				if (data.animated) {
-					w = data.animated.waypoint
-					param[param_name].x = w[0][param_type].x;
-					param[param_name].y = w[0][param_type].y;
-					tw = createjs.Tween.get(param[param_name]);
-						
-					if (w[0]._time !== "0s") {
-							tw.to( {x: w[0][param_type].x, y: w[0][param_type].y},
-								sifPlayer._secsToMillis(w[0]._time), 
-								createjs.Ease.linear);
-					}
-
-							
-					for (var i = 0; i < w.length - 1; i++) {
-						tw.to( {x: w[i + 1][param_type].x, y: w[i + 1][param_type].y},
-							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
-							createjs.Ease.linear);
-					}
-					sifobj.timeline.addTween(tw);
-				} else {
-					param[param_name].x = data[param_type].x;
-					param[param_name].y = data[param_type].y;
-				}
-				break;
-					
-			case 'color':
-				if (data.animated) {
-					w = data.animated.waypoint
-					param[param_name].r = w[0][param_type].r;
-					param[param_name].g = w[0][param_type].g;
-					param[param_name].b = w[0][param_type].b;
-					param[param_name].a = w[0][param_type].a;
-					tw = createjs.Tween.get(param[param_name]);
-						
-					if (w[0]._time !== "0s") {
-							tw.to( {r: w[0][param_type].r, g: w[0][param_type].g, b: w[0][param_type].b, a: w[0][param_type].a},
-								sifPlayer._secsToMillis(w[0]._time), 
-								createjs.Ease.linear);
-					}
-
-							
-					for (var i = 0; i < w.length - 1; i++) {
-						tw.to( {r: w[i + 1][param_type].r, g: w[i + 1][param_type].g, b: w[i + 1][param_type].b, a: w[i + 1][param_type].a},
-							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
-							createjs.Ease.linear);
-					}
-					
-					sifobj.timeline.addTween(tw);
-				} else {
-					param[param_name].r = data[param_type].r;
-					param[param_name].g = data[param_type].g;
-					param[param_name].b = data[param_type].b;
-					param[param_name].a = data[param_type].a;
-				}
-				break;
-				
-				
-			default: //real angle integer bool 
-				if (data.animated) {
-					w = data.animated.waypoint
-					param[param_name].value = w[0][param_type]._value
-					tw = createjs.Tween.get(param[param_name]);
-						
-					if (w[0]._time !== "0s") {
-							tw.to( {value: w[0][param_type]._value},
-								sifPlayer._secsToMillis(w[0]._time), 
-								createjs.Ease.linear);
-					}
-
-							
-					for (var i = 0; i < w.length - 1; i++) {
-						tw.to( {value: w[i + 1][param_type]._value},
-							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
-							createjs.Ease.linear);
-					}
-					sifobj.timeline.addTween(tw);
-				} else {
-					if (!data[param_type]) alert(JSON.stringify(data));
-					param[param_name].value = data[param_type]._value;
-				}
-				break;
-		}
-
-	}
-
-
-
-sifPlayer.Layer = Layer;
-}());
-
-/* ***
- * IMPORT LAYER
- * 
- * */
- (function() { 
-	 
-sifPlayer.import = function (parent, data) {
-	this.init(parent, data);
-}
-
-var p = sifPlayer.import.prototype = new sifPlayer.Layer();
-
-	p.init = function (parent, data) {
-		this.initLayer(parent, data)
-		this._setParam('tl', 'vector', this, data.tl);
-		this._setParam('br', 'vector', this, data.br);
-		this.image = new Image();
-		this.image.src = this.sifobj.sifPath + data.filename.string;
-		
-	}
-
-	p.draw = function () {
-		var ctx = this.sifobj.ctx;
-		ctx.save();
-		this._drawImage();
-		ctx.restore();
-	}
-	
-	
-	p._drawImage = function () {
-		var ctx = this.sifobj.ctx;
-		var w =  (this.br.x - this.tl.x);
-		var h = (this.tl.y - this.br.y)
-		var sx;
-		var sy;
-
-		
-		if (w <= 0) {
-			sx = -1;
-			w *=-1;
-		} else {
-			sx = 1;
-		}
-		
-		if (h <= 0) {
-			sy = 1
-			h *=-1;
-		} else {
-			sy = -1;
-		}
-		ctx.translate(this.tl.x, this.tl.y);
-		ctx.scale(sx  , sy);
-		ctx.drawImage(this.image, 0, 0, w, h);
-
-	}
-	
-
-
-}());
-
-/* ***
  * PASTECANVAS LAYER
  * 
  * */
@@ -571,7 +511,7 @@ var p = region.prototype = new sifPlayer.Layer();
 		ctx.globalAlpha = this.amount.value;
 		ctx.save();
 		ctx.translate(this.origin.x, this.origin.y);
-		ctx.globalCompositeOperation = sifPlayer._getBlend( this.blend_method.value );
+		ctx.globalCompositeOperation = this._getBlend();
 
 		ctx.beginPath();
 		
@@ -643,14 +583,27 @@ var p = region.prototype = new sifPlayer.Layer();
 			this._setParam('point', 'vector', entry, data.bline.entry[i].composite.point);
 			
 			//T1
-			this._setParam('theta', 'angle', entry.t1, data.bline.entry[i].composite.t1.radial_composite.theta);
-			this._setParam('radius', 'real', entry.t1, data.bline.entry[i].composite.t1.radial_composite.radius);
+			if (!data.bline.entry[i].composite.t1.scale) {
+				this._setParam('theta', 'angle', entry.t1, data.bline.entry[i].composite.t1.radial_composite.theta);
+				this._setParam('radius', 'real', entry.t1, data.bline.entry[i].composite.t1.radial_composite.radius);
+			} else {
+				this._setParam('theta', 'angle', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.theta);
+				this._setParam('radius', 'real', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.radius);
+				this._setParam('scalar', 'real', entry.t1, data.bline.entry[i].composite.t1.scale.scalar);
+	
+			}
 			
 			//T2
-			this._setParam('theta', 'angle', entry.t2, data.bline.entry[i].composite.t2.radial_composite.theta);
-			this._setParam('radius', 'real', entry.t2, data.bline.entry[i].composite.t2.radial_composite.radius);
-			
-
+			if (!data.bline.entry[i].composite.t2.scale) {
+				this._setParam('theta', 'angle', entry.t2, data.bline.entry[i].composite.t2.radial_composite.theta);
+				this._setParam('radius', 'real', entry.t2, data.bline.entry[i].composite.t2.radial_composite.radius);
+			} else {
+				this._setParam('theta', 'angle', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.theta);
+				this._setParam('radius', 'real', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.radius);
+				this._setParam('scalar', 'real', entry.t2, data.bline.entry[i].composite.t2.scale.scalar);
+				//alert(JSON.stringify(entry));
+	
+			}
 
 			
 		}
@@ -661,6 +614,7 @@ var p = region.prototype = new sifPlayer.Layer();
 		var _cp2 = {};
 		var _a;
 		if (_t1.scalar) { //here was the scalar now it must get outside of the function
+
 			_a = (_t1.theta.value - 180) * Math.PI / 180.0;
 		} else {
 			_a = _t1.theta.value * Math.PI / 180.0;
@@ -684,30 +638,64 @@ var p = region.prototype = new sifPlayer.Layer();
 sifPlayer.region = region;
 }());
 /* ***
- * RESTORE LAYER
+ * IMPORT LAYER
  * 
  * */
  (function() { 
-	
-function restore(parent, data) {
+	 
+sifPlayer.import = function (parent, data) {
 	this.init(parent, data);
 }
 
-var p = restore.prototype = new sifPlayer.Layer();
+var p = sifPlayer.import.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
-		this.initLayer(parent, data);
-	};
-	
-	p.draw = function () {
-		var ctx = this.sifobj.ctx;
-		ctx.restore();
+		this.initLayer(parent, data)
+		this._setParam('tl', 'vector', this, data.tl);
+		this._setParam('br', 'vector', this, data.br);
+		this.image = new Image();
+		this.image.src = this.sifobj.sifPath + data.filename.string;
+		
 	}
 
+	p.draw = function () {
+		var ctx = this.sifobj.ctx;
+		ctx.save();
+		this._drawImage();
+		ctx.restore();
+	}
+	
+	
+	p._drawImage = function () {
+		var ctx = this.sifobj.ctx;
+		var w =  (this.br.x - this.tl.x);
+		var h = (this.tl.y - this.br.y)
+		var sx;
+		var sy;
 
-sifPlayer.restore = restore;
+		
+		if (w <= 0) {
+			sx = -1;
+			w *=-1;
+		} else {
+			sx = 1;
+		}
+		
+		if (h <= 0) {
+			sy = 1
+			h *=-1;
+		} else {
+			sy = -1;
+		}
+		ctx.translate(this.tl.x, this.tl.y);
+		ctx.scale(sx  , sy);
+		ctx.drawImage(this.image, 0, 0, w, h);
+
+	}
+	
+
+
 }());
-
 /* ***
  * ROTATE LAYER
  * 
@@ -737,9 +725,6 @@ var p = rotate.prototype = new sifPlayer.Layer();
 
 sifPlayer.rotate = rotate;
 }());
-
-
-
 /* ***
  * TRANSLATE LAYER
  * 
@@ -794,4 +779,63 @@ var p = zoom.prototype = new sifPlayer.Layer();
 
 
 sifPlayer.zoom = zoom;
+}());
+/* ***
+ * IMPORT LAYER
+ * 
+ * */
+ (function() { 
+	 
+sifPlayer.import = function (parent, data) {
+	this.init(parent, data);
+}
+
+var p = sifPlayer.import.prototype = new sifPlayer.Layer();
+
+	p.init = function (parent, data) {
+		this.initLayer(parent, data)
+		this._setParam('tl', 'vector', this, data.tl);
+		this._setParam('br', 'vector', this, data.br);
+		this.image = new Image();
+		this.image.src = this.sifobj.sifPath + data.filename.string;
+		
+	}
+
+	p.draw = function () {
+		var ctx = this.sifobj.ctx;
+		ctx.save();
+		this._drawImage();
+		ctx.restore();
+	}
+	
+	
+	p._drawImage = function () {
+		var ctx = this.sifobj.ctx;
+		var w =  (this.br.x - this.tl.x);
+		var h = (this.tl.y - this.br.y)
+		var sx;
+		var sy;
+
+		
+		if (w <= 0) {
+			sx = -1;
+			w *=-1;
+		} else {
+			sx = 1;
+		}
+		
+		if (h <= 0) {
+			sy = 1
+			h *=-1;
+		} else {
+			sy = -1;
+		}
+		ctx.translate(this.tl.x, this.tl.y);
+		ctx.scale(sx  , sy);
+		ctx.drawImage(this.image, 0, 0, w, h);
+
+	}
+	
+
+
 }());
