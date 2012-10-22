@@ -12,7 +12,8 @@ It is supports the type of layer:
 
 Many things to add limited time and open source of curse. 
 Run the sifPlayer.html to see it in action. Also it is an example of how to use this.
-<<<<<<< HEAD
-=======
 
->>>>>>> 561ea7934a0655f95c0310e853135aa670b40ca7
+In the src/build there is an all in one version of the sifplayer.
+
+Also in the /assets/ are sifparser.html  you can run it to have an understanding of how the data looks like
+
