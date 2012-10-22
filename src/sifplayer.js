@@ -1,10 +1,7 @@
 
 (function() { 
 	var sifPlayer = {
-	
-	sifObj: {},
 
-	
 	_secsToMillis: function(_s) {
 			return parseFloat(_s.replace("s",""))*1000;
 	},
