@@ -187,7 +187,8 @@ var p = SifObject.prototype;
 		var defs = {};
 		for (name in data) {
 			if (data[name].constructor != Array) {
-				defs[data._id] = data[name];								
+				defs[data._id] = data[name];
+				defs[data._id]._type = name;							
 			} else {
 				
 					
@@ -196,7 +197,9 @@ var p = SifObject.prototype;
 						defs[data[name][j]._id] = {};
 						defs[data[name][j]._id].animated = data[name][j];
 					} else {
-						defs[data[name][j]._id] = data[name][j];
+						defs[data[name][j]._id] = {};
+						defs[data[name][j]._id][name] = data[name][j];
+						defs[data[name][j]._id]._type = name
 					}
 				}			
 			}

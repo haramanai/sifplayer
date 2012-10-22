@@ -15,6 +15,7 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		this._setParam('blend_method', this, data.blend_method);
 		this._setParam('origin', this, data.origin);
 		this._setParam('zoom', this, data.zoom);
+		this._setParam('focus', this, data.focus);
 
 		this._getLayers(data.canvas.canvas.layer);
 	}
@@ -29,10 +30,15 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 	
 	p.draw = function () {
 		var ctx = this.sifobj.ctx;
+		var zoom = Math.exp(this.zoom.value);
 		ctx.save();
-		ctx.translate(this.origin.x, this.origin.y);
-		ctx.scale(Math.exp(this.zoom.value), Math.exp(this.zoom.value));
+		ctx.translate(this.focus.x, this.focus.y);
+		ctx.scale(zoom, zoom);
+		ctx.translate(-this.focus.x, -this.focus.y);
+		ctx.translate(this.origin.x / zoom, this.origin.y / zoom);
+
 		for (var i = 0; i < this.layer.length; i++) {
+			
 			this.layer[i].draw();
 		}
 

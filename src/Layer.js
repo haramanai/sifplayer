@@ -21,6 +21,7 @@ var p = Layer.prototype;
 	p._setParam = function (param_name, param, dataIn) {
 		var w, tw, data;
 		var param_type;
+		var def;
 		var sifobj = this.sifobj;
 		
 
@@ -32,8 +33,7 @@ var p = Layer.prototype;
 		 * */
 		 param_type = this._getValueType(dataIn);
 		 if (dataIn._use) {
-			 data = {};
-			 data[param_type] = sifobj.sif.canvas.defs[dataIn._use];
+			 return this._setParam(param_name, param, sifobj.sif.canvas.defs[dataIn._use]);			 
 		} else {
 			data = dataIn;
 		}
@@ -123,7 +123,7 @@ var p = Layer.prototype;
 					}
 					sifobj.timeline.addTween(tw);
 				} else {
-					if (!data[param_type]) alert(JSON.stringify(data));
+					if (!data[param_type]) alert(JSON.stringify(data) + "param_type : " + param_type);
 					param[param_name].value = data[param_type]._value;
 				}
 				break;
@@ -171,6 +171,9 @@ var p = Layer.prototype;
 	}
 	
 	p._getValueType = function (data) {
+		if (data._type) return data._type;
+		if (data._use) return 'use';
+		
 		if (data.animated) return data.animated._type;
 		if (data.vector) return 'vector'
 		if (data.integer) return 'integer'
@@ -178,8 +181,9 @@ var p = Layer.prototype;
 		if (data.bool) return 'bool'
 		if (data.angle) return 'angle'
 		if (data.color) return 'color'
+		if (data.radial_composite) return 'radial_composite'
+		if (data.greyed) return 'greyed'
 		
-		if (data._use) alert("use");
 		
 	}
 
