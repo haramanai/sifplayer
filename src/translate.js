@@ -12,7 +12,7 @@ var p = translate.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('origin', 'vector', this, data.origin);
+		this._setParam('origin', this, data.origin);
 	}
 
 	p.draw = function () {

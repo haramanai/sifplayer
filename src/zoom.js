@@ -12,8 +12,8 @@ var p = zoom.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('center', 'vector', this, data.center);
-		this._setParam('amount', 'real', this, data.amount);
+		this._setParam('center', this, data.center);
+		this._setParam('amount', this, data.amount);
 	}
 
 	p.draw = function () {

@@ -12,8 +12,8 @@ var p = rotate.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('origin', 'vector', this, data.origin);
-		this._setParam('amount', 'angle', this, data.amount);
+		this._setParam('origin', this, data.origin);
+		this._setParam('amount', this, data.amount);
 	}
 
 	p.draw = function () {

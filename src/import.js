@@ -12,8 +12,8 @@ var p = sifPlayer.import.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data)
-		this._setParam('tl', 'vector', this, data.tl);
-		this._setParam('br', 'vector', this, data.br);
+		this._setParam('tl', this, data.tl);
+		this._setParam('br', this, data.br);
 		this.image = new Image();
 		this.image.src = this.sifobj.sifPath + data.filename.string;
 		
