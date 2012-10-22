@@ -23,7 +23,7 @@ function main() {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	var so = new sifPlayer.SifObject(xmlDoc, ctx , 0, 0, canvas.width, canvas.height, 'assets/');
-	
+	so.timeline.loop = true;
 	var looper = { 
 		tick: function () {
 			clearCanvas(ctx, canvas);

@@ -13,10 +13,10 @@ var p = region.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('blend_method', 'integer', this, data.blend_method);
-		this._setParam('amount','real', this, data.amount);
-		this._setParam('origin','vector', this, data.origin);
-		this._setParam('color','color', this, data.color);
+		this._setParam('blend_method',this, data.blend_method);
+		this._setParam('amount',this, data.amount);
+		this._setParam('origin', this, data.origin);
+		this._setParam('color', this, data.color);
 		this._getBline(data.bline);
 		
 	}
@@ -99,30 +99,30 @@ var p = region.prototype = new sifPlayer.Layer();
 			 
 			 
 			//SPLIT
-			this._setParam('split' , 'bool', entry, data.bline.entry[i].composite.split)
+			this._setParam('split' , entry, data.bline.entry[i].composite.split)
 			
 			//POINT
-			this._setParam('point', 'vector', entry, data.bline.entry[i].composite.point);
+			this._setParam('point', entry, data.bline.entry[i].composite.point);
 			
 			//T1
 			if (!data.bline.entry[i].composite.t1.scale) {
-				this._setParam('theta', 'angle', entry.t1, data.bline.entry[i].composite.t1.radial_composite.theta);
-				this._setParam('radius', 'real', entry.t1, data.bline.entry[i].composite.t1.radial_composite.radius);
+				this._setParam('theta', entry.t1, data.bline.entry[i].composite.t1.radial_composite.theta);
+				this._setParam('radius', entry.t1, data.bline.entry[i].composite.t1.radial_composite.radius);
 			} else {
-				this._setParam('theta', 'angle', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.theta);
-				this._setParam('radius', 'real', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.radius);
-				this._setParam('scalar', 'real', entry.t1, data.bline.entry[i].composite.t1.scale.scalar);
+				this._setParam('theta', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.theta);
+				this._setParam('radius', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.radius);
+				this._setParam('scalar', entry.t1, data.bline.entry[i].composite.t1.scale.scalar);
 	
 			}
 			
 			//T2
 			if (!data.bline.entry[i].composite.t2.scale) {
-				this._setParam('theta', 'angle', entry.t2, data.bline.entry[i].composite.t2.radial_composite.theta);
-				this._setParam('radius', 'real', entry.t2, data.bline.entry[i].composite.t2.radial_composite.radius);
+				this._setParam('theta', entry.t2, data.bline.entry[i].composite.t2.radial_composite.theta);
+				this._setParam('radius', entry.t2, data.bline.entry[i].composite.t2.radial_composite.radius);
 			} else {
-				this._setParam('theta', 'angle', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.theta);
-				this._setParam('radius', 'real', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.radius);
-				this._setParam('scalar', 'real', entry.t2, data.bline.entry[i].composite.t2.scale.scalar);
+				this._setParam('theta', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.theta);
+				this._setParam('radius', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.radius);
+				this._setParam('scalar', entry.t2, data.bline.entry[i].composite.t2.scale.scalar);
 				//alert(JSON.stringify(entry));
 	
 			}

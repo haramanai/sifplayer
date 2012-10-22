@@ -18,20 +18,26 @@ var p = Layer.prototype;
 		}
 	}
 	
-	p._setParam = function (param_name, param_type, param, dataIn) {
+	p._setParam = function (param_name, param, dataIn) {
 		var w, tw, data;
+		var param_type;
 		var sifobj = this.sifobj;
+		
 
+
+		
 		/* ***
 		 * first we check if the data use a def
 		 * 
 		 * */
+		 param_type = this._getValueType(dataIn);
 		 if (dataIn._use) {
 			 data = {};
-			 data = sifobj.sif.canvas.defs[dataIn._use];
+			 data[param_type] = sifobj.sif.canvas.defs[dataIn._use];
 		} else {
 			data = dataIn;
 		}
+		
 		
 		param[param_name] = {}
 		switch (param_type) {
@@ -57,8 +63,11 @@ var p = Layer.prototype;
 					}
 					sifobj.timeline.addTween(tw);
 				} else {
+					if (!data[param_type]) alert(JSON.stringify(data));
+					if (!data[param_type]) alert(JSON.stringify(dataIn));
 					param[param_name].x = data[param_type].x;
 					param[param_name].y = data[param_type].y;
+					
 				}
 				break;
 					
@@ -159,6 +168,19 @@ var p = Layer.prototype;
 				return 'source-over';
 				
 		}
+	}
+	
+	p._getValueType = function (data) {
+		if (data.animated) return data.animated._type;
+		if (data.vector) return 'vector'
+		if (data.integer) return 'integer'
+		if (data.real) return 'real'
+		if (data.bool) return 'bool'
+		if (data.angle) return 'angle'
+		if (data.color) return 'color'
+		
+		if (data._use) alert("use");
+		
 	}
 
 

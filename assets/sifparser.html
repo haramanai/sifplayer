@@ -88,7 +88,7 @@ function getData (node) {
 						 * */
 						 
 						var layer_type = cn.getAttribute('type');
-
+						if (typeof data[cname] == 'undefined') data[cname] = [];
 						/*		Switch Layer Type
 						*	Push a fake layer of type restore and unshift the layer
 						* 	This is needed for rendering.
