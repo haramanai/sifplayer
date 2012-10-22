@@ -43,7 +43,7 @@ var p = region.prototype = new sifPlayer.Layer();
 			
 			e1 = this.bline.entry[i];
 			e2 = this.bline.entry[i + 1];
-			if (e1.split) {
+			if (e1.split.value) {
 				this._bezierPart( e1.point, e2.point, e1.t2, e2.t1);
 			} else {
 				this._bezierPart( e1.point, e2.point, e1.t1, e2.t1);
@@ -56,7 +56,7 @@ var p = region.prototype = new sifPlayer.Layer();
 			e1 = this.bline.entry[ this.bline.entry.length - 1 ];
 			e2 = this.bline.entry[0];
 			
-			if (e1.split) {
+			if (e1.split.value) {
 				this._bezierPart( e1.point, e2.point, e1.t2, e2.t1);
 			} else {
 				this._bezierPart( e1.point, e2.point, e1.t1, e2.t1);
