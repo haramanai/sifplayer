@@ -8,123 +8,29 @@
   <meta name="guide_show" content="1"/>
   <meta name="guide_snap" content="0"/>
   <meta name="onion_skin" content="0"/>
-  <keyframe time="0f"/>
-  <keyframe time="6f"> (Duplicate)</keyframe>
-  <keyframe time="12f"> (Duplicate)</keyframe>
-  <keyframe time="1s"/>
-  <keyframe time="2s"/>
   <defs>
     <real value="1.2296869836" id="(stk)-body-r"/>
     <angle value="96.654427" id="(stk)-body-t"/>
-    <animated type="vector" id="(stk)-origin" guid="84CF74D6C2B6F234DAE106D924C3A84C">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <vector guid="3E5EAD60BA2076298538E0F9D91CCECB">
-          <x>0.1788193136</x>
-          <y>0.1974468678</y>
-        </vector>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <vector guid="8BC0F75BAAE2B91450B7DDB51BD7AEAB">
-          <x>0.1615037918</x>
-          <y>-0.2756704688</y>
-        </vector>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <vector guid="ACD9167499626C22D80EA5462C19E5B4">
-          <x>0.2136169672</x>
-          <y>0.4554304779</y>
-        </vector>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <vector guid="84D1E89F92F8B0D0114923BAC98D2701">
-          <x>0.1224189028</x>
-          <y>0.7687594295</y>
-        </vector>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <vector guid="F494EEE1DF60B52EE17B2520AB3540BE">
-          <x>0.1788193136</x>
-          <y>0.1974468678</y>
-        </vector>
-      </waypoint>
-    </animated>
+    <vector id="(stk)-origin">
+      <x>0.1788193136</x>
+      <y>0.1974468678</y>
+    </vector>
     <vector id="(stk)-hip2">
       <x>-0.2442805469</x>
       <y>-0.0407134257</y>
     </vector>
     <real value="1.0970030253" id="(stk)-knee2-r"/>
-    <animated type="angle" id="(stk)-knee2-t" guid="EB360E315A32D1839C5F344A0ACA4645">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-112.594246" guid="B38D82964C398F01DFA9056D730E211F"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-153.217621" guid="D756828C39C20E39B5E2915A64764CCA"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-112.594246" guid="B38D82964C398F01DFA9056D730E211F"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-160.168579" guid="8992D3451329DF336D46CB844625F5F1"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-112.594246" guid="8D1D2C3941F3CB57C352F00BC8882C4A"/>
-      </waypoint>
-    </animated>
+    <angle value="-112.594246" id="(stk)-knee2-t"/>
     <real value="0.9612022325" id="(stk)-heel2-r"/>
-    <animated type="angle" id="(stk)-heel2-t" guid="4BA3AAA5EC54FAC357078746D2730C65">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="37.316910" guid="9C44C472DE5005C9784537539A129331"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="61.559639" guid="6F020E8FC0D9A749FF1AD5665B2E9545"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="37.316910" guid="9C44C472DE5005C9784537539A129331"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="82.939667" guid="E8E071417B44C5BD5092DF6091E2DB98"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="37.316910" guid="9CCA7B516D24256468D50E82D0B392C6"/>
-      </waypoint>
-    </animated>
+    <angle value="37.316910" id="(stk)-heel2-t"/>
     <real value="0.4400073159" id="(stk)-toe2-r"/>
-    <animated type="angle" id="(stk)-toe2-t" guid="C6D76565DB7A02918763B74A3049A815">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-102.598412" guid="D227F8189E3C64DBF7F3E240493A7776"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-86.601379" guid="36F5F48557EB1FFA64BE2D22D0D8D4D9"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-71.449997" guid="86D3C8BAF20375C55D5496C77683A23D"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-102.598412" guid="85BDC64F9F2825EDD3747EED35EB9FC8"/>
-      </waypoint>
-    </animated>
+    <angle value="-102.598412" id="(stk)-toe2-t"/>
     <vector id="(stk)-hip1">
-      <x>0.2690283656</x>
-      <y>-0.0956632942</y>
+      <x>0.4071342647</x>
+      <y>-0.0814268515</y>
     </vector>
     <real value="0.9187553465" id="(stk)-heel1-r"/>
-    <animated type="angle" id="(stk)-heel1-t" guid="70997BA4080DF72E84D814D6A6F1E3E9">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-17.223257" guid="02241D8E20746BD7A1D2895A9B5EFCCA"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-57.792046" guid="AB238DB6E903E0D29A4681076B2DDDBE"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-17.223257" guid="02241D8E20746BD7A1D2895A9B5EFCCA"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-1.202684" guid="F27FE1990E067713767C36E0D259DDDE"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-17.223257" guid="59E4E1BD15664F53F8C7D1D52EC6BB82"/>
-      </waypoint>
-    </animated>
+    <angle value="-17.223257" id="(stk)-heel1-t"/>
     <real value="0.5058991674" id="(stk)-toe1-r"/>
     <vector id="(stk)-head">
       <x>0.3059181869</x>
@@ -134,23 +40,7 @@
       <x>-0.1409048438</x>
       <y>-0.4890227020</y>
     </vector>
-    <animated type="angle" id="(stk)-wrist1-t" guid="07894CD29BB5631D3F6EA24564022A79">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-17.179234" guid="265D365F73C06C659C6C5E2CF1379765"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-17.179234" guid="265D365F73C06C659C6C5E2CF1379765"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-17.179234" guid="265D365F73C06C659C6C5E2CF1379765"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-82.464264" guid="FAA456EB79E90A9B15BA84CC91C0AD50"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-17.179234" guid="02BC4205A80549407492CC7326DF4845"/>
-      </waypoint>
-    </animated>
+    <angle value="-17.179234" id="(stk)-wrist1-t"/>
     <real value="0.3000000000" id="(stk)-palm1-r"/>
     <angle value="-32.273991" id="(stk)-palm1-t"/>
     <vector id="(stk)-shoulder2">
@@ -158,81 +48,17 @@
       <y>0.5595002174</y>
     </vector>
     <real value="0.7914743074" id="(stk)-elbow2-r"/>
-    <animated type="angle" id="(stk)-elbow2-t" guid="18B5293ED987F990C1BA00BABBAA58FC">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-205.143082" guid="6D7ED143E1CF1E75D24E2D51E6E0020D"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-205.143082" guid="6D7ED143E1CF1E75D24E2D51E6E0020D"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-205.143082" guid="6D7ED143E1CF1E75D24E2D51E6E0020D"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-254.332123" guid="EDA0ED50F139BE16E1B0BD4B2DF94D7A"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-205.143082" guid="987535ABC82211B404322A99A2AE7EA6"/>
-      </waypoint>
-    </animated>
+    <angle value="-218.996719" id="(stk)-elbow2-t"/>
     <real value="0.7133086109" id="(stk)-wrist2-r"/>
     <angle value="15.119938" id="(stk)-wrist2-t"/>
     <real value="0.3261906387" id="(stk)-palm2-r"/>
     <angle value="10.523929" id="(stk)-palm2-t"/>
     <real value="1.0000000000" id="(stk)-stickman-amount"/>
     <real value="0.9879790492" id="(stk)-knee1-r"/>
-    <animated type="angle" id="(stk)-knee1-t" guid="13685E0361CD83A2559BE5646332BBC5">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-74.198723" guid="C4A67A6636C62BEA353127F909CADE9B"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-32.109924" guid="53426B6811E9AFCB9D11CA8A5C10CBAD"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-74.198723" guid="C4A67A6636C62BEA353127F909CADE9B"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-46.165268" guid="4F4C2A8B631A3C8891C1C3D1595F7A27"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-74.198723" guid="BBA8FE1E89851CD594B6AFD7CDAFB71E"/>
-      </waypoint>
-    </animated>
+    <angle value="-74.198723" id="(stk)-knee1-t"/>
     <real value="0.8117041881" id="(stk)-elbow1-r"/>
-    <animated type="angle" id="(stk)-elbow1-t" guid="DC7830027EC01C3AA81784538B7AF3DF">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-151.638428" guid="8C559CC45712B08B78D36999B539B98B"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-151.638428" guid="8C559CC45712B08B78D36999B539B98B"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-151.638428" guid="8C559CC45712B08B78D36999B539B98B"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-88.064026" guid="C886BE54878B93EDEBA08CD6722F13DA"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-151.638428" guid="E4184097FC30E34DDD19BC251F9E1486"/>
-      </waypoint>
-    </animated>
-    <animated type="angle" id="(stk)-toe1-t" guid="ACEA51A5146FADA9863A43622F5F5F6E">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="95.118828" guid="3F3A9F0D57FAC69E9ABED6FD17967172"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="95.118828" guid="3F3A9F0D57FAC69E9ABED6FD17967172"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="62.950157" guid="DCDADC482B4722CA0282276B867DBE83"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="89.328255" guid="6B253DCFF27F8F534302A3BFEEF19363"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="95.118828" guid="A53A873C334237E45C4276CF3075D87C"/>
-      </waypoint>
-    </animated>
+    <angle value="-140.343704" id="(stk)-elbow1-t"/>
+    <angle value="95.118828" id="(stk)-toe1-t"/>
     <real value="0.8028688461" id="(stk)-wrist1-r"/>
     <angle value="-7.152278" id="(stk)-head-t"/>
     <real value="1.0457836598" id="(stk)-head-r"/>
@@ -331,7 +157,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="D69756004D5F4C4F5F5C30FA21830F3C">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -370,7 +196,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -489,7 +315,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -515,7 +341,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-elbow2-r" theta=":(stk)-elbow2-t"/>
@@ -695,7 +521,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="8F66989DFA03CD4FB96646F3C74B2D34">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -734,7 +560,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -853,7 +679,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -879,7 +705,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-wrist2-r" theta=":(stk)-wrist2-t"/>
@@ -1077,7 +903,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="33D348EA1DEC88EB1F1F3409DABE0543">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1116,7 +942,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1279,7 +1105,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -1305,7 +1131,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-palm2-r" theta=":(stk)-palm2-t"/>
@@ -1521,7 +1347,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="D69756004D5F4C4F5F5C30FA21830F3C">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1560,7 +1386,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1679,7 +1505,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -1705,7 +1531,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-elbow1-r" theta=":(stk)-elbow1-t"/>
@@ -1885,7 +1711,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="8F66989DFA03CD4FB96646F3C74B2D34">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1924,7 +1750,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2043,7 +1869,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -2069,7 +1895,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-wrist1-r" theta=":(stk)-wrist1-t"/>
@@ -2267,7 +2093,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="33D348EA1DEC88EB1F1F3409DABE0543">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2306,7 +2132,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2469,7 +2295,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -2495,7 +2321,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-palm1-r" theta=":(stk)-palm1-t"/>
@@ -2711,7 +2537,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2750,7 +2576,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2789,7 +2615,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2828,7 +2654,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2913,7 +2739,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2952,7 +2778,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2991,7 +2817,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector guid="B352B6EEBC6CC775A74D7D9394A92D7C">
@@ -3030,7 +2856,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3132,7 +2958,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="false">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <greyed type="bline_point">
                               <link>
                                 <bline_point>
@@ -3158,7 +2984,7 @@
                               </link>
                             </greyed>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector guid="B352B6EEBC6CC775A74D7D9394A92D7C">
@@ -3415,7 +3241,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3454,7 +3280,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3573,7 +3399,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -3599,7 +3425,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-body-r" theta=":(stk)-body-t"/>
@@ -3758,7 +3584,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="2DA787A07D177461F1D0C43A14344142">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3797,7 +3623,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3916,7 +3742,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -3942,7 +3768,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-knee1-r" theta=":(stk)-knee1-t"/>
@@ -4104,7 +3930,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="98C7C4D875790FE502D7280A49CF2857">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4143,7 +3969,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4262,7 +4088,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -4288,7 +4114,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-heel1-r" theta=":(stk)-heel1-t"/>
@@ -4468,7 +4294,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="FFE601811C4EC74C9C6EAE8A6DAAE294">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4507,7 +4333,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4670,7 +4496,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -4696,7 +4522,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-toe1-r" theta=":(stk)-toe1-t"/>
@@ -4894,7 +4720,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="2DA787A07D177461F1D0C43A14344142">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4933,7 +4759,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5052,7 +4878,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -5078,7 +4904,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-knee2-r" theta=":(stk)-knee2-t"/>
@@ -5240,7 +5066,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="98C7C4D875790FE502D7280A49CF2857">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5279,7 +5105,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5398,7 +5224,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -5424,7 +5250,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-heel2-r" theta=":(stk)-heel2-t"/>
@@ -5604,7 +5430,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="FFE601811C4EC74C9C6EAE8A6DAAE294">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5643,7 +5469,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5806,7 +5632,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -5832,7 +5658,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-toe2-r" theta=":(stk)-toe2-t"/>

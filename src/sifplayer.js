@@ -8,10 +8,11 @@
 	
 	_getLayer: function (parent, data) {
 		if (sifPlayer[data._type]) return new sifPlayer[data._type](parent, data);
-		console.log("EERRROOR  "  + data._type);
 		// Not supported LAYER
-		//alert(JSON.stringify(data));
-		return new sifPlayer.Layer();
+		console.log("EERRROOR  "  + data._type + 'not supported');
+		var bad_layer = new sifPlayer.Layer();
+		bad_layer.initLayer(parent, data);
+		return bad_layer;
 	},
 	
 
