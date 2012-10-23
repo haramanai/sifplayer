@@ -8,10 +8,11 @@
 	
 	_getLayer: function (parent, data) {
 		if (sifPlayer[data._type]) return new sifPlayer[data._type](parent, data);
-		console.log("EERRROOR  "  + data._type);
 		// Not supported LAYER
-		//alert(JSON.stringify(data));
-		return new sifPlayer.Layer();
+		console.log("EERRROOR  "  + data._type + 'not supported');
+		var bad_layer = new sifPlayer.Layer();
+		bad_layer.initLayer(parent, data);
+		return bad_layer;
 	},
 	
 
@@ -52,6 +53,11 @@ var p = Layer.prototype;
 			this.parent = parent;
 			this.sifobj = parent.sifobj;
 		}
+		this.type = data._type;
+	}
+	
+	p.draw = function () {
+		//console.log('Cant render ' + this.type + ' yet');
 	}
 	
 	p._setParam = function (param_name, param, dataIn) {
@@ -64,15 +70,58 @@ var p = Layer.prototype;
 
 		
 		/* ***
-		 * first we check if the data use a def
-		 * 
-		 * */
-		 param_type = this._getValueType(dataIn);
+		* first we check if the data use a def
+		* 
+		* */
+		if (!dataIn) alert(this.type + "  " + param_name);
+		param_type = this._getValueType(dataIn);
+		
+		
+		
+		//Just to be sure that I haven't loose a type
+		if (!param_type) { 
+			alert('no param type');
+			alert(JSON.stringify(dataIn));
+		}
+		
+		//Extra work for the special types
+		switch (param_type) {
+			case 'greyed':				
+				var param_type = dataIn.greyed._type;
+				dataIn = dataIn.greyed;
+				dataIn[param_type] = dataIn.link[param_type];
+				delete(dataIn.link);				
+				break;
+				
+			case 'radial_composite':
+				param[param_name] = {};
+				param[param_name]._type = param_type;
+				param[param_name].radial_composite = {};
+				// get the defs
+				if (dataIn[param_type]._radius) {
+					dataIn[param_type].radius = this.sifobj.sif.canvas.defs[ dataIn[param_type]._radius ];
+				}
+				if (dataIn[param_type]._theta) {
+					dataIn[param_type].theta = this.sifobj.sif.canvas.defs[ dataIn[param_type]._theta ];
+				}
+
+				this._setParam('radius', param[param_name][param_type], dataIn[param_type].radius);
+				this._setParam('theta', param[param_name][param_type], dataIn[param_type].theta);
+				
+				return;
+				break;			
+			
+		}
+
+		 
+		 
 		 if (dataIn._use) {
 			 return this._setParam(param_name, param, sifobj.sif.canvas.defs[dataIn._use]);			 
 		} else {
 			data = dataIn;
 		}
+
+		
 		
 		
 		param[param_name] = {}
@@ -159,7 +208,7 @@ var p = Layer.prototype;
 					}
 					sifobj.timeline.addTween(tw);
 				} else {
-					if (!data[param_type]) alert(JSON.stringify(data) + "param_type : " + param_type);
+					if (!data[param_type]) alert(JSON.stringify(data) + "param_type : " + param_type + ' param_name : ' + param_name + ' layer type : ' + this.type);
 					param[param_name].value = data[param_type]._value;
 				}
 				break;
@@ -416,8 +465,13 @@ var p = SifObject.prototype;
 		var defs = {};
 		for (name in data) {
 			if (data[name].constructor != Array) {
-				defs[data._id] = data[name];
-				defs[data._id]._type = name;							
+				if (name === 'animated') {
+					defs[data[name]._id]  = {};
+					defs[data[name]._id].animated = data[name];
+				} else {				
+					defs[data._id] = data[name];
+					defs[data._id]._type = name;							
+				}
 			} else {
 				
 					
@@ -775,12 +829,26 @@ var p = translate.prototype = new sifPlayer.Layer();
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
 		this._setParam('origin', this, data.origin);
+		//check if it is radial_composite and change the draw method
+		if (this.origin.radial_composite) {
+			this.draw = this.drawRadial;
+		}
+			
 	}
 
 	p.draw = function () {
 		var ctx = this.sifobj.ctx;
 		ctx.save();
 		ctx.translate(this.origin.x, this.origin.y);
+	}
+	
+	p.drawRadial = function () {
+		var ctx = this.sifobj.ctx;
+		var a = this.origin.radial_composite.theta.value * Math.PI / 180.0;
+		var x = Math.cos(a) * this.origin.radial_composite.radius.value
+		var y = Math.sin(a) * this.origin.radial_composite.radius.value
+		ctx.save();
+		ctx.translate(x, y);
 	}
 
 
