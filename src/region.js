@@ -92,7 +92,7 @@ var p = region.prototype = new sifPlayer.Layer();
 			/*Here we must check first if the entry uses a def
 			 * */
 			 if (data.bline.entry[i]._use) {
-				 data.bline.entry[i].composite = this.sifobj.sif.canvas.defs[ data.bline.entry[i]._use ]
+				 data.bline.entry[i] = this.sifobj.sif.canvas.defs[ data.bline.entry[i]._use ]
 				 
 			}
 			 
