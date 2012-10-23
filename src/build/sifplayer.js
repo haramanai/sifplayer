@@ -54,20 +54,26 @@ var p = Layer.prototype;
 		}
 	}
 	
-	p._setParam = function (param_name, param_type, param, dataIn) {
+	p._setParam = function (param_name, param, dataIn) {
 		var w, tw, data;
+		var param_type;
+		var def;
 		var sifobj = this.sifobj;
+		
 
+
+		
 		/* ***
 		 * first we check if the data use a def
 		 * 
 		 * */
+		 param_type = this._getValueType(dataIn);
 		 if (dataIn._use) {
-			 data = {};
-			 data = sifobj.sif.canvas.defs[dataIn._use];
+			 return this._setParam(param_name, param, sifobj.sif.canvas.defs[dataIn._use]);			 
 		} else {
 			data = dataIn;
 		}
+		
 		
 		param[param_name] = {}
 		switch (param_type) {
@@ -93,8 +99,11 @@ var p = Layer.prototype;
 					}
 					sifobj.timeline.addTween(tw);
 				} else {
+					if (!data[param_type]) alert(JSON.stringify(data));
+					if (!data[param_type]) alert(JSON.stringify(dataIn));
 					param[param_name].x = data[param_type].x;
 					param[param_name].y = data[param_type].y;
+					
 				}
 				break;
 					
@@ -150,7 +159,7 @@ var p = Layer.prototype;
 					}
 					sifobj.timeline.addTween(tw);
 				} else {
-					if (!data[param_type]) alert(JSON.stringify(data));
+					if (!data[param_type]) alert(JSON.stringify(data) + "param_type : " + param_type);
 					param[param_name].value = data[param_type]._value;
 				}
 				break;
@@ -195,6 +204,23 @@ var p = Layer.prototype;
 				return 'source-over';
 				
 		}
+	}
+	
+	p._getValueType = function (data) {
+		if (data._type) return data._type;
+		if (data._use) return 'use';
+		
+		if (data.animated) return data.animated._type;
+		if (data.vector) return 'vector'
+		if (data.integer) return 'integer'
+		if (data.real) return 'real'
+		if (data.bool) return 'bool'
+		if (data.angle) return 'angle'
+		if (data.color) return 'color'
+		if (data.radial_composite) return 'radial_composite'
+		if (data.greyed) return 'greyed'
+		
+		
 	}
 
 
@@ -390,7 +416,8 @@ var p = SifObject.prototype;
 		var defs = {};
 		for (name in data) {
 			if (data[name].constructor != Array) {
-				defs[data._id] = data[name];								
+				defs[data._id] = data[name];
+				defs[data._id]._type = name;							
 			} else {
 				
 					
@@ -399,7 +426,9 @@ var p = SifObject.prototype;
 						defs[data[name][j]._id] = {};
 						defs[data[name][j]._id].animated = data[name][j];
 					} else {
-						defs[data[name][j]._id] = data[name][j];
+						defs[data[name][j]._id] = {};
+						defs[data[name][j]._id][name] = data[name][j];
+						defs[data[name][j]._id]._type = name
 					}
 				}			
 			}
@@ -446,9 +475,10 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 	
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('blend_method', 'integer', this, data.blend_method);
-		this._setParam('origin', 'vector', this, data.origin);
-		this._setParam('zoom', 'real', this, data.zoom);
+		this._setParam('blend_method', this, data.blend_method);
+		this._setParam('origin', this, data.origin);
+		this._setParam('zoom', this, data.zoom);
+		this._setParam('focus', this, data.focus);
 
 		this._getLayers(data.canvas.canvas.layer);
 	}
@@ -463,10 +493,15 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 	
 	p.draw = function () {
 		var ctx = this.sifobj.ctx;
+		var zoom = Math.exp(this.zoom.value);
 		ctx.save();
-		ctx.translate(this.origin.x, this.origin.y);
-		ctx.scale(Math.exp(this.zoom.value), Math.exp(this.zoom.value));
+		ctx.translate(this.focus.x, this.focus.y);
+		ctx.scale(zoom, zoom);
+		ctx.translate(-this.focus.x, -this.focus.y);
+		ctx.translate(this.origin.x / zoom, this.origin.y / zoom);
+
 		for (var i = 0; i < this.layer.length; i++) {
+			
 			this.layer[i].draw();
 		}
 
@@ -491,10 +526,10 @@ var p = region.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('blend_method', 'integer', this, data.blend_method);
-		this._setParam('amount','real', this, data.amount);
-		this._setParam('origin','vector', this, data.origin);
-		this._setParam('color','color', this, data.color);
+		this._setParam('blend_method',this, data.blend_method);
+		this._setParam('amount',this, data.amount);
+		this._setParam('origin', this, data.origin);
+		this._setParam('color', this, data.color);
 		this._getBline(data.bline);
 		
 	}
@@ -521,7 +556,7 @@ var p = region.prototype = new sifPlayer.Layer();
 			
 			e1 = this.bline.entry[i];
 			e2 = this.bline.entry[i + 1];
-			if (e1.split) {
+			if (e1.split.value) {
 				this._bezierPart( e1.point, e2.point, e1.t2, e2.t1);
 			} else {
 				this._bezierPart( e1.point, e2.point, e1.t1, e2.t1);
@@ -534,7 +569,7 @@ var p = region.prototype = new sifPlayer.Layer();
 			e1 = this.bline.entry[ this.bline.entry.length - 1 ];
 			e2 = this.bline.entry[0];
 			
-			if (e1.split) {
+			if (e1.split.value) {
 				this._bezierPart( e1.point, e2.point, e1.t2, e2.t1);
 			} else {
 				this._bezierPart( e1.point, e2.point, e1.t1, e2.t1);
@@ -570,37 +605,37 @@ var p = region.prototype = new sifPlayer.Layer();
 			/*Here we must check first if the entry uses a def
 			 * */
 			 if (data.bline.entry[i]._use) {
-				 data.bline.entry[i].composite = this.sifobj.sif.canvas.defs[ data.bline.entry[i]._use ]
+				 data.bline.entry[i] = this.sifobj.sif.canvas.defs[ data.bline.entry[i]._use ]
 				 
 			}
 			 
 			 
 			 
 			//SPLIT
-			this._setParam('split' , 'bool', entry, data.bline.entry[i].composite.split)
+			this._setParam('split' , entry, data.bline.entry[i].composite.split)
 			
 			//POINT
-			this._setParam('point', 'vector', entry, data.bline.entry[i].composite.point);
+			this._setParam('point', entry, data.bline.entry[i].composite.point);
 			
 			//T1
 			if (!data.bline.entry[i].composite.t1.scale) {
-				this._setParam('theta', 'angle', entry.t1, data.bline.entry[i].composite.t1.radial_composite.theta);
-				this._setParam('radius', 'real', entry.t1, data.bline.entry[i].composite.t1.radial_composite.radius);
+				this._setParam('theta', entry.t1, data.bline.entry[i].composite.t1.radial_composite.theta);
+				this._setParam('radius', entry.t1, data.bline.entry[i].composite.t1.radial_composite.radius);
 			} else {
-				this._setParam('theta', 'angle', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.theta);
-				this._setParam('radius', 'real', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.radius);
-				this._setParam('scalar', 'real', entry.t1, data.bline.entry[i].composite.t1.scale.scalar);
+				this._setParam('theta', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.theta);
+				this._setParam('radius', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.radius);
+				this._setParam('scalar', entry.t1, data.bline.entry[i].composite.t1.scale.scalar);
 	
 			}
 			
 			//T2
 			if (!data.bline.entry[i].composite.t2.scale) {
-				this._setParam('theta', 'angle', entry.t2, data.bline.entry[i].composite.t2.radial_composite.theta);
-				this._setParam('radius', 'real', entry.t2, data.bline.entry[i].composite.t2.radial_composite.radius);
+				this._setParam('theta', entry.t2, data.bline.entry[i].composite.t2.radial_composite.theta);
+				this._setParam('radius', entry.t2, data.bline.entry[i].composite.t2.radial_composite.radius);
 			} else {
-				this._setParam('theta', 'angle', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.theta);
-				this._setParam('radius', 'real', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.radius);
-				this._setParam('scalar', 'real', entry.t2, data.bline.entry[i].composite.t2.scale.scalar);
+				this._setParam('theta', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.theta);
+				this._setParam('radius', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.radius);
+				this._setParam('scalar', entry.t2, data.bline.entry[i].composite.t2.scale.scalar);
 				//alert(JSON.stringify(entry));
 	
 			}
@@ -651,8 +686,8 @@ var p = sifPlayer.import.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data)
-		this._setParam('tl', 'vector', this, data.tl);
-		this._setParam('br', 'vector', this, data.br);
+		this._setParam('tl', this, data.tl);
+		this._setParam('br', this, data.br);
 		this.image = new Image();
 		this.image.src = this.sifobj.sifPath + data.filename.string;
 		
@@ -710,8 +745,8 @@ var p = rotate.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('origin', 'vector', this, data.origin);
-		this._setParam('amount', 'angle', this, data.amount);
+		this._setParam('origin', this, data.origin);
+		this._setParam('amount', this, data.amount);
 	}
 
 	p.draw = function () {
@@ -739,7 +774,7 @@ var p = translate.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('origin', 'vector', this, data.origin);
+		this._setParam('origin', this, data.origin);
 	}
 
 	p.draw = function () {
@@ -765,16 +800,18 @@ var p = zoom.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data);
-		this._setParam('center', 'vector', this, data.center);
-		this._setParam('amount', 'real', this, data.amount);
+		this._setParam('center', this, data.center);
+		this._setParam('amount', this, data.amount);
 	}
 
 	p.draw = function () {
 		var ctx = this.sifobj.ctx;
+		var zoom = Math.exp(this.amount.value);
+		
 		ctx.save()
-		ctx.translate(this.center.x , this.center.y );
-		ctx.scale(Math.exp(this.amount.value), Math.exp(this.amount.value));
-		ctx.translate(-this.center.x , -this.center.y );
+		ctx.translate(this.center.x, this.center.y);
+		ctx.scale(zoom, zoom);
+		ctx.translate(-this.center.x / zoom, -this.center.y / zoom);
 	}
 
 
@@ -794,8 +831,8 @@ var p = sifPlayer.import.prototype = new sifPlayer.Layer();
 
 	p.init = function (parent, data) {
 		this.initLayer(parent, data)
-		this._setParam('tl', 'vector', this, data.tl);
-		this._setParam('br', 'vector', this, data.br);
+		this._setParam('tl', this, data.tl);
+		this._setParam('br', this, data.br);
 		this.image = new Image();
 		this.image.src = this.sifobj.sifPath + data.filename.string;
 		
