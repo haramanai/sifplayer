@@ -5,24 +5,15 @@
 <body onload="main()">
 <div id='sifPlayer'></div>
 <canvas id="canvas" width="640" height="480"></canvas>
-<script type='text/javascript' src="src/build/libs/Ticker.js"></script>
-<script type='text/javascript' src="src/build/libs/tweenjs-0.3.0.min.js"></script>
-<script type='text/javascript' src="src/sifplayer.js"></script>
-<script type='text/javascript' src="src/sifobject.js"></script>
-<script type='text/javascript' src="src/Layer.js"></script>
-<script type='text/javascript' src="src/PasteCanvas.js"></script>
-<script type='text/javascript' src="src/region.js"></script>
-<script type='text/javascript' src="src/restore.js"></script>
-<script type='text/javascript' src="src/translate.js"></script>
-<script type='text/javascript' src="src/rotate.js"></script>
-<script type='text/javascript' src="src/zoom.js"></script>
-<script type='text/javascript' src="src/import.js"></script>
+<script type='text/javascript' src="libs/Ticker.js"></script>
+<script type='text/javascript' src="libs/tweenjs-0.3.0.min.js"></script>
+<script type='text/javascript' src="sifplayer.js"></script>
 <script type='text/javascript'>
 function main() {
-	var xmlDoc = loadXML('assets/test.sif');
+	var xmlDoc = loadXML('test.sif');
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
-	var so = new sifPlayer.SifObject(xmlDoc, ctx , 0, 0, canvas.width, canvas.height, 'assets/');
+	var so = new sifPlayer.SifObject(xmlDoc, ctx , 0, 0, canvas.width, canvas.height, '');
 	so.timeline.loop = true;
 	var looper = { 
 		tick: function () {
