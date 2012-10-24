@@ -1,0 +1,10 @@
+This is the main source of the project.
+
+sifobject.js is the main object that will read the sif.xml andcreate the layers to render.
+
+All the other javascript files are Layers.
+
+Also there is a build file that if you run it it will compile those src files with google closure compiler to the build/sifplayer.js file.
+
+
+If you add an extra layer you will have to added to the build file to be compiled.
