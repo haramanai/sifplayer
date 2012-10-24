@@ -1,3 +1,0 @@
-#! /bin/bash
-
-cat sifplayer.js sifobject.js Layer.js  PasteCanvas.js region.js import.js rotate.js translate.js zoom.js import.js > build/sifplayer.js

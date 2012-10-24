@@ -1,32 +1,99 @@
 
 
-// namespace:
-// Requires sifPlayer
 
+// namespace:
+this.sifPlayer = this.sifPlayer||{};
 (function() { 
 
-/*
- * SifObject
- * 
- * */
-
-
-function SifObject(xmlDoc, _ctx, x, y, width, height, sifPath) {
+/**
+* @class SifObject
+* @constructor
+* @param {XmlDocument} xmlDoc The xml document that represents the synfig animation
+* @param {CanvasRenderingContext2D} } ctx The canvas 2D context object to draw into.
+* @param {Number} x The x of the SifObject
+* @param {Number} y The y of the SifObject
+* @param {Number} width The width of the SifObject
+* @param {Number} height The height of the SifObject
+* @param {String} sifPath The path of the sif.xml this is needed for import layer
+**/
+function SifObject(xmlDoc, ctx, x, y, width, height, sifPath) {
 	if (!sifPath) sifPath = "";
 	this.sifPath = sifPath;
 	this.x = x;
 	this.y = y;
-	this.w = width;
-	this.h = height;
-	this.ctx = _ctx;
+	this.width = width;
+	this.height = height;
+	this.ctx = ctx;
 	
-	this._init(xmlDoc);
+	this.init(xmlDoc);
 
 }
 
 var p = SifObject.prototype;
 
-	p._init = function (xmlDoc) {
+// public properties:
+
+	/**
+	 * The x coords to use for drawing
+	 * @property x
+	 * @type Number
+	 **/
+	p.x = null;
+	
+	/**
+	 * The y coords to use for drawing
+	 * @property y
+	 * @type Number
+	 **/
+	p.y = null;
+	
+	/**
+	 * The width to by the drawn sif
+	 * @property width
+	 * @type Number
+	 **/
+	p.width = null;
+	
+	/**
+	 * The height to by the drawn sif
+	 * @property height
+	 * @type Number
+	 **/
+	p.width = null;
+
+	/**
+	 * The path of the sif.xml file this is needed for the import layer
+	 * it is setted to "" (empty string).
+	 * If your sif.xml is in the assets you will have to pass the path
+	 * for example 'assets/'
+	 * @property sifPath
+	 * @type String
+	 **/
+	p.sifPath = "";
+	
+	/**
+	 * The sif data to be used
+	 * @property sif
+	 * @type Object
+	 **/
+	p.sif = {};
+		
+	/**
+	 * The timeline to use for the tweens
+	 * @property timeline
+	 * @type Object
+	 **/
+	p.timeline = null;
+
+
+	// constructor:
+
+	/** 
+	 * Initialization method.
+	 * @method init
+	 * @param {XmlDocument} xmlDoc The xml document that represents the synfig animation
+	 **/
+	 p.init = function (xmlDoc) {
 		
 		//I am puting the function getData inside the init
 		function getData (node) {
@@ -133,7 +200,6 @@ var p = SifObject.prototype;
 		}
 		
 		var data = getData(xmlDoc.getElementsByTagName('canvas')[0]);
-		//alert(JSON.stringify(data));
 		
 		this.timeline = new createjs.Timeline();
 		this._getCanvasData(data);
@@ -141,7 +207,40 @@ var p = SifObject.prototype;
 		
 		
 	}
+	
+// public methods:
+	/**
+	 * Prepares for drawing and draws the layers of the SifObject 
+	 * @method draw
+	 **/	
+	p.draw = function () {
 
+		var ctx = this.ctx;
+		var canvas = this.sif.canvas;
+		var layer = this.sif.canvas.layer;
+		ctx.save();
+		ctx.setTransform( this.width / (canvas.view_box[2] - canvas.view_box[0]), 0, 0,
+				this.height / (canvas.view_box[3] - canvas.view_box[1]),
+				this.width / 2, this.height / 2)
+		for (var i = 0; i < layer.length; i++) {
+			layer[i].draw();
+		}
+		
+			
+		ctx.restore();
+		
+
+	}
+
+
+
+// private methods:
+
+	/**
+	 * @method _getCanvasData
+	 * @protected
+	 * @param {Object} data the data to get the contruct the SifObject
+	 **/
 	p._getCanvasData = function (data) {
 		//var xmlDoc = sifJson._loadXML(_file);
 
@@ -172,8 +271,9 @@ var p = SifObject.prototype;
 		this.sif.canvas.defs = this._getDefs(data.defs);
 		//alert(JSON.stringify(this.sif.canvas.defs));
 		this.sif.canvas.layer = [];
+		
+		
 		//Get the layers
-
 		for (var i = 0; i < data.layer.length; i++) {			
 			this.sif.canvas.layer.push( sifPlayer._getLayer(this, data.layer[i]) );
 		}
@@ -183,6 +283,12 @@ var p = SifObject.prototype;
 
 	}
 	
+	/**
+	 * @method _getDefs
+	 * @protected
+	 * @param {Object} data the data to get defs for SifObj
+	 * @return {Object} the defs for the SifObject
+	 **/
 	p._getDefs = function (data) {
 		var defs = {};
 		for (name in data) {
@@ -214,26 +320,57 @@ var p = SifObject.prototype;
 	}
 
 	
-	p.draw = function () {
 
-		var ctx = this.ctx;
-		var canvas = this.sif.canvas;
-		var layer = this.sif.canvas.layer;
-		ctx.save();
-		ctx.setTransform( this.w / (canvas.view_box[2] - canvas.view_box[0]), 0, 0,
-				this.h / (canvas.view_box[3] - canvas.view_box[1]),
-				this.w / 2, this.h / 2)
-		for (var i = 0; i < layer.length; i++) {
-			layer[i].draw();
-		}
-		
-			
-		ctx.restore();
-		
-
-	}
-		
 	
+//Common functions
+
+	/**
+	 * Gets the time in seconds and returns it to milliseconds
+	 * 
+	 * @function sifPlayer._secsToMillis
+	 * @param {String} _s The time in seconds
+	 * @return {Number} the millisecs
+	 **/	
+	sifPlayer._secsToMillis = function (_s) {
+			return parseFloat(_s.replace("s",""))*1000;
+	}
+	
+	
+	/**
+	 * Gets the time in seconds and returns it to milliseconds
+	 * @function sifPlayer._getLayer
+	 * @param {Object} parent The parent of new Layer
+	 * @param {Object} data the data for the layer
+	 * @return {Object} the a sif layer
+	 **/	
+	sifPlayer._getLayer = function (parent, data) {
+		if (sifPlayer[data._type]) return new sifPlayer[data._type](parent, data);
+		if (data._type === 'import') return new sifPlayer.Import(parent, data);
+		// Not supported LAYER
+		console.log("EERRROOR  "  + data._type + " layer it's not supported");
+		var bad_layer = new sifPlayer.Layer();
+		bad_layer.initLayer(parent, data);
+		return bad_layer;
+	}
+	
+
+	
+	/**
+	 * Gets the time in seconds and returns it to milliseconds
+	 * 
+	 * @function sifPlayer._toSifValue
+	 * @param {String} value The value to be converted to a sif value
+	 * @return {Number || String} the sif value
+	 **/		
+	sifPlayer._toSifValue = function ( value ) {
+		var num = Number(value);
+		if (!isNaN(num)) return num;
+		if (value === 'true') return true;
+		if (value === 'false') return false;
+		//if a value or vector is using a def the first letter is ':' so we check to remove it.
+		if (value[0] === ":") return value.substr(1);
+		return value;
+	}	
 sifPlayer.SifObject = SifObject;
 }());
 

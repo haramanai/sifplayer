@@ -3,15 +3,28 @@
  * 
  * */
 (function() { 
-	
+
+/**
+* @class region
+* @extends Layer
+* @constructor
+* @param {Object} parent The parent of the Layer
+* @param {Object} data The data for the Layer
+**/	
 function region(parent, data) {
 	this.init(parent, data);
 }
 
 var p = region.prototype = new sifPlayer.Layer();
-
-
+	
+	/** 
+	 * Initialization method.
+	 * @method init
+	 * @param {Object} parent The parent of the Layer
+	 * @param {Object} data The data for the Layer
+	 **/
 	p.init = function (parent, data) {
+		
 		this.initLayer(parent, data);
 		this._setParam('blend_method',this, data.blend_method);
 		this._setParam('amount',this, data.amount);
@@ -21,10 +34,17 @@ var p = region.prototype = new sifPlayer.Layer();
 		
 	}
 
-	
+// public methods:
+
+	/**
+	 * Draws the region
+	 * @method draw
+	 **/	
 	p.draw = function () {
+		
 		var ctx = this.sifobj.ctx;
 		var e1,e2;
+
 		
 		//var color = layer.color.color;
 
@@ -68,7 +88,12 @@ var p = region.prototype = new sifPlayer.Layer();
 		ctx.restore();
 
 	}
-	
+
+
+	/**
+	 * Gets the bline data
+	 * @method _getBline
+	 **/		
 	p._getBline = function (data) {
 		this.bline = {};
 		this.bline.entry = [];
@@ -130,7 +155,16 @@ var p = region.prototype = new sifPlayer.Layer();
 			
 		}
 	}
-	
+
+
+	/**
+	 * draws a part of the bezier curve
+	 * @method _bezierPart
+	 * @param {Object} _p1 The first point of the curve
+	 * @param {Object} _p2 The second point of the curve
+	 * @param {Object} _t1 The T1 of the curve
+	 * @param {Object} _t2 The T2 of the curve
+	 **/		
 	p._bezierPart = function (_p1, _p2, _t1, _t2) {
 		var _cp1 = {};
 		var _cp2 = {};

@@ -3,14 +3,48 @@
  * 
  * */
  (function() { 
-	
+/**
+* @class Layer
+* @constructor
+**/	
 function Layer() {
 }
 
 var p = Layer.prototype;
+// public properties:
+
+	/**
+	 * The parent of the layer
+	 * @property parent
+	 * @type Object
+	 **/
+	p.parent = null;
 	
+	/**
+	 * The refernce to the SifObject that the layer is used.
+	 * @property sifobj
+	 * @type Object
+	 **/
+	p.sifobj = null;
+	
+	/**
+	 * The refernce to the SifObject that the layer is used.
+	 * @property type
+	 * @type String
+	 **/
+	p.type = null;
+
+	// constructor:
+
+	/** 
+	 * Initialization method.
+	 * @method init
+	 * @param {Object} parent The parent of the Layer
+	 * @param {Object} data The data that will be used
+	 **/
 	p.initLayer = function (parent, data) {
-		if (parent.sifPath) {
+		if (parent.hasOwnProperty('sifPath')) {
+			
 			this.sifobj = parent;
 		} else {
 			this.parent = parent;
@@ -18,17 +52,30 @@ var p = Layer.prototype;
 		}
 		this.type = data._type;
 	}
-	
+
+// public methods:
+
+	/**
+	 * Draws the Layer
+	 * @method draw
+	 **/		
 	p.draw = function () {
 		//console.log('Cant render ' + this.type + ' yet');
 	}
 	
+	/**
+	 * Set the a param to the Layer and tweens it
+	 * @method _setParam
+	 * @param {string} param_name the name of the param that we wand to add
+	 * @param {Object} param The object that we will add params
+	 * @param {Object} dataIn the data for the param
+	 **/	
 	p._setParam = function (param_name, param, dataIn) {
 		var w, tw, data;
 		var param_type;
 		var def;
 		var sifobj = this.sifobj;
-		
+
 
 
 		
@@ -179,6 +226,35 @@ var p = Layer.prototype;
 
 	}
 	
+	/**
+	 * Returns a string with the type of the data
+	 * @method _getValueType
+	 * @param {Object} data the data to check the value type
+	 * @return {String} the type of the data
+	 **/	
+	p._getValueType = function (data) {
+		if (data._type) return data._type;
+		if (data._use) return 'use';
+		
+		if (data.animated) return data.animated._type;
+		if (data.vector) return 'vector'
+		if (data.integer) return 'integer'
+		if (data.real) return 'real'
+		if (data.bool) return 'bool'
+		if (data.angle) return 'angle'
+		if (data.color) return 'color'
+		if (data.radial_composite) return 'radial_composite'
+		if (data.greyed) return 'greyed'
+		
+		
+	}
+	
+	
+	/**
+	 * Returns a string with the equivalent type for blend
+	 * @method _getBlend
+	 * @return {String} the equivalent type for blend
+	 **/	
 	p._getBlend = function () {
 		var blend = this.blend_method.value;		
 		switch (blend) {
@@ -206,7 +282,7 @@ var p = Layer.prototype;
 				//Alpha Over
 				return 'destination-out';
 				break;
-
+			case 14:
 				//Alpha Brighter
 				return 'destination-in';
 				break;
@@ -218,22 +294,7 @@ var p = Layer.prototype;
 		}
 	}
 	
-	p._getValueType = function (data) {
-		if (data._type) return data._type;
-		if (data._use) return 'use';
-		
-		if (data.animated) return data.animated._type;
-		if (data.vector) return 'vector'
-		if (data.integer) return 'integer'
-		if (data.real) return 'real'
-		if (data.bool) return 'bool'
-		if (data.angle) return 'angle'
-		if (data.color) return 'color'
-		if (data.radial_composite) return 'radial_composite'
-		if (data.greyed) return 'greyed'
-		
-		
-	}
+
 
 
 

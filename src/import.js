@@ -3,13 +3,28 @@
  * 
  * */
  (function() { 
-	 
-sifPlayer.import = function (parent, data) {
+
+
+/**
+* It's the import layer but it's name Imoprt cause import is reserved word
+* @class Import
+* @extends Layer
+* @constructor
+* @param {Object} parent The parent of the Layer
+* @param {Object} data The data for the Layer
+**/	 
+function Import (parent, data) {
 	this.init(parent, data);
 }
 
-var p = sifPlayer.import.prototype = new sifPlayer.Layer();
+var p = Import.prototype = new sifPlayer.Layer();
 
+	/** 
+	 * Initialization method.
+	 * @method init
+	 * @param {Object} parent The parent of the Layer
+	 * @param {Object} data The data for the Layer
+	 **/
 	p.init = function (parent, data) {
 		this.initLayer(parent, data)
 		this._setParam('tl', this, data.tl);
@@ -18,7 +33,13 @@ var p = sifPlayer.import.prototype = new sifPlayer.Layer();
 		this.image.src = this.sifobj.sifPath + data.filename.string;
 		
 	}
+	
+// public methods:
 
+	/**
+	 * Draws the layer
+	 * @method draw
+	 **/	
 	p.draw = function () {
 		var ctx = this.sifobj.ctx;
 		ctx.save();
@@ -26,7 +47,10 @@ var p = sifPlayer.import.prototype = new sifPlayer.Layer();
 		ctx.restore();
 	}
 	
-	
+	/**
+	 * Draws the image
+	 * @method _drawImage
+	 **/	
 	p._drawImage = function () {
 		var ctx = this.sifobj.ctx;
 		var w =  (this.br.x - this.tl.x);
@@ -55,5 +79,5 @@ var p = sifPlayer.import.prototype = new sifPlayer.Layer();
 	}
 	
 
-
+sifPlayer.Import = Import;
 }());
