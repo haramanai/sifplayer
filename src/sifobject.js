@@ -91,14 +91,7 @@ var p = SifObject.prototype;
 	 * @type String
 	 **/
 	p.sifPath = "";
-	
-	/**
-	 * The sif data to be used
-	 * @property sif
-	 * @type Object
-	 **/
-	p.sif = {};
-		
+			
 	/**
 	 * The timeline to use for the tweens
 	 * @property timeline
@@ -242,7 +235,7 @@ var p = SifObject.prototype;
 		ctx.save();
 		ctx.setTransform( this.width / (canvas.view_box[2] - canvas.view_box[0]), 0, 0,
 				this.height / (canvas.view_box[3] - canvas.view_box[1]),
-				this.width / 2, this.height / 2)
+				this.x + this.width / 2, this.y + this.height / 2)
 		for (var i = 0; i < layer.length; i++) {
 			layer[i].draw();
 		}
@@ -263,7 +256,6 @@ var p = SifObject.prototype;
 	 * @param {Object} data the data to get the contruct the SifObject
 	 **/
 	p._getCanvasData = function (data) {
-		//var xmlDoc = sifJson._loadXML(_file);
 
 		//console.log(JSON.stringify(data));
 		this.sif = {};
@@ -290,7 +282,6 @@ var p = SifObject.prototype;
 		
 		
 		this.sif.canvas.defs = this._getDefs(data.defs);
-		//alert(JSON.stringify(this.sif.canvas.defs));
 		this.sif.canvas.layer = [];
 		
 		
