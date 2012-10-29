@@ -13,12 +13,12 @@ function main() {
 	var xmlDoc = loadXML('test.sif');
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
-	var so = new sifPlayer.SifObject(xmlDoc, ctx , 0, 0, canvas.width, canvas.height, '');
+	var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, '');
 	so.timeline.loop = true;
 	var looper = { 
 		tick: function () {
-			clearCanvas(ctx, canvas);
-			so.draw();
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			so.draw(ctx);
 		
 		}
 	}
@@ -41,12 +41,6 @@ function loadXML (file) {
 	return xmlDoc;
 }
 
-function clearCanvas(context, canvas) {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  var w = canvas.width;
-  canvas.width = 1;
-  canvas.width = w;
-}
 </script>
 </body>
 </html>
