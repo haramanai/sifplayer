@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<canvas version="0.9" width="640" height="480" xres="2834.645752" yres="2834.645752" view-box="-5.333333 4.000000 5.333333 -4.000000" antialias="1" fps="24.000" begin-time="0f" end-time="5s" bgcolor="0.500000 0.500000 0.500000 1.000000">
+<canvas version="0.9" width="640" height="480" xres="2834.645752" yres="2834.645752" view-box="-5.333333 4.000000 5.333333 -4.000000" antialias="1" fps="24.000" begin-time="0f" end-time="2s 12f" bgcolor="0.500000 0.500000 0.500000 1.000000">
   <name>Synfig Animation 2</name>
   <keyframe time="0f"/>
   <keyframe time="2s"/>
@@ -294,7 +294,7 @@
       </vector>
     </param>
     <param name="canvas">
-      <canvas>
+      <canvas end-time="5s">
         <layer type="region" active="true" version="0.1" desc="NewBLine122 Region">
           <param name="z_depth">
             <real value="0.0000000000"/>
@@ -635,6 +635,17 @@
             </bline>
           </param>
         </layer>
+        <layer type="rotate" active="true" version="0.1">
+          <param name="origin">
+            <vector>
+              <x>-1.3833332062</x>
+              <y>0.2333333343</y>
+            </vector>
+          </param>
+          <param name="amount">
+            <angle value="-112.619858"/>
+          </param>
+        </layer>
         <layer type="region" active="true" version="0.1" desc="NewBLine123 Region">
           <param name="z_depth">
             <real value="0.0000000000"/>
@@ -880,7 +891,7 @@
       </canvas>
     </param>
     <param name="zoom">
-      <real value="0.0000000000"/>
+      <real value="-1.0000000000"/>
     </param>
     <param name="time_offset">
       <time value="0s"/>
@@ -898,7 +909,7 @@
       <real value="0.0000000000"/>
     </param>
   </layer>
-  <layer type="circle" active="true" version="0.1" desc="Circle004">
+  <layer type="radial_gradient" active="true" version="0.1">
     <param name="z_depth">
       <real value="0.0000000000"/>
     </param>
@@ -908,31 +919,36 @@
     <param name="blend_method">
       <integer value="0"/>
     </param>
-    <param name="color">
-      <color>
-        <r>0.553401</r>
-        <g>0.002453</g>
-        <b>0.000013</b>
-        <a>1.000000</a>
-      </color>
+    <param name="gradient">
+      <gradient>
+        <color pos="0.000000">
+          <r>0.553401</r>
+          <g>0.002453</g>
+          <b>0.000013</b>
+          <a>1.000000</a>
+        </color>
+        <color pos="0.991736">
+          <r>0.002028</r>
+          <g>0.597093</g>
+          <b>0.000000</b>
+          <a>1.000000</a>
+        </color>
+      </gradient>
     </param>
-    <param name="radius">
-      <real value="0.6833332906"/>
-    </param>
-    <param name="feather">
-      <real value="0.0000000000"/>
-    </param>
-    <param name="origin">
+    <param name="center">
       <vector>
-        <x>0.2833333015</x>
-        <y>1.6499999762</y>
+        <x>-0.2727753818</x>
+        <y>0.1141742766</y>
       </vector>
     </param>
-    <param name="invert">
+    <param name="radius">
+      <real value="8.8477419577"/>
+    </param>
+    <param name="loop">
       <bool value="false"/>
     </param>
-    <param name="falloff">
-      <integer value="2"/>
+    <param name="zigzag">
+      <bool value="false"/>
     </param>
   </layer>
   <layer type="circle" active="true" version="0.1" desc="Circle007">

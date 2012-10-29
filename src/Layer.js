@@ -139,7 +139,24 @@ var p = Layer.prototype;
 				this._setParam('theta', param[param_name][param_type], dataIn[param_type].theta);
 				
 				return;
-				break;			
+				break;
+				
+			case 'gradient':
+				param.gradient = {};
+				param.gradient.color = [];
+				for (var i = 0, ii = dataIn.gradient.color.length; i < ii; i++) {
+					var color = {};
+					data = {};
+					data.color = dataIn.gradient.color[i];
+					
+					this._setParam('color', color, data);
+					color.color.pos = data.color._pos;
+					param.gradient.color.push(color.color);
+				}
+				return;
+				break;
+				
+						
 			
 		}
 
@@ -266,6 +283,7 @@ var p = Layer.prototype;
 		if (data.color) return 'color'
 		if (data.radial_composite) return 'radial_composite'
 		if (data.greyed) return 'greyed'
+		if (data.gradient) return 'gradient'
 		
 		
 	}

@@ -1,21 +1,69 @@
-SIFPLAYER for HTML5 this is a lib to play an unzipped sif file on the html canvas.
-It uses the Ticker from the createjs.Easel (MIT license) and the createjs.Tween (MIT license) for the tweens.
+SIFPLAYER for HTML5 it's a lib to play an unzipped sif file on the html canvas.
+Sif are the files that produced by the open source vector animation softoware : [![Synfig](www.synfig.org)]
+
+It uses the Ticker from the createjs.Easel (MIT license) and the createjs.TweenJS (MIT license) for the tweens.
 
 It's published under the MIT license.
 
 It is not complete future. 
 It is supports the types of layers:
-	Region
-	Import (image)
-	PasteCanvas
-	Scale
-	Translate
-	Rotate
+        Region
+	  Circle
+        Import (image)
+        PasteCanvas
+        Scale
+        Translate
+        Rotate
+	  Zoom
+	  Linear Gradient (without the params zigzag and loop)
+	  Radial Gradient (without the params zigzag and loop)
+
+The blend methods that much the globalCompositeOperation of the context2d
+
+		Composite 		=>  source-over
+		Straight  		=>  copy
+		Onto      		=>  source-atop
+		Straight Onto	=>  source-in
+		Behind		=>  destination-over
+		Alpha Over		=>  destination-out
+		Alpha Brighter	=>  destination-in
+
 
 Run the sifPlayer.html to see it in action. There is a min version and an example of how to use in the build folder
 
-Also in the /assets/ are sifparser.html  you can run it to have an understanding of how the data looks like. But keep in mind that the defs will change in the init of the SifObject to be accesed by the id of the defs.
+Also in the /assets/ are sifparser.html  you can run it to have an understanding of how the data looks like. But keep in mind that the defs will change in the init of the SifObject to be accessed by the id of the defs.
 
+Some more instructions :
+The sif file must be uncompressed. If it is compressed you will have .sifz. Uncompress that and add to the new file .sif or .xml.
+Then you get this file to the dir of the sifPlayer.html. 
+Let's say that you have r.xml
 
+in the sifPlayer.html you will find a line that reads :
+var xmlDoc = loadXML('assets/test.sif');
+change that to :
+var xmlDoc = loadXML('r.xml');
 
+and save.
+
+run the sifPlayer.html and you will have you file rendered.
+
+Also keep in mind that some browsers will not let you to load a file from your local computer. You will get an error and you will see nothing.
+You will better use firefox when you are testing. Cause firefox let's you do this.
+
+I made some changes to the sifplayer and the SifObject constructor is now
+/**
+* @class SifObject
+* @constructor
+* @param {XmlDocument} xmlDoc The xml document that represents the synfig animation
+* @param {Number} x The x of the SifObject
+* @param {Number} y The y of the SifObject
+* @param {Number} width The width of the SifObject
+* @param {Number} height The height of the SifObject
+* @param {String} sifPath The path of the sif.xml this is needed for import layer
+**/
+in the sifPlayer.html is used in a line that reads:
+var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, 'assets/');
+
+the last param is the location of your sif file. This is needed for the import layer. If you followed the instructions I just said and your sif uses imagies you must change that line to:
+var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, '');
 

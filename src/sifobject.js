@@ -214,9 +214,11 @@ var p = SifObject.prototype;
 		var data = getData(xmlDoc.getElementsByTagName('canvas')[0]);
 		
 		this.timeline = new createjs.Timeline();
+		
 		this.timeline.setPaused(true);
 		this._getCanvasData(data);
-		this.timeline.gotoAndPlay(0);
+		this.timeline.duration = this.sif.canvas.end_time;
+		this.timeline.gotoAndPlay(this.sif.canvas.start_time);
 
 		
 		
@@ -241,7 +243,7 @@ var p = SifObject.prototype;
 		
 			
 		ctx.restore();
-		
+		console.log(createjs.Ticker. getMeasuredFPS());
 
 	}
 
@@ -267,8 +269,8 @@ var p = SifObject.prototype;
 		this.sif.canvas.antialias = data._antialias;
 		this.sif.canvas.fps = data._fps;
 		//convert the time to millis cause it's more common for computers...
-		this.sif.canvas.begin_time = sifPlayer._secsToMillis(data['_begin-time']);
-		this.sif.canvas.end_time = sifPlayer._secsToMillis(data['_end-time']);
+		this.sif.canvas.begin_time = sifPlayer._canvasTimeToMillis(data['_begin-time'], this.sif.canvas.fps);
+		this.sif.canvas.end_time = sifPlayer._canvasTimeToMillis(data['_end-time'], this.sif.canvas.fps);
 		var _bgcolor = data._bgcolor.split(" ");
 		this.sif.canvas.bgcolor = {};
 		//convert the color to 256 to much html5 ... I think so...
@@ -344,6 +346,33 @@ var p = SifObject.prototype;
 	 **/	
 	sifPlayer._secsToMillis = function (_s) {
 			return parseFloat(_s.replace("s",""))*1000;
+	}
+	
+	/**
+	 * Gets the time in seconds and returns it to milliseconds
+	 * 
+	 * @function sifPlayer._canvasTimeToMillis
+	 * @param {String} _s The time in seconds
+	 * @param {Integer} fps The frames per seccond
+	 * @return {Number} the millisecs
+	 **/	
+	sifPlayer._canvasTimeToMillis = function (_s, fps) {
+		var millis = 0;
+		var t;
+		if (_s.search('s') > 0){
+			t = _s.split('s');
+			if (t.length) {
+				millis += parseFloat(t[0]) *1000;
+				if (t[1].search('f') > 0) {
+					millis += parseFloat(t[1].replace('f','')) * 1000/fps;
+				}
+			} else {
+				return parseFloat(t) *1000;
+			}
+		} else {
+			millis += parseFloat(_s.replace('f','')) * 1000/fps;
+		}
+		return millis;
 	}
 	
 	

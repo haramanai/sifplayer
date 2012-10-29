@@ -31,11 +31,11 @@
 * @param {Object} parent The parent of the Layer
 * @param {Object} data The data for the Layer
 **/	 	
-function circle(parent, data) {
+function linear_gradient(parent, data) {
 	this.init(parent, data);
 }
 
-var p = circle.prototype = new sifPlayer.Layer();
+var p = linear_gradient.prototype = new sifPlayer.Layer();
 
 	/** 
 	 * Initialization method.
@@ -47,11 +47,10 @@ var p = circle.prototype = new sifPlayer.Layer();
 		
 		this.initLayer(parent, data);
 		this._setParam('amount', this, data.amount);
-		this._setParam('origin', this, data.origin);	
-		this._setParam('radius', this, data.radius);
-		this._setParam('color', this, data.color);
-		this._setParam('blend_method',this, data.blend_method);
-		
+		this._setParam('blend_method', this, data.blend_method);
+		this._setParam('p1', this, data.p1);	
+		this._setParam('p2', this, data.p2);
+		this._setParam('gradient', this, data.gradient);
 	}
 
 	/**
@@ -59,18 +58,26 @@ var p = circle.prototype = new sifPlayer.Layer();
 	 * @method draw
 	 **/
 	p.draw = function (ctx) {
-		var origin = this.origin;
-		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + Math.round(this.color.a * 256)  + ')';		
+		var grd = ctx.createLinearGradient(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
+		var color = this.gradient.color;
+		var vb = this.sifobj.sif.canvas.view_box;
+
+		for (var i = 0, ii = color.length; i < ii; i++) {
+			grd.addColorStop(color[i].pos, 'rgba('+ Math.round(color[i].r * 256) + ', ' + Math.round(color[i].g * 256)  + ', ' + Math.round(color[i].b * 256)  + ', ' + Math.round(color[i].a * 256)  + ')');
+		}
+		
 		ctx.globalAlpha = this._getTotalAmount();
-		ctx.globalCompositeOperation = this._getBlend();
-		
-		ctx.beginPath();
-		ctx.arc(origin.x, origin.y, this.radius.value, 0 , 2 * Math.PI, false);
-		ctx.closePath();
-		ctx.fill();
-		
+		ctx.globalCompositeOperation = this._getBlend();		
+		ctx.fillStyle = grd;
+		//ctx.fillRect(vb[0] , -vb[1], vb[2] * 2, vb[2] * 2);
+		//We render more than we need but it's the only solution I found
+		// looks like that we don't get lower framerate by the size of the 
+		// rect. So it's ok to do it like this.
+		ctx.fillRect(-1000, -1000, 2000 , 2000);
+
+
 	}
 
 
-sifPlayer.circle = circle;
+sifPlayer.linear_gradient = linear_gradient;
 }());
