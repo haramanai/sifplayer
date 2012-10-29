@@ -1,5 +1,5 @@
 SIFPLAYER for HTML5 it's a lib to play an unzipped sif file on the html canvas.
-Sif are the files that produced by the open source vector animation softoware : [![Synfig](www.synfig.org)]
+Sif are the files that produced by the open source vector animation softoware : Synfig www.synfig.org
 
 It uses the Ticker from the createjs.Easel (MIT license) and the createjs.TweenJS (MIT license) for the tweens.
 
