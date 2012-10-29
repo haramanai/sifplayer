@@ -79,7 +79,7 @@ var p = Layer.prototype;
 	 * Draws the Layer
 	 * @method draw
 	 **/		
-	p.draw = function () {
+	p.draw = function (ctx) {
 		//console.log('Cant render ' + this.type + ' yet');
 	}
 	
@@ -155,6 +155,7 @@ var p = Layer.prototype;
 		
 		
 		param[param_name] = {}
+		var tw_def = {paused: true, useTick: true};
 		switch (param_type) {
 			case 'vector':
 					
@@ -162,7 +163,7 @@ var p = Layer.prototype;
 					w = data.animated.waypoint
 					param[param_name].x = w[0][param_type].x;
 					param[param_name].y = w[0][param_type].y;
-					tw = createjs.Tween.get(param[param_name]);
+					tw = createjs.Tween.get(param[param_name], tw_def);
 						
 					if (w[0]._time !== "0s") {
 							tw.to( {x: w[0][param_type].x, y: w[0][param_type].y},
@@ -193,7 +194,7 @@ var p = Layer.prototype;
 					param[param_name].g = w[0][param_type].g;
 					param[param_name].b = w[0][param_type].b;
 					param[param_name].a = w[0][param_type].a;
-					tw = createjs.Tween.get(param[param_name]);
+					tw = createjs.Tween.get(param[param_name], tw_def);
 						
 					if (w[0]._time !== "0s") {
 							tw.to( {r: w[0][param_type].r, g: w[0][param_type].g, b: w[0][param_type].b, a: w[0][param_type].a},
@@ -222,7 +223,7 @@ var p = Layer.prototype;
 				if (data.animated) {
 					w = data.animated.waypoint
 					param[param_name].value = w[0][param_type]._value
-					tw = createjs.Tween.get(param[param_name]);
+					tw = createjs.Tween.get(param[param_name], tw_def);
 						
 					if (w[0]._time !== "0s") {
 							tw.to( {value: w[0][param_type]._value},
@@ -312,6 +313,13 @@ var p = Layer.prototype;
 				return 'source-over';
 				
 		}
+	}
+	
+	p._getTotalAmount = function () {
+		var amount = this.amount.value;
+		var parent = this.parent;
+		if (parent) return parent._getTotalAmount() * amount;
+		return amount;
 	}
 	
 

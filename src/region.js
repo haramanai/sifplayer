@@ -51,7 +51,7 @@ var p = region.prototype = new sifPlayer.Layer();
 		this._setParam('origin', this, data.origin);
 		this._setParam('color', this, data.color);
 		this._getBline(data.bline);
-		
+			
 	}
 
 // public methods:
@@ -59,10 +59,9 @@ var p = region.prototype = new sifPlayer.Layer();
 	/**
 	 * Draws the region
 	 * @method draw
+	 * @param {CanvasRenderingContext2D} } ctx The canvas 2D context object to draw into.
 	 **/	
-	p.draw = function () {
-		
-		var ctx = this.sifobj.ctx;
+	p.draw = function (ctx) {
 		var e1,e2;
 
 		
@@ -70,23 +69,23 @@ var p = region.prototype = new sifPlayer.Layer();
 
 		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + Math.round(this.color.a * 256)  + ')';
 		
-		ctx.globalAlpha = this.amount.value;
+		ctx.globalAlpha = this._getTotalAmount();
 		ctx.save();
 		ctx.translate(this.origin.x, this.origin.y);
 		ctx.globalCompositeOperation = this._getBlend();
 
 		ctx.beginPath();
-		
-		ctx.moveTo(this.bline.entry[0].point.x, this.bline.entry[0].point.y);
+		e1 = this.bline.entry[0].point;
+		ctx.moveTo(e1.x, e1.y);
 
 		for (var i = 0; i < this.bline.entry.length - 1; i++) {
 			
 			e1 = this.bline.entry[i];
 			e2 = this.bline.entry[i + 1];
 			if (e1.split.value) {
-				this._bezierPart( e1.point, e2.point, e1.t2, e2.t1);
+				this._bezierPart( ctx, e1.point, e2.point, e1.t2, e2.t1);
 			} else {
-				this._bezierPart( e1.point, e2.point, e1.t1, e2.t1);
+				this._bezierPart( ctx, e1.point, e2.point, e1.t1, e2.t1);
 
 			}
 
@@ -97,9 +96,9 @@ var p = region.prototype = new sifPlayer.Layer();
 			e2 = this.bline.entry[0];
 			
 			if (e1.split.value) {
-				this._bezierPart( e1.point, e2.point, e1.t2, e2.t1);
+				this._bezierPart( ctx, e1.point, e2.point, e1.t2, e2.t1);
 			} else {
-				this._bezierPart( e1.point, e2.point, e1.t1, e2.t1);
+				this._bezierPart( ctx, e1.point, e2.point, e1.t1, e2.t1);
 			}
 		}
 
@@ -180,12 +179,13 @@ var p = region.prototype = new sifPlayer.Layer();
 	/**
 	 * draws a part of the bezier curve
 	 * @method _bezierPart
+	 * @param {CanvasRenderingContext2D} } ctx The canvas 2D context object to draw into.
 	 * @param {Object} _p1 The first point of the curve
 	 * @param {Object} _p2 The second point of the curve
 	 * @param {Object} _t1 The T1 of the curve
 	 * @param {Object} _t2 The T2 of the curve
 	 **/		
-	p._bezierPart = function (_p1, _p2, _t1, _t2) {
+	p._bezierPart = function (ctx, _p1, _p2, _t1, _t2) {
 		var _cp1 = {};
 		var _cp2 = {};
 		var _a;
@@ -205,7 +205,7 @@ var p = region.prototype = new sifPlayer.Layer();
 		_cp2.x = -(Math.cos(_a) * _t2.radius.value) / 3 + _p2.x
 		_cp2.y = -(Math.sin(_a) * _t2.radius.value) / 3 + _p2.y
 			
-		this.sifobj.ctx.bezierCurveTo(_cp1.x, _cp1.y, _cp2.x, _cp2.y, _p2.x, _p2.y);
+		ctx.bezierCurveTo(_cp1.x, _cp1.y, _cp2.x, _cp2.y, _p2.x, _p2.y);
 	
 	}
 	

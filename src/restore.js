@@ -52,8 +52,7 @@ var p = restore.prototype = new sifPlayer.Layer();
 	 * Draw for restore layer.
 	 * @method draw
 	 **/
-	p.draw = function () {
-		var ctx = this.sifobj.ctx;
+	p.draw = function (ctx) {
 		ctx.restore();
 	}
 

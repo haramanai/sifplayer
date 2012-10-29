@@ -53,8 +53,7 @@ var p = zoom.prototype = new sifPlayer.Layer();
 	 * Draws the layer
 	 * @method draw
 	 **/
-	p.draw = function () {
-		var ctx = this.sifobj.ctx;
+	p.draw = function (ctx) {
 		var zoom = Math.exp(this.amount.value);
 		
 		ctx.save()

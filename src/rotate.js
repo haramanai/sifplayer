@@ -44,17 +44,18 @@ var p = rotate.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
+		
 		this.initLayer(parent, data);
 		this._setParam('origin', this, data.origin);
 		this._setParam('amount', this, data.amount);
+		
 	}
 
 	/**
 	 * Draws the layer
 	 * @method draw
 	 **/
-	p.draw = function () {
-		var ctx = this.sifobj.ctx;
+	p.draw = function (ctx) {
 		ctx.save();
 		ctx.translate(this.origin.x, this.origin.y);
 		ctx.rotate(this.amount.value * Math.PI/180);

@@ -30,21 +30,19 @@ this.sifPlayer = this.sifPlayer||{};
 * @class SifObject
 * @constructor
 * @param {XmlDocument} xmlDoc The xml document that represents the synfig animation
-* @param {CanvasRenderingContext2D} } ctx The canvas 2D context object to draw into.
 * @param {Number} x The x of the SifObject
 * @param {Number} y The y of the SifObject
 * @param {Number} width The width of the SifObject
 * @param {Number} height The height of the SifObject
 * @param {String} sifPath The path of the sif.xml this is needed for import layer
 **/
-function SifObject(xmlDoc, ctx, x, y, width, height, sifPath) {
+function SifObject(xmlDoc, x, y, width, height, sifPath) {
 	if (!sifPath) sifPath = "";
 	this.sifPath = sifPath;
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
-	this.ctx = ctx;
 	
 	this.init(xmlDoc);
 
@@ -216,8 +214,10 @@ var p = SifObject.prototype;
 		var data = getData(xmlDoc.getElementsByTagName('canvas')[0]);
 		
 		this.timeline = new createjs.Timeline();
+		this.timeline.setPaused(true);
 		this._getCanvasData(data);
 		this.timeline.gotoAndPlay(0);
+
 		
 		
 	}
@@ -227,9 +227,8 @@ var p = SifObject.prototype;
 	 * Prepares for drawing and draws the layers of the SifObject 
 	 * @method draw
 	 **/	
-	p.draw = function () {
+	p.draw = function (ctx) {
 
-		var ctx = this.ctx;
 		var canvas = this.sif.canvas;
 		var layer = this.sif.canvas.layer;
 		ctx.save();
@@ -237,7 +236,7 @@ var p = SifObject.prototype;
 				this.height / (canvas.view_box[3] - canvas.view_box[1]),
 				this.x + this.width / 2, this.y + this.height / 2)
 		for (var i = 0; i < layer.length; i++) {
-			layer[i].draw();
+			layer[i].draw(ctx);
 		}
 		
 			

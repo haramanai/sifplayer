@@ -5,6 +5,7 @@
 <body onload="main()">
 <div id='sifPlayer'></div>
 <canvas id="canvas" width="640" height="480"></canvas>
+<canvas id="canvas2" style = "position: absolute; top:0px; left: 0px"></canvas>
 <script type='text/javascript' src="libs/Ticker.js"></script>
 <script type='text/javascript' src="libs/tweenjs-0.3.0.min.js"></script>
 <script type='text/javascript' src="src/sifobject.js"></script>
@@ -20,19 +21,33 @@
 function main() {
 	var xmlDoc = loadXML('assets/test.sif');
 	var canvas = document.getElementById('canvas');
-	var ctx = canvas.getContext('2d');
+	var canvas2 = document.getElementById('canvas2');
 
 	var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, 'assets/');
 	so.timeline.loop = true;
 
 
 	var looper = {
-
+		Buffers: [canvas, canvas2],
+		Contexts: [canvas.getContext('2d'), canvas2.getContext('2d')],
+		DrawingBuffer: 0,
+		
+		
 		tick: function () {
+			var ctx = this.Contexts[this.DrawingBuffer];
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			so.draw(ctx);
+			flip();
 		
+		},
+		
+		flip: function () {
+			this.Buffers[1-this.DrawingBuffer].style.visibility='hidden';
+			this.Buffers[this.DrawingBuffer].style.visibility='visible';
+
+			this.DrawingBuffer=1-this.DrawingBuffer;
 		}
+			
 	}
 	
 	createjs.Ticker.useRaf = false;

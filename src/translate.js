@@ -57,8 +57,7 @@ var p = translate.prototype = new sifPlayer.Layer();
 	 * Draws the layer if the origin is a vector
 	 * @method draw
 	 **/
-	p.draw = function () {
-		var ctx = this.sifobj.ctx;
+	p.draw = function (ctx) {
 		ctx.save();
 		ctx.translate(this.origin.x, this.origin.y);
 	}
@@ -67,8 +66,7 @@ var p = translate.prototype = new sifPlayer.Layer();
 	 * Draws the layer if the origin is a radial_composite
 	 * @method drawRadial
 	 **/	
-	p.drawRadial = function () {
-		var ctx = this.sifobj.ctx;
+	p.drawRadial = function (ctx) {
 		var a = this.origin.radial_composite.theta.value * Math.PI / 180.0;
 		var x = Math.cos(a) * this.origin.radial_composite.radius.value
 		var y = Math.sin(a) * this.origin.radial_composite.radius.value
