@@ -243,7 +243,6 @@ var p = SifObject.prototype;
 		
 			
 		ctx.restore();
-		console.log(createjs.Ticker. getMeasuredFPS());
 
 	}
 
