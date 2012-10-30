@@ -1,3 +1,12 @@
+[quote]Hi.
+I was working on a player for the sif files. It's not completed and I stoped working on it cause I don't think I am the best person to handle the job.
+Cause I stoped working on it for about a month and I beleive that something like this can be a big attraction for synfig. I decieded to show my unfinished work:
+Run the sifplayer.html to see it in action. Also if you replace the test.sif with another file it will be the file to display. [/quote]
+
+But in the end I worked on it a little bit more so go check it out it's starting to take a nice shape.
+[url]https://github.com/haramanai/sifplayer[/url]
+Edit: Just removed some lines.
+Edit2: The readme from the github
 SIFPLAYER for HTML5 it's a lib to play an unzipped sif file on the html canvas.
 Sif are the files that produced by the open source vector animation softoware : Synfig www.synfig.org
 
@@ -8,24 +17,24 @@ It's published under the MIT license.
 It is not complete future. 
 It is supports the types of layers:
         Region
-	  Circle
+	Circle
         Import (image)
         PasteCanvas
         Scale
         Translate
         Rotate
-	  Zoom
-	  Linear Gradient (without the params zigzag and loop)
-	  Radial Gradient (without the params zigzag and loop)
+	Zoom
+	Linear Gradient (without the params zigzag and loop)
+	Radial Gradient (without the params zigzag and loop)
 
 The blend methods that much the globalCompositeOperation of the context2d
 
-		Composite 		=>  source-over
-		Straight  		=>  copy
-		Onto      		=>  source-atop
+		Composite		=>  source-over
+		Straight		=>  copy
+		Onto			=>  source-atop
 		Straight Onto	=>  source-in
 		Behind		=>  destination-over
-		Alpha Over		=>  destination-out
+		Alpha Over	=>  destination-out
 		Alpha Brighter	=>  destination-in
 
 

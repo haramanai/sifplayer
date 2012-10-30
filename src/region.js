@@ -67,7 +67,7 @@ var p = region.prototype = new sifPlayer.Layer();
 		
 		//var color = layer.color.color;
 
-		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + Math.round(this.color.a * 256)  + ')';
+		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + this.color.a  + ')';
 		
 		ctx.globalAlpha = this._getTotalAmount();
 		ctx.save();

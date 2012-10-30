@@ -1,6 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
 * Layer
+* version 0.1.
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -70,7 +71,14 @@ var p = Layer.prototype;
 			this.parent = parent;
 			this.sifobj = parent.sifobj;
 		}
+		
 		this.type = data._type;
+		if (data._desc) {
+			this.desc = data._desc;
+			//keep refernce of the layer to the sifobj so we can reach it.
+			this.sifobj.layer[this.desc] = this;
+		}
+
 	}
 
 // public methods:
@@ -141,20 +149,6 @@ var p = Layer.prototype;
 				return;
 				break;
 				
-			case 'gradient':
-				param.gradient = {};
-				param.gradient.color = [];
-				for (var i = 0, ii = dataIn.gradient.color.length; i < ii; i++) {
-					var color = {};
-					data = {};
-					data.color = dataIn.gradient.color[i];
-					
-					this._setParam('color', color, data);
-					color.color.pos = data.color._pos;
-					param.gradient.color.push(color.color);
-				}
-				return;
-				break;
 				
 						
 			
@@ -185,14 +179,14 @@ var p = Layer.prototype;
 					if (w[0]._time !== "0s") {
 							tw.to( {x: w[0][param_type].x, y: w[0][param_type].y},
 								sifPlayer._secsToMillis(w[0]._time), 
-								createjs.Ease.linear);
+								this._getEase(param_type, w[0]._before) );
 					}
 
 							
 					for (var i = 0; i < w.length - 1; i++) {
 						tw.to( {x: w[i + 1][param_type].x, y: w[i + 1][param_type].y},
 							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
-							createjs.Ease.linear);
+							this._getEase(param_type, w[i + 1]._before) );
 					}
 					sifobj.timeline.addTween(tw);
 				} else {
@@ -216,14 +210,14 @@ var p = Layer.prototype;
 					if (w[0]._time !== "0s") {
 							tw.to( {r: w[0][param_type].r, g: w[0][param_type].g, b: w[0][param_type].b, a: w[0][param_type].a},
 								sifPlayer._secsToMillis(w[0]._time), 
-								createjs.Ease.linear);
+								this._getEase(param_type, w[0]._before) );
 					}
 
 							
 					for (var i = 0; i < w.length - 1; i++) {
 						tw.to( {r: w[i + 1][param_type].r, g: w[i + 1][param_type].g, b: w[i + 1][param_type].b, a: w[i + 1][param_type].a},
 							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
-							createjs.Ease.linear);
+							this._getEase(param_type, w[i + 1]._before) );
 					}
 					
 					sifobj.timeline.addTween(tw);
@@ -235,24 +229,72 @@ var p = Layer.prototype;
 				}
 				break;
 				
+			case 'gradient':
+				var pcolor,dcolor;
+				if (data.animated) {
+					w = data.animated.waypoint
+					param[param_type] = {};
+					param[param_type].color = [];
+					for (var i = 0, ii = w[0].gradient.color.length; i < ii; i++) {
+						param[param_type].color.push({});
+						pcolor = param[param_type].color[i];
+						dcolor = w[0].gradient.color[i];
+						pcolor.pos = dcolor._pos;
+						pcolor.r = dcolor.r;
+						pcolor.g = dcolor.g;
+						pcolor.b = dcolor.b;
+						pcolor.a = dcolor.a;
+						
+						tw = createjs.Tween.get(pcolor, tw_def);
+						if (w[0]._time !== "0s") {
+							tw.to( {pos: dcolor._pos, r: dcolor.r, g: dcolor.g, b: dcolor.b, a: dcolor.a},
+								sifPlayer._secsToMillis(w[0]._time), 
+								this._getEase(param_type, w[0]._before) );
+							
+						}
+						for (var j = 0, jj = w.length - 1; j < jj; j++) {
+							dcolor = w[j + 1].gradient.color[i];
+							tw.to( {pos: dcolor._pos, r: dcolor.r, g: dcolor.g, b: dcolor.b, a: dcolor.a},
+								sifPlayer._secsToMillis(w[j + 1]._time) - sifPlayer._secsToMillis(w[j]._time), 
+								this._getEase(param_type, w[j + 1]._before) );
+							
+						}
+						sifobj.timeline.addTween(tw);
+					}
+								
+				} else {
+					param[param_type] = {};
+					param[param_type].color = [];
+					for (var i = 0, ii = data[param_type].color.length; i < ii; i++) {
+						param[param_type].color.push({});
+						pcolor = param[param_type].color[i];
+						dcolor = data[param_type].color[i];
+						pcolor.pos = dcolor._pos;
+						pcolor.r = dcolor.r;
+						pcolor.g = dcolor.g;
+						pcolor.b = dcolor.b;
+						pcolor.a = dcolor.a;		
+					}									
+				}
+				break;
 				
 			default: //real angle integer bool 
 				if (data.animated) {
 					w = data.animated.waypoint
 					param[param_name].value = w[0][param_type]._value
 					tw = createjs.Tween.get(param[param_name], tw_def);
-						
+					
 					if (w[0]._time !== "0s") {
 							tw.to( {value: w[0][param_type]._value},
 								sifPlayer._secsToMillis(w[0]._time), 
-								createjs.Ease.linear);
+								this._getEase(param_type, w[0]._before) );
 					}
 
 							
 					for (var i = 0; i < w.length - 1; i++) {
 						tw.to( {value: w[i + 1][param_type]._value},
 							sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time),
-							createjs.Ease.linear);
+							this._getEase(param_type, w[i + 1]._before) );
 					}
 					sifobj.timeline.addTween(tw);
 				} else {
@@ -331,6 +373,27 @@ var p = Layer.prototype;
 				return 'source-over';
 				
 		}
+	}
+	
+	/**
+	 * Returns a cteatejs.Ease to be used
+	 * @method _getEase
+	 * @param {Object} param_type the data to check the value type
+	 * @param {Object} ease_type the data to check the value type
+	 * @return {object} returns a cteatejs.Ease to be used
+	 **/	
+	p._getEase = function (param_type, ease_type) {
+
+		if (param_type === 'bool') return sifPlayer.Ease.bool;
+		if (ease_type === 'linear') return createjs.Ease.linear;
+		if (ease_type === 'clamped') return createjs.Ease.none;
+		//EaseInOut
+		if (ease_type === 'halt') return createjs.Ease.none;
+		if (ease_type === 'constant') return sifPlayer.Ease.constant;
+		//TCB
+		if (ease_type === 'auto') return createjs.Ease.none;
+
+		return false;
 	}
 	
 	p._getTotalAmount = function () {

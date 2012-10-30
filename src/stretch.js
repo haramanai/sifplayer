@@ -1,6 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
-* radial_gradient
+* stretch
+* version 0.1.
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -25,17 +26,17 @@
  (function() { 
 
 /**
-* @class circle
+* @class translate
 * @extends Layer
 * @constructor
 * @param {Object} parent The parent of the Layer
 * @param {Object} data The data for the Layer
 **/	 	
-function radial_gradient(parent, data) {
+function stretch(parent, data) {
 	this.init(parent, data);
 }
 
-var p = radial_gradient.prototype = new sifPlayer.Layer();
+var p = stretch.prototype = new sifPlayer.Layer();
 
 	/** 
 	 * Initialization method.
@@ -44,42 +45,26 @@ var p = radial_gradient.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
-		
 		this.initLayer(parent, data);
 		this._setParam('amount', this, data.amount);
-		this._setParam('blend_method', this, data.blend_method);
-		this._setParam('center', this, data.center);	
-		this._setParam('radius', this, data.radius);
-		this._setParam('gradient', this, data.gradient);
+		this._setParam('center', this, data.center);
+
+			
 	}
 
 	/**
-	 * Draws the layer
+	 * Draws the layer if the origin is a vector
 	 * @method draw
 	 **/
 	p.draw = function (ctx) {
-		var x = this.center.x;
-		var y = this.center.y;
-		var grd = ctx.createRadialGradient(x, y,0, x, y, this.radius.value);
-		var color = this.gradient.color;
-		var vb = this.sifobj.sif.canvas.view_box;
-
-		for (var i = 0, ii = color.length; i < ii; i++) {
-			grd.addColorStop(color[i].pos, 'rgba('+ Math.round(color[i].r * 256) + ', ' + Math.round(color[i].g * 256)  + ', ' + Math.round(color[i].b * 256)  + ', ' + color[i].a  + ')');
-		}
+		var center = this.center;
+		var amount = this.amount;
+		ctx.save();
+		ctx.translate(center.x, center.y);
+		ctx.scale(amount.x, amount.y);
+		ctx.translate(-center.x, -center.y);
 		
-		ctx.globalAlpha = this._getTotalAmount();
-		ctx.globalCompositeOperation = this._getBlend();		
-		ctx.fillStyle = grd;
-		//ctx.fillRect(vb[0] , -vb[1], vb[2] * 2, vb[2] * 2);
-		//We render more than we need but it's the only solution I found
-		// looks like that we don't get lower framerate by the size of the 
-		// rect. So it's ok to do it like this.
-		ctx.fillRect(-1000, -1000, 2000 , 2000);
-
-
 	}
 
-
-sifPlayer.radial_gradient = radial_gradient;
+sifPlayer.stretch = stretch;
 }());

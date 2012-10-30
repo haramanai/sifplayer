@@ -1,6 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
 * import
+* version 0.1.
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -47,6 +48,7 @@ var p = Import.prototype = new sifPlayer.Layer();
 	 **/
 	p.init = function (parent, data) {
 		this.initLayer(parent, data)
+		this._setParam('amount', this, data.amount);
 		this._setParam('tl', this, data.tl);
 		this._setParam('br', this, data.br);
 		this.image = new Image();
@@ -62,7 +64,8 @@ var p = Import.prototype = new sifPlayer.Layer();
 	 **/	
 	p.draw = function (ctx) {
 		ctx.save();
-		this._drawImage();
+		ctx.globalAlpha = this._getTotalAmount();
+		this._drawImage(ctx);
 		ctx.restore();
 	}
 	
@@ -70,8 +73,7 @@ var p = Import.prototype = new sifPlayer.Layer();
 	 * Draws the image
 	 * @method _drawImage
 	 **/	
-	p._drawImage = function () {
-		var ctx = this.sifobj.ctx;
+	p._drawImage = function (ctx) {
 		var w =  (this.br.x - this.tl.x);
 		var h = (this.tl.y - this.br.y)
 		var sx;

@@ -1,6 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
-* rotate
+* version 0.1.
+* circle
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -60,7 +61,7 @@ var p = circle.prototype = new sifPlayer.Layer();
 	 **/
 	p.draw = function (ctx) {
 		var origin = this.origin;
-		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + Math.round(this.color.a * 256)  + ')';		
+		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + this.color.a  + ')';		
 		ctx.globalAlpha = this._getTotalAmount();
 		ctx.globalCompositeOperation = this._getBlend();
 		

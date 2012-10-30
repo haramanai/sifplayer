@@ -1,6 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
-* rotate
+* linear_gradient
+* version 0.1.
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -61,9 +62,9 @@ var p = linear_gradient.prototype = new sifPlayer.Layer();
 		var grd = ctx.createLinearGradient(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
 		var color = this.gradient.color;
 		var vb = this.sifobj.sif.canvas.view_box;
-
+		
 		for (var i = 0, ii = color.length; i < ii; i++) {
-			grd.addColorStop(color[i].pos, 'rgba('+ Math.round(color[i].r * 256) + ', ' + Math.round(color[i].g * 256)  + ', ' + Math.round(color[i].b * 256)  + ', ' + Math.round(color[i].a * 256)  + ')');
+			grd.addColorStop(color[i].pos, 'rgba('+ Math.round(color[i].r * 256) + ', ' + Math.round(color[i].g * 256)  + ', ' + Math.round(color[i].b * 256)  + ', ' + color[i].a  + ')');
 		}
 		
 		ctx.globalAlpha = this._getTotalAmount();
@@ -72,7 +73,8 @@ var p = linear_gradient.prototype = new sifPlayer.Layer();
 		//ctx.fillRect(vb[0] , -vb[1], vb[2] * 2, vb[2] * 2);
 		//We render more than we need but it's the only solution I found
 		// looks like that we don't get lower framerate by the size of the 
-		// rect. So it's ok to do it like this.
+		// rect. So it's ok to do it like this. The best way is to store somewhere
+		// the matrix so we can render to the screen size.
 		ctx.fillRect(-1000, -1000, 2000 , 2000);
 
 
