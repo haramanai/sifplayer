@@ -15,6 +15,7 @@ function main() {
 	var ctx = canvas.getContext('2d');
 	var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, '');
 	so.timeline.loop = true;
+	so.timeline.setPaused( false );
 	var looper = { 
 		tick: function () {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);

@@ -1,10 +1,8 @@
 This is the main source of the project.
 
-sifobject.js is the main object that will read the sif.xml andcreate the layers to render.
+sifPlayer is the namespace and a holder of some common functions.
+sifobject is the object that will hold and render all the layers.
+Ease is some simple easing functions for tweenjs to help emulate the synfig animation.
+Layer is the object that all the layers will inherit.
 
-All the other javascript files are Layers.
-
-Also there is a build file that if you run it it will compile those src files with google closure compiler to the build/sifplayer.js file.
-
-
-If you add an extra layer you will have to added to the build file to be compiled.
+The Layers directory contains the implemented layers.

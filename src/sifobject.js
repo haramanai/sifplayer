@@ -97,11 +97,12 @@ var p = SifObject.prototype;
 	p.timeline = null;
 	
 	/**
-	 * Referense to the layers of the sif
-	 * @property layer
+	 * Referense to the layers by desc. This is the way to connect with
+	 * the sif.
+	 * @property desc
 	 * @type Object
 	 **/
-	p.layer = {};
+	p.desc = {};
 
 
 	
@@ -123,7 +124,7 @@ var p = SifObject.prototype;
 		this.timeline.setPaused(true);
 		this._getCanvasData(data);
 		this.timeline.duration = this.sif.canvas.end_time;
-		this.timeline.gotoAndPlay(this.sif.canvas.start_time);
+
 
 		
 		

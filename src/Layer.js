@@ -76,7 +76,7 @@ var p = Layer.prototype;
 		if (data._desc) {
 			this.desc = data._desc;
 			//keep refernce of the layer to the sifobj so we can reach it.
-			this.sifobj.layer[this.desc] = this;
+			this.sifobj.desc[this.desc] = this;
 		}
 
 	}

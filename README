@@ -1,78 +1,64 @@
-[quote]Hi.
-I was working on a player for the sif files. It's not completed and I stoped working on it cause I don't think I am the best person to handle the job.
-Cause I stoped working on it for about a month and I beleive that something like this can be a big attraction for synfig. I decieded to show my unfinished work:
-Run the sifplayer.html to see it in action. Also if you replace the test.sif with another file it will be the file to display. [/quote]
-
-But in the end I worked on it a little bit more so go check it out it's starting to take a nice shape.
-[url]https://github.com/haramanai/sifplayer[/url]
-Edit: Just removed some lines.
-Edit2: The readme from the github
 SIFPLAYER for HTML5 it's a lib to play an unzipped sif file on the html canvas.
-Sif are the files that produced by the open source vector animation softoware : Synfig www.synfig.org
+Sif are the files that produced by the open source vector animation software : Synfig www.synfig.org
 
-It uses the Ticker from the createjs.Easel (MIT license) and the createjs.TweenJS (MIT license) for the tweens.
+It uses the createjs.TweenJS (MIT license) for the tweens. www.createjs.com
+The example uses the Ticker.js from the createjs.EaselJS lib www.createjs.com
 
 It's published under the MIT license.
 
 It is not complete future. 
-It is supports the types of layers:
-        Region
+It supports the types of layers:
+	Region
 	Circle
-        Import (image)
-        PasteCanvas
-        Scale
-        Translate
-        Rotate
+	Import (image)
+	PasteCanvas
+	Scale
+	Translate
+	Rotate
 	Zoom
+	Stretch
 	Linear Gradient (without the params zigzag and loop)
 	Radial Gradient (without the params zigzag and loop)
 
 The blend methods that much the globalCompositeOperation of the context2d
 
-		Composite		=>  source-over
-		Straight		=>  copy
-		Onto			=>  source-atop
-		Straight Onto	=>  source-in
-		Behind		=>  destination-over
-		Alpha Over	=>  destination-out
-		Alpha Brighter	=>  destination-in
+	Composite		=>  source-over
+	Straight		=>  copy
+	Onto			=>  source-atop
+	Straight Onto	=>  source-in
+	Behind			=>  destination-over
+	Alpha Over		=>  destination-out
+	Alpha Brighter	=>  destination-in
+
+Synfig's Param Convert does not work. So take extra care that you do not convert any param when you are building your animation.
+The only param that can be converted right now is the origin of the translation layer from vector to radial composite. If you convert anything else an error will be alerted.
+
 
 
 Run the sifPlayer.html to see it in action. There is a min version and an example of how to use in the build folder
 
 Also in the /assets/ are sifparser.html  you can run it to have an understanding of how the data looks like. But keep in mind that the defs will change in the init of the SifObject to be accessed by the id of the defs.
 
-Some more instructions :
-The sif file must be uncompressed. If it is compressed you will have .sifz. Uncompress that and add to the new file .sif or .xml.
-Then you get this file to the dir of the sifPlayer.html. 
-Let's say that you have r.xml
+How to use it :
 
-in the sifPlayer.html you will find a line that reads :
-var xmlDoc = loadXML('assets/test.sif');
-change that to :
-var xmlDoc = loadXML('r.xml');
+var mySif = sifPlayer.SifObject( xmlDoc, x, y, width, height, sifPath )
 
-and save.
+As you can see the first param is an XML Document object.
+The x and y are the location in the canvas that will be the left up corner of the sif.
+The width and height are the demension you wand the sif to be.
+sifPath is the location of the actual sif.xml. This is needed so the player will load the imagies that been used for the synfig animation.
 
-run the sifPlayer.html and you will have you file rendered.
+after the object is created it will be paused so to get it running you must tell the timeline of the SifObject to stop beeing paused
+mySif.timeline.setPaused( false );
 
-Also keep in mind that some browsers will not let you to load a file from your local computer. You will get an error and you will see nothing.
-You will better use firefox when you are testing. Cause firefox let's you do this.
+Also if you wand your animation to loop you can tell the timeline again to loop
+mySif.timeline.loop = true;
 
-I made some changes to the sifplayer and the SifObject constructor is now
-/**
-* @class SifObject
-* @constructor
-* @param {XmlDocument} xmlDoc The xml document that represents the synfig animation
-* @param {Number} x The x of the SifObject
-* @param {Number} y The y of the SifObject
-* @param {Number} width The width of the SifObject
-* @param {Number} height The height of the SifObject
-* @param {String} sifPath The path of the sif.xml this is needed for import layer
-**/
-in the sifPlayer.html is used in a line that reads:
-var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, 'assets/');
+For more information about the timeline see the createjs tweenjs documentations.
 
-the last param is the location of your sif file. This is needed for the import layer. If you followed the instructions I just said and your sif uses imagies you must change that line to:
-var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, '');
+Then to render the sif on a context you must run 
+mySif.draw( context );
+
+In this state the animations will change by the Ticker.js from the createjs easeljs. You can make the sifPlayer to not be dependent by the Ticker.js but you will have to find a way to suits your needs.
+
 

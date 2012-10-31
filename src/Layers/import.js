@@ -49,6 +49,7 @@ var p = Import.prototype = new sifPlayer.Layer();
 	p.init = function (parent, data) {
 		this.initLayer(parent, data)
 		this._setParam('amount', this, data.amount);
+		this._setParam('blend_method', this, data.blend_method);
 		this._setParam('tl', this, data.tl);
 		this._setParam('br', this, data.br);
 		this.image = new Image();
@@ -65,6 +66,7 @@ var p = Import.prototype = new sifPlayer.Layer();
 	p.draw = function (ctx) {
 		ctx.save();
 		ctx.globalAlpha = this._getTotalAmount();
+		ctx.globalCompositeOperation = this._getBlend();
 		this._drawImage(ctx);
 		ctx.restore();
 	}

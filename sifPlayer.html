@@ -11,17 +11,17 @@
 <script type='text/javascript' src="src/Ease.js"></script>
 <script type='text/javascript' src="src/sifobject.js"></script>
 <script type='text/javascript' src="src/Layer.js"></script>
-<script type='text/javascript' src="src/PasteCanvas.js"></script>
-<script type='text/javascript' src="src/region.js"></script>
-<script type='text/javascript' src="src/restore.js"></script>
-<script type='text/javascript' src="src/translate.js"></script>
-<script type='text/javascript' src="src/rotate.js"></script>
-<script type='text/javascript' src="src/zoom.js"></script>
-<script type='text/javascript' src="src/import.js"></script>
-<script type='text/javascript' src="src/circle.js"></script>
-<script type='text/javascript' src="src/linear_gradient.js"></script>
-<script type='text/javascript' src="src/radial_gradient.js"></script>
-<script type='text/javascript' src="src/stretch.js"></script>
+<script type='text/javascript' src="src/Layers/PasteCanvas.js"></script>
+<script type='text/javascript' src="src/Layers/region.js"></script>
+<script type='text/javascript' src="src/Layers/restore.js"></script>
+<script type='text/javascript' src="src/Layers/translate.js"></script>
+<script type='text/javascript' src="src/Layers/rotate.js"></script>
+<script type='text/javascript' src="src/Layers/zoom.js"></script>
+<script type='text/javascript' src="src/Layers/import.js"></script>
+<script type='text/javascript' src="src/Layers/circle.js"></script>
+<script type='text/javascript' src="src/Layers/linear_gradient.js"></script>
+<script type='text/javascript' src="src/Layers/radial_gradient.js"></script>
+<script type='text/javascript' src="src/Layers/stretch.js"></script>
 
 <script type='text/javascript'>
 function main() {
@@ -31,6 +31,7 @@ function main() {
 
 	var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, 'assets/');
 	so.timeline.loop = true;
+	so.timeline.setPaused( false );
 
 
 	var looper = {
