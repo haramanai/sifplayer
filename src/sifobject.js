@@ -122,8 +122,9 @@ var p = SifObject.prototype;
 		this.timeline = new createjs.Timeline();
 		
 		this.timeline.setPaused(true);
+		
 		this._getCanvasData(data);
-		this.timeline.duration = this.sif.canvas.end_time;
+		
 
 
 		
@@ -199,7 +200,7 @@ var p = SifObject.prototype;
 		this.sif.canvas.name = data.name;
 		
 		
-		
+		this.timeline.duration = this.sif.canvas.end_time;
 		this.sif.canvas.defs = this._getDefs(data.defs);
 		this.sif.canvas.layer = [];
 		
