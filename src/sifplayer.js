@@ -159,18 +159,21 @@
 	sifPlayer._canvasTimeToMillis = function (_s, fps) {
 		var millis = 0;
 		var t;
-		if (_s.search('s') > 0){
+		if (_s.search('m') > 0 ) {
+			t = _s.split('m');
+			millis += t[0] * 60000
+			_s = t[1];
+		}
+
+		if (_s.search('s') > 0 ) {
 			t = _s.split('s');
-			if (t.length) {
-				millis += parseFloat(t[0]) *1000;
-				if (t[1].search('f') > 0) {
-					millis += parseFloat(t[1].replace('f','')) * 1000/fps;
-				}
-			} else {
-				return parseFloat(t) *1000;
-			}
-		} else {
-			millis += parseFloat(_s.replace('f','')) * 1000/fps;
+			millis += t[0] * 1000;
+			_s = t[1];			
+		}
+		
+		if (_s.search('f') > 0 ) {
+			t = _s.split('f');
+			millis += t[0] * 1000/fps;	
 		}
 		return millis;
 	}
