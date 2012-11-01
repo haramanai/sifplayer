@@ -159,9 +159,15 @@
 	sifPlayer._canvasTimeToMillis = function (_s, fps) {
 		var millis = 0;
 		var t;
+		if (_s.search('h') > 0 ) {
+			t = _s.split('h');
+			millis += t[0] * 3600000;
+			_s = t[1];
+		}
+		
 		if (_s.search('m') > 0 ) {
 			t = _s.split('m');
-			millis += t[0] * 60000
+			millis += t[0] * 60000;
 			_s = t[1];
 		}
 

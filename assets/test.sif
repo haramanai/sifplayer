@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<canvas version="0.9" width="280" height="270" xres="2834.645752" yres="2834.645752" view-box="-3.303646 3.185659 3.303646 -3.185659" antialias="1" fps="24.000" begin-time="0f" end-time="5s" bgcolor="0.500000 0.500000 0.500000 1.000000">
+<canvas version="0.9" width="280" height="270" xres="2834.645752" yres="2834.645752" view-box="-3.303646 3.185659 3.303646 -3.185659" antialias="1" fps="24.000" begin-time="0f" end-time="4s 13.920f" bgcolor="0.500000 0.500000 0.500000 1.000000">
   <name>Synfig Animation 2</name>
   <meta name="grid_show" content="0"/>
   <meta name="grid_size" content="0.250000 0.250000"/>
@@ -183,7 +183,7 @@
     <param name="color">
       <animated type="color">
         <waypoint time="0s" before="clamped" after="clamped">
-          <color guid="254FCDADE2784A18CABAF1E9AAAC7F60">
+          <color>
             <r>0.039718</r>
             <g>0.780546</g>
             <b>0.240580</b>
@@ -191,7 +191,7 @@
           </color>
         </waypoint>
         <waypoint time="2s" before="clamped" after="clamped">
-          <color guid="B2DECA83477FBE24D93680CC3373F817">
+          <color>
             <r>0.039718</r>
             <g>0.198297</g>
             <b>0.240580</b>
@@ -2688,7 +2688,7 @@
       </vector>
     </param>
     <param name="canvas">
-      <canvas>
+      <canvas end-time="5s">
         <layer type="linear_gradient" active="true" version="0.0">
           <param name="z_depth">
             <real value="0.0000000000"/>
@@ -2725,7 +2725,7 @@
           <param name="p2">
             <animated type="vector">
               <waypoint time="0s" before="clamped" after="clamped">
-                <vector guid="C0EF72330AF7C73AB2300526924B67D6">
+                <vector>
                   <x>-3.6104130745</x>
                   <y>-3.5396211147</y>
                 </vector>
@@ -2747,7 +2747,7 @@
           <param name="gradient">
             <animated type="gradient">
               <waypoint time="0s" before="clamped" after="clamped">
-                <gradient guid="DD1701159414328A06D7DE784F6C78A2">
+                <gradient>
                   <color pos="0.000000">
                     <r>0.000000</r>
                     <g>0.002453</g>
@@ -2763,7 +2763,7 @@
                 </gradient>
               </waypoint>
               <waypoint time="2s" before="clamped" after="clamped">
-                <gradient guid="3CFAD1F7B794DB2EA765C10A12299954">
+                <gradient>
                   <color pos="0.000000">
                     <r>0.000000</r>
                     <g>0.000000</g>
