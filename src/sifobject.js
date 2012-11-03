@@ -223,14 +223,17 @@ var p = SifObject.prototype;
 	 **/
 	p._getDefs = function (data) {
 		var defs = {};
+		var def_type;
 		for (name in data) {
+
 			if (data[name].constructor != Array) {
 				if (name === 'animated') {
 					defs[data[name]._id]  = {};
 					defs[data[name]._id].animated = data[name];
-				} else {				
-					defs[data._id] = data[name];
-					defs[data._id]._type = name;							
+				} else {			
+					defs[data[name]._id] = {};
+					defs[data[name]._id][name] = data[name];
+					defs[data[name]._id]._type = name;							
 				}
 			} else {
 				
