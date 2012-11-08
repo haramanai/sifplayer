@@ -1,6 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
-* translate
+* integer
+* version 0.2.
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -22,46 +23,36 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 * OTHER DEALINGS IN THE SOFTWARE.
 */
+this.sifPlayer.param = this.sifPlayer.param||{};
  (function() { 
 
-/**
-* @class translate
-* @extends Layer
-* @constructor
-* @param {Object} parent The parent of the Layer
-* @param {Object} data The data for the Layer
-**/	 	
-function translate(parent, data) {
-	this.init(parent, data);
+var integer =  {};
+
+
+integer._setConvert = function (layer, param, wanted_type, is_type) {
+	var type = sifPlayer.param.integer;
+	if (wanted_type === is_type) {
+		param.getValue = type.getValue;
+	}
+	else if ( is_type === 'add' ) {
+		param.getValue = type.getAdd;
+	}
+	
+}
+	
+	
+integer.getValue = function () {
+	return this.value;
 }
 
-var p = translate.prototype = new sifPlayer.Layer();
-
-	/** 
-	 * Initialization method.
-	 * @method init
-	 * @param {Object} parent The parent of the Layer
-	 * @param {Object} data The data for the Layer
-	 **/
-	p.init = function (parent, data) {
-		var _set = sifPlayer.param._set;
-		this.initLayer(parent, data);
-		_set(this, 'origin', 'vector', this, data.origin);
-
-			
-	}
-
-	/**
-	 * Draws the layer if the origin is a vector
-	 * @method draw
-	 **/
-	p.draw = function (ctx) {
-		var origin = this.origin;
-		ctx.save();
-		ctx.translate(origin.getX() , origin.getY() );
-	}
+integer.getAdd = function () {
+	return ( this.add.lhs.getValue() + this.add.rhs.getValue() ) * this.add.scalar.getValue();
+}
+	
+	
 
 
 
-sifPlayer.translate = translate;
+
+sifPlayer.param.integer = integer;
 }());

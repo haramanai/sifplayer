@@ -1,7 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
 * linear_gradient
-* version 0.1.
+* version 0.2.
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -45,13 +45,14 @@ var p = linear_gradient.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
+		var _set = sifPlayer.param._set;
 		
 		this.initLayer(parent, data);
-		this._setParam('amount', this, data.amount);
-		this._setParam('blend_method', this, data.blend_method);
-		this._setParam('p1', this, data.p1);	
-		this._setParam('p2', this, data.p2);
-		this._setParam('gradient', this, data.gradient);
+		_set(this, 'amount', 'real', this, data.amount);
+		_set(this, 'blend_method', 'integer', this, data.blend_method);
+		_set(this, 'p1', 'vector', this, data.p1);	
+		_set(this, 'p2', 'vector', this, data.p2);
+		_set(this, 'gradient', 'gradient', this, data.gradient);
 	}
 
 	/**
@@ -59,7 +60,7 @@ var p = linear_gradient.prototype = new sifPlayer.Layer();
 	 * @method draw
 	 **/
 	p.draw = function (ctx) {
-		var grd = ctx.createLinearGradient(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
+		var grd = ctx.createLinearGradient(this.p1.getX(), this.p1.getY(), this.p2.getX(), this.p2.getY() );
 		var color = this.gradient.color;
 		var vb = this.sifobj.sif.canvas.view_box;
 		

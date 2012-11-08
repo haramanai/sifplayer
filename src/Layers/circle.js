@@ -45,13 +45,15 @@ var p = circle.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
+		var _set = sifPlayer.param._set;
 		
 		this.initLayer(parent, data);
-		this._setParam('amount', this, data.amount);
-		this._setParam('origin', this, data.origin);	
-		this._setParam('radius', this, data.radius);
-		this._setParam('color', this, data.color);
-		this._setParam('blend_method',this, data.blend_method);
+		_set(this, 'amount', 'real', this, data.amount);
+		_set(this, 'origin', 'vector', this, data.origin);	
+		_set(this, 'radius', 'real', this, data.radius);
+		_set(this, 'blend_method', 'integer', this, data.blend_method);
+		_set(this, 'color', 'color', this, data.color);
+		
 		
 	}
 
@@ -66,7 +68,7 @@ var p = circle.prototype = new sifPlayer.Layer();
 		ctx.globalCompositeOperation = this._getBlend();
 		
 		ctx.beginPath();
-		ctx.arc(origin.x, origin.y, this.radius.value, 0 , 2 * Math.PI, false);
+		ctx.arc(origin.getX(), origin.getY(), this.radius.getValue(), 0 , 2 * Math.PI, false);
 		ctx.closePath();
 		ctx.fill();
 		

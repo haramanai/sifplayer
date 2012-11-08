@@ -36,13 +36,15 @@
 	 **/	
 	Ease.constant = function (t) {return t < 1?0:1};
 	
+	
+
 	/**
 	 * Custom ease function for bool values
 	 * @method Ease.bool
 	 * @static
 	 **/	
-	Ease.bool = function (t) {return t < 1?1:0}; 
-
+	Ease.bool = function (t) {return t < 1?1:0};
+	
 sifPlayer.Ease = Ease;
 }());
 

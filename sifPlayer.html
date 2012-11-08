@@ -1,15 +1,31 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+body {
+margin: 0px;
+overflow: hidden;
+}
+</style>
 </head>
 <body onload="main()">
 <div id='sifPlayer'></div>
 <canvas id="canvas" width="640" height="480"></canvas>
 <script type='text/javascript' src="libs/Ticker.js"></script>
 <script type='text/javascript' src="libs/tweenjs-0.3.0.min.js"></script>
+<script type='text/javascript' src="libs/transform.js"></script>
 <script type='text/javascript' src="src/sifplayer.js"></script>
 <script type='text/javascript' src="src/Ease.js"></script>
 <script type='text/javascript' src="src/sifobject.js"></script>
+<script type='text/javascript' src="src/Param/param.js"></script>
+<script type='text/javascript' src="src/Param/vector.js"></script>
+<script type='text/javascript' src="src/Param/composite.js"></script>	
+<script type='text/javascript' src="src/Param/integer.js"></script>
+<script type='text/javascript' src="src/Param/real.js"></script>
+<script type='text/javascript' src="src/Param/angle.js"></script>
+<script type='text/javascript' src="src/Param/bool.js"></script>
+<script type='text/javascript' src="src/Param/convert.js"></script>
 <script type='text/javascript' src="src/Layer.js"></script>
 <script type='text/javascript' src="src/Layers/PasteCanvas.js"></script>
 <script type='text/javascript' src="src/Layers/region.js"></script>
@@ -23,28 +39,30 @@
 <script type='text/javascript' src="src/Layers/radial_gradient.js"></script>
 <script type='text/javascript' src="src/Layers/stretch.js"></script>
 
+
 <script type='text/javascript'>
 function main() {
 	var xmlDoc = loadXML('assets/test.sif');
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 
-	var so = new sifPlayer.SifObject(xmlDoc, 0, 0, canvas.width, canvas.height, 'assets/');
+
+	
+	var so = new sifPlayer.SifObject(xmlDoc , {x: 0, y: 0 , width: 320, height: 240, sifPath: 'assets/'});
 	so.timeline.loop = true;
 	so.timeline.setPaused( false );
 
-
+	//console.log(so.desc['NewBLine162 Region'].tweens[0]);
 	var looper = {
 
 		tick: function () {
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			so.draw(ctx);
-		
 		}
 	}
 	
 	createjs.Ticker.useRaf = false;
 	createjs.Ticker.addListener(looper);
+	
 }
 
 function loadXML (file) {

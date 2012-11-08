@@ -44,10 +44,10 @@ var p = rotate.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
-		
+		var _set = sifPlayer.param._set;
 		this.initLayer(parent, data);
-		this._setParam('origin', this, data.origin);
-		this._setParam('amount', this, data.amount);
+		_set(this, 'origin', 'vector', this, data.origin);
+		_set(this, 'amount', 'angle', this, data.amount);
 		
 	}
 
@@ -57,9 +57,9 @@ var p = rotate.prototype = new sifPlayer.Layer();
 	 **/
 	p.draw = function (ctx) {
 		ctx.save();
-		ctx.translate(this.origin.x, this.origin.y);
+		ctx.translate(this.origin.getX(), this.origin.getY());
 		ctx.rotate(this.amount.value * Math.PI/180);
-		ctx.translate(-this.origin.x, -this.origin.y);
+		ctx.translate(-this.origin.getX(), -this.origin.getY());
 	}
 
 

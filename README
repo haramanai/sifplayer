@@ -30,8 +30,27 @@ The blend methods that much the globalCompositeOperation of the context2d
 	Alpha Over		=>  destination-out
 	Alpha Brighter	=>  destination-in
 
-Synfig's Param Convert does not work. So take extra care that you do not convert any param when you are building your animation.
-The only param that can be converted right now is the origin of the translation layer from vector to radial composite. If you convert anything else an error will be alerted.
+The convert that you can use.
+
+Vector converts to:
+	radial composite
+	composite
+	add
+	scale
+
+Real converts to:
+	add
+
+Angle converts to:
+	add
+
+Integer converts to:
+	add
+
+Bool converts to:
+	and
+
+
 
 
 
@@ -40,13 +59,13 @@ Run the sifPlayer.html to see it in action. There is a min version and an exampl
 Also in the /assets/ are sifparser.html  you can run it to have an understanding of how the data looks like. But keep in mind that the defs will change in the init of the SifObject to be accessed by the id of the defs.
 
 How to use it :
-
-var mySif = sifPlayer.SifObject( xmlDoc, x, y, width, height, sifPath )
+var def = {x: 100 , y: 100, width: 320, height: 240, sifPath: 'assets/'};
+var mySif = sifPlayer.SifObject( xmlDoc, def);
 
 As you can see the first param is an XML Document object.
-The x and y are the location in the canvas that will be the left up corner of the sif.
-The width and height are the demension you wand the sif to be.
-sifPath is the location of the actual sif.xml. This is needed so the player will load the imagies that been used for the synfig animation.
+The def param is an javascript object everything that you may wand to add to the SifObject like the x position that will be the upper left corner of the SifObject in the context
+the width that you wand the SifObject to have
+And the necessary sifPath that you will need if you use imagies. With sifPath SifObject will no where to search for the imagies that your sif animation used.
 
 after the object is created it will be paused so to get it running you must tell the timeline of the SifObject to stop beeing paused
 mySif.timeline.setPaused( false );
@@ -60,5 +79,4 @@ Then to render the sif on a context you must run
 mySif.draw( context );
 
 In this state the animations will change by the Ticker.js from the createjs easeljs. You can make the sifPlayer to not be dependent by the Ticker.js but you will have to find a way to suits your needs.
-
 

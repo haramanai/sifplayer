@@ -44,12 +44,13 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
+		var _set = sifPlayer.param._set;
 		this.initLayer(parent, data);
-		this._setParam('amount', this, data.amount);
-		this._setParam('blend_method', this, data.blend_method);
-		this._setParam('origin', this, data.origin);
-		this._setParam('zoom', this, data.zoom);
-		this._setParam('focus', this, data.focus);
+		_set(this, 'amount', 'real', this, data.amount);
+		_set(this, 'blend_method', 'integer', this, data.blend_method);
+		_set(this, 'origin', 'vector', this, data.origin);
+		_set(this, 'zoom', 'real', this, data.zoom);
+		_set(this, 'focus', 'vector', this, data.focus);
 
 		this._getLayers(data.canvas.canvas.layer);
 	}
@@ -72,13 +73,16 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 	 * @method draw
 	 **/	
 	p.draw = function (ctx) {
-		var zoom = Math.exp(this.zoom.value);
+		var zoom = Math.exp(this.zoom.getValue() );
 		var layer = this.layer;
+		var focus = this.focus;
+		var origin = this.origin;
+		
 		ctx.save();
-		ctx.translate(this.focus.x, this.focus.y);
+		ctx.translate(focus.getX(), focus.getY() );
 		ctx.scale(zoom, zoom);
-		ctx.translate(-this.focus.x, -this.focus.y);
-		ctx.translate(this.origin.x / zoom, this.origin.y / zoom);
+		ctx.translate(-focus.getX(), -focus.getY() );
+		ctx.translate(origin.getX() / zoom, origin.getY() / zoom);
 
 		for (var i = 0, ii = layer.length; i < ii; i++) {
 			

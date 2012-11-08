@@ -47,11 +47,12 @@ var p = Import.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
+		var _set = sifPlayer.param._set;
 		this.initLayer(parent, data)
-		this._setParam('amount', this, data.amount);
-		this._setParam('blend_method', this, data.blend_method);
-		this._setParam('tl', this, data.tl);
-		this._setParam('br', this, data.br);
+		_set(this, 'amount', 'real', this, data.amount);
+		_set(this, 'blend_method', 'integer', this, data.blend_method);
+		_set(this, 'tl', 'vector', this, data.tl);
+		_set(this, 'br', 'vector', this, data.br);
 		this.image = new Image();
 		this.image.src = this.sifobj.sifPath + data.filename.string;
 		
@@ -76,8 +77,8 @@ var p = Import.prototype = new sifPlayer.Layer();
 	 * @method _drawImage
 	 **/	
 	p._drawImage = function (ctx) {
-		var w =  (this.br.x - this.tl.x);
-		var h = (this.tl.y - this.br.y)
+		var w =  (this.br.getX() - this.tl.getX());
+		var h = (this.tl.getY() - this.br.getY())
 		var sx;
 		var sy;
 
@@ -95,7 +96,7 @@ var p = Import.prototype = new sifPlayer.Layer();
 		} else {
 			sy = -1;
 		}
-		ctx.translate(this.tl.x, this.tl.y);
+		ctx.translate(this.tl.getX() , this.tl.getY());
 		ctx.scale(sx  , sy);
 		ctx.drawImage(this.image, 0, 0, w, h);
 

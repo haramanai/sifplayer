@@ -35,15 +35,19 @@
 * @param {Number} height The height of the SifObject
 * @param {String} sifPath The path of the sif.xml this is needed for import layer
 **/
-function SifObject(xmlDoc, x, y, width, height, sifPath) {
-	if (!sifPath) sifPath = "";
-	this.sifPath = sifPath;
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = height;
+function SifObject(xmlDoc, props) {
+	if (props) {
+		
+		for (c in props) {
+			this[c] = props[c];
+		}
+		
+	}
+	//We need this for check if it is a sifobject.
+	this.sifPath = this.sifPath || '';	
 	
 	this.init(xmlDoc);
+	this.canvas = document.createElement('canvas');
 
 }
 
@@ -56,28 +60,28 @@ var p = SifObject.prototype;
 	 * @property x
 	 * @type Number
 	 **/
-	p.x = null;
+	p.x = 0;
 	
 	/**
 	 * The y coords to use for drawing
 	 * @property y
 	 * @type Number
 	 **/
-	p.y = null;
+	p.y = 0;
 	
 	/**
 	 * The width to by the drawn sif
 	 * @property width
 	 * @type Number
 	 **/
-	p.width = null;
+	p.width = 320;
 	
 	/**
 	 * The height to by the drawn sif
 	 * @property height
 	 * @type Number
 	 **/
-	p.width = null;
+	p.height = 240;
 
 	/**
 	 * The path of the sif.xml file this is needed for the import layer
@@ -87,7 +91,7 @@ var p = SifObject.prototype;
 	 * @property sifPath
 	 * @type String
 	 **/
-	p.sifPath = "";
+	p.sifPath = '';
 			
 	/**
 	 * The timeline to use for the tweens
@@ -115,8 +119,6 @@ var p = SifObject.prototype;
 	 **/
 	 p.init = function (xmlDoc) {
 		
-		//I am puting the function getData inside the init
-		
 		var data = sifPlayer._getData(xmlDoc.getElementsByTagName('canvas')[0]);
 		
 		this.timeline = new createjs.Timeline();
@@ -126,8 +128,6 @@ var p = SifObject.prototype;
 		this._getCanvasData(data);
 		
 
-
-		
 		
 	}
 	
@@ -141,8 +141,17 @@ var p = SifObject.prototype;
 		var canvas = this.sif.canvas;
 		var layer = this.sif.canvas.layer;
 		var bg = canvas.bgcolor;
+		//Clears
+		ctx.clearRect(this.x, this.y, this.width, this.height);
+		
+		//Clip so the drawing will fit only our SifObject space.
+		ctx.beginPath();
+		ctx.rect(this.x, this.y, this.width, this.height);
+		ctx.closePath();
+		ctx.clip();
+		
 		ctx.save();
-
+		
 		//Set the transform to much the sif
 		ctx.setTransform( this.width / (canvas.view_box[2] - canvas.view_box[0]), 0, 0,
 				this.height / (canvas.view_box[3] - canvas.view_box[1]),
@@ -156,16 +165,19 @@ var p = SifObject.prototype;
 		ctx.restore();
 		
 		//Draw the background color
-		ctx.globalAlpha = 1.0;
+		
+		ctx.globalAlpha = 1;
 		ctx.globalCompositeOperation = 'destination-over';
 		ctx.fillStyle = 'rgba(' + bg.r + ', ' + bg.g  + ', ' + bg.b  + ', ' + bg.a +')';
 		ctx.fillRect(this.x, this.y, this.width, this.height);
+
+
 		
 			
 		
 
 	}
-
+	
 
 
 // private methods:
@@ -200,10 +212,11 @@ var p = SifObject.prototype;
 		this.sif.canvas.name = data.name;
 		
 		
-		this.timeline.duration = this.sif.canvas.end_time;
+		
 		this.sif.canvas.defs = this._getDefs(data.defs);
 		this.sif.canvas.layer = [];
 		
+		this.timeline.duration = this.sif.canvas.end_time;
 		
 		//Get the layers
 		for (var i = 0; i < data.layer.length; i++) {			

@@ -22,9 +22,8 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 * OTHER DEALINGS IN THE SOFTWARE.
 */
-
+this.sifPlayer = this.sifPlayer || {};
 (function() { 	
-	sifPlayer = {};
 //Common functions
 	/**
 	 * Gets the time in seconds and returns it to milliseconds
@@ -222,13 +221,29 @@
 	}
 	
 	/**
-	 * Gets the time in seconds and returns it to milliseconds
-	 * 
-	 * @method createjs.Ease.bool
-	 * @static
+	 * Returns a cteatejs.Ease to be used
+	 * @function sifPlayer._getEase
+	 * @param {String} ease_type the type of ease to catch
+	 * @param {Object} ease_type the data to check the value type
+	 * @return {object} returns a cteatejs.Ease to be used
 	 **/	
-	createjs.Ease.constant = function (t) {return t < 1?0:1};
-	createjs.Ease.bool = function (t) {return t < 1?1:0}; 
+	sifPlayer._getEase = function (ease_type) {
+
+		if (ease_type === 'linear') return createjs.Ease.linear;
+		if (ease_type === 'clamped') return createjs.Ease.none;
+		//EaseInOut
+		if (ease_type === 'halt') return createjs.Ease.none;
+		if (ease_type === 'constant') return sifPlayer.Ease.constant;
+		//TCB
+		if (ease_type === 'auto') return createjs.Ease.none;
+
+		return false;
+	}
+	
+
+	
+	
+
 
 window.sifPlayer = sifPlayer;
 }());

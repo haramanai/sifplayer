@@ -44,12 +44,12 @@ var p = region.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
-		
+		var _set = sifPlayer.param._set;
 		this.initLayer(parent, data);
-		this._setParam('blend_method',this, data.blend_method);
-		this._setParam('amount',this, data.amount);
-		this._setParam('origin', this, data.origin);
-		this._setParam('color', this, data.color);
+		_set(this, 'blend_method', 'integer', this, data.blend_method);
+		_set(this, 'amount', 'real', this, data.amount);
+		_set(this, 'origin', 'vector', this, data.origin);
+		_set(this, 'color', 'color', this, data.color);
 		this._getBline(data.bline);
 			
 	}
@@ -62,8 +62,9 @@ var p = region.prototype = new sifPlayer.Layer();
 	 * @param {CanvasRenderingContext2D} } ctx The canvas 2D context object to draw into.
 	 **/	
 	p.draw = function (ctx) {
+		
 		var e1,e2;
-
+		
 		
 		//var color = layer.color.color;
 
@@ -71,34 +72,35 @@ var p = region.prototype = new sifPlayer.Layer();
 		
 		ctx.globalAlpha = this._getTotalAmount();
 		ctx.save();
-		ctx.translate(this.origin.x, this.origin.y);
+		ctx.translate(this.origin.getX(), this.origin.getY() );
 		ctx.globalCompositeOperation = this._getBlend();
 
 		ctx.beginPath();
-		e1 = this.bline.entry[0].point;
-		ctx.moveTo(e1.x, e1.y);
-
+		e1 = this.bline.entry[0].composite.getPoint();
+		ctx.moveTo(e1.getX(), e1.getY() );
+		
 		for (var i = 0; i < this.bline.entry.length - 1; i++) {
 			
-			e1 = this.bline.entry[i];
-			e2 = this.bline.entry[i + 1];
-			if (e1.split.value) {
-				this._bezierPart( ctx, e1.point, e2.point, e1.t2, e2.t1);
+			e1 = this.bline.entry[i].composite;
+			e2 = this.bline.entry[i + 1].composite;
+			
+
+			if (e1.split.getValue()) {
+				this._bezierPart( ctx, e1.getPoint(), e2.getPoint(), e1.getT2(), e2.getT1());
 			} else {
-				this._bezierPart( ctx, e1.point, e2.point, e1.t1, e2.t1);
+				this._bezierPart( ctx, e1.getPoint(), e2.getPoint(), e1.getT1(), e2.getT1());
 
 			}
 
 		}
 		if (this.bline.loop) {
+			e1 = this.bline.entry[ this.bline.entry.length - 1 ].composite;
+			e2 = this.bline.entry[0].composite;
 			
-			e1 = this.bline.entry[ this.bline.entry.length - 1 ];
-			e2 = this.bline.entry[0];
-			
-			if (e1.split.value) {
-				this._bezierPart( ctx, e1.point, e2.point, e1.t2, e2.t1);
+			if (e1.split.getValue()) {
+				this._bezierPart( ctx, e1.getPoint(), e2.getPoint(), e1.getT2(), e2.getT1());
 			} else {
-				this._bezierPart( ctx, e1.point, e2.point, e1.t1, e2.t1);
+				this._bezierPart( ctx, e1.getPoint(), e2.getPoint(), e1.getT1(), e2.getT1());
 			}
 		}
 
@@ -114,65 +116,23 @@ var p = region.prototype = new sifPlayer.Layer();
 	 * @method _getBline
 	 **/		
 	p._getBline = function (data) {
+		var _set = sifPlayer.param._set;
 		this.bline = {};
 		this.bline.entry = [];
-		var e, w, tw;
+		var w, tw;
 
 		//LOOP
 		this.bline.loop = data.bline._loop;
 		
-		for (var i = 0; i < data.bline.entry.length; i++) {
-			e = {};
-
+		for (var i = 0, ii = data.bline.entry.length; i < ii; i++) {
 			
-			this.bline.entry.push(e)
-			entry = this.bline.entry[i];
-			entry.point = {};
-			entry.t1 = {};
-			entry.t2 = {};
-			
-			
-			////
-			/*Here we must check first if the entry uses a def
-			 * */
-			 if (data.bline.entry[i]._use) {
-				 data.bline.entry[i] = this.sifobj.sif.canvas.defs[ data.bline.entry[i]._use ]
-				 
-			}
-			 
-			 
-			 
-			//SPLIT
-			this._setParam('split' , entry, data.bline.entry[i].composite.split)
-			
-			//POINT
-			this._setParam('point', entry, data.bline.entry[i].composite.point);
-			
-			//T1
-			if (!data.bline.entry[i].composite.t1.scale) {
-				this._setParam('theta', entry.t1, data.bline.entry[i].composite.t1.radial_composite.theta);
-				this._setParam('radius', entry.t1, data.bline.entry[i].composite.t1.radial_composite.radius);
-			} else {
-				this._setParam('theta', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.theta);
-				this._setParam('radius', entry.t1, data.bline.entry[i].composite.t1.scale.link.radial_composite.radius);
-				this._setParam('scalar', entry.t1, data.bline.entry[i].composite.t1.scale.scalar);
-	
-			}
-			
-			//T2
-			if (!data.bline.entry[i].composite.t2.scale) {
-				this._setParam('theta', entry.t2, data.bline.entry[i].composite.t2.radial_composite.theta);
-				this._setParam('radius', entry.t2, data.bline.entry[i].composite.t2.radial_composite.radius);
-			} else {
-				this._setParam('theta', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.theta);
-				this._setParam('radius', entry.t2, data.bline.entry[i].composite.t2.scale.link.radial_composite.radius);
-				this._setParam('scalar', entry.t2, data.bline.entry[i].composite.t2.scale.scalar);
-				//alert(JSON.stringify(entry));
-	
-			}
-
+			var e = {};
+			//if (data.bline.entry[i].composite.point.composite) alert('in');
+			_set(this, 'composite', 'composite', e, data.bline.entry[i]);
+			this.bline.entry.push(e.composite);
 			
 		}
+		//alert(JSON.stringify(this.bline.entry[2]));
 	}
 
 
@@ -186,26 +146,17 @@ var p = region.prototype = new sifPlayer.Layer();
 	 * @param {Object} _t2 The T2 of the curve
 	 **/		
 	p._bezierPart = function (ctx, _p1, _p2, _t1, _t2) {
+		
 		var _cp1 = {};
 		var _cp2 = {};
-		var _a;
-		if (_t1.scalar) { //here was the scalar now it must get outside of the function
 
-			_a = (_t1.theta.value - 180) * Math.PI / 180.0;
-		} else {
-			_a = _t1.theta.value * Math.PI / 180.0;
-		}
-		_cp1.x = (Math.cos(_a) * _t1.radius.value) / 3 + _p1.x
-		_cp1.y = (Math.sin(_a) * _t1.radius.value) / 3 + _p1.y
-		if (_t2.scalar) {
-			_a = (_t2.theta.value - 180) * Math.PI / 180.0;
-		} else {
-			_a = _t2.theta.value * Math.PI / 180.0;
-		}
-		_cp2.x = -(Math.cos(_a) * _t2.radius.value) / 3 + _p2.x
-		_cp2.y = -(Math.sin(_a) * _t2.radius.value) / 3 + _p2.y
-			
-		ctx.bezierCurveTo(_cp1.x, _cp1.y, _cp2.x, _cp2.y, _p2.x, _p2.y);
+		_cp1.x = _t1.x + _p1.getX();
+		_cp1.y = _t1.y + _p1.getY();
+
+		_cp2.x = -_t2.x + _p2.getX();
+		_cp2.y = -_t2.y + _p2.getY();
+
+		ctx.bezierCurveTo(_cp1.x, _cp1.y, _cp2.x, _cp2.y, _p2.getX(), _p2.getY());
 	
 	}
 	

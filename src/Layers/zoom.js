@@ -1,6 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
 * zoom
+* version 0.2
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -44,9 +45,11 @@ var p = zoom.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
+		var _set = sifPlayer.param._set;
 		this.initLayer(parent, data);
-		this._setParam('center', this, data.center);
-		this._setParam('amount', this, data.amount);
+		
+		_set(this, 'center', 'vector', this, data.center);
+		_set(this, 'amount', 'real', this, data.amount);
 	}
 
 	/**
@@ -54,12 +57,13 @@ var p = zoom.prototype = new sifPlayer.Layer();
 	 * @method draw
 	 **/
 	p.draw = function (ctx) {
-		var zoom = Math.exp(this.amount.value);
+		var zoom = Math.exp(this.amount.getValue());
+		var center = this.center
 		
 		ctx.save()
-		ctx.translate(this.center.x, this.center.y);
+		ctx.translate(center.getX(), center.getY() );
 		ctx.scale(zoom, zoom);
-		ctx.translate(-this.center.x / zoom, -this.center.y / zoom);
+		ctx.translate(-center.getX() / zoom, -center.getY() / zoom);
 	}
 
 

@@ -44,13 +44,14 @@ var p = radial_gradient.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
+		var _set = sifPlayer.param._set;
 		
 		this.initLayer(parent, data);
-		this._setParam('amount', this, data.amount);
-		this._setParam('blend_method', this, data.blend_method);
-		this._setParam('center', this, data.center);	
-		this._setParam('radius', this, data.radius);
-		this._setParam('gradient', this, data.gradient);
+		_set(this, 'amount', 'real', this, data.amount);
+		_set(this, 'blend_method', 'integer', this, data.blend_method);
+		_set(this, 'center', 'vector', this, data.center);	
+		_set(this, 'radius', 'real', this, data.radius);
+		_set(this, 'gradient', 'gradient', this, data.gradient);
 	}
 
 	/**
@@ -58,11 +59,10 @@ var p = radial_gradient.prototype = new sifPlayer.Layer();
 	 * @method draw
 	 **/
 	p.draw = function (ctx) {
-		var x = this.center.x;
-		var y = this.center.y;
-		var grd = ctx.createRadialGradient(x, y,0, x, y, this.radius.value);
+		var x = this.center.getX();
+		var y = this.center.getY();
+		var grd = ctx.createRadialGradient(x, y,0, x, y, this.radius.getValue() );
 		var color = this.gradient.color;
-		var vb = this.sifobj.sif.canvas.view_box;
 
 		for (var i = 0, ii = color.length; i < ii; i++) {
 			grd.addColorStop(color[i].pos, 'rgba('+ Math.round(color[i].r * 256) + ', ' + Math.round(color[i].g * 256)  + ', ' + Math.round(color[i].b * 256)  + ', ' + color[i].a  + ')');

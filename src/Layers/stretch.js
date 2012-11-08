@@ -1,7 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
 * stretch
-* version 0.1.
+* version 0.2.
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -45,9 +45,11 @@ var p = stretch.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
+		var _set = sifPlayer.param._set;
 		this.initLayer(parent, data);
-		this._setParam('amount', this, data.amount);
-		this._setParam('center', this, data.center);
+		
+		_set(this, 'amount', 'vector', this, data.amount);
+		_set(this, 'center', 'vector', this, data.center);
 
 			
 	}
@@ -60,9 +62,9 @@ var p = stretch.prototype = new sifPlayer.Layer();
 		var center = this.center;
 		var amount = this.amount;
 		ctx.save();
-		ctx.translate(center.x, center.y);
-		ctx.scale(amount.x, amount.y);
-		ctx.translate(-center.x, -center.y);
+		ctx.translate(center.getX(), center.getY() );
+		ctx.scale(amount.getX(), amount.getY());
+		ctx.translate(-center.getX(), -center.getY() );
 		
 	}
 

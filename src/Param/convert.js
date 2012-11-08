@@ -1,6 +1,7 @@
 /*
 * Copyright (c) 2012 haramanai.
-* translate
+* convert
+* version 0.1.
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -22,46 +23,42 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 * OTHER DEALINGS IN THE SOFTWARE.
 */
+this.sifPlayer.param = this.sifPlayer.param||{};
+this.sifPlayer.param.convert = this.sifPlayer.param.convert||{};
  (function() { 
+var convert = sifPlayer.param.convert;
 
-/**
-* @class translate
-* @extends Layer
-* @constructor
-* @param {Object} parent The parent of the Layer
-* @param {Object} data The data for the Layer
-**/	 	
-function translate(parent, data) {
-	this.init(parent, data);
+convert._set = function (layer, param, wanted_type, is_type) {
+	
+	//VECTOR
+	if (wanted_type === 'vector') {
+		sifPlayer.param[wanted_type]._setConvert(layer, param, wanted_type, is_type)
+	}
+			
+	else if ( wanted_type === 'real') {
+		sifPlayer.param[wanted_type]._setConvert(layer, param, wanted_type, is_type)
+		
+	}
+	
+	else if ( wanted_type === 'integer') {
+		sifPlayer.param[wanted_type]._setConvert(layer, param, wanted_type, is_type)
+	}
+	
+	else if ( wanted_type === 'angle') {
+		sifPlayer.param[wanted_type]._setConvert(layer, param, wanted_type, is_type)
+		
+	}
+	else if ( wanted_type === 'bool') {
+		sifPlayer.param[wanted_type]._setConvert(layer, param, wanted_type, is_type)
+		
+	}
+	else if ( wanted_type === 'composite') {
+		sifPlayer.param[wanted_type]._setConvert(layer, param, wanted_type, is_type)
+		
+	}
+	
 }
 
-var p = translate.prototype = new sifPlayer.Layer();
 
-	/** 
-	 * Initialization method.
-	 * @method init
-	 * @param {Object} parent The parent of the Layer
-	 * @param {Object} data The data for the Layer
-	 **/
-	p.init = function (parent, data) {
-		var _set = sifPlayer.param._set;
-		this.initLayer(parent, data);
-		_set(this, 'origin', 'vector', this, data.origin);
-
-			
-	}
-
-	/**
-	 * Draws the layer if the origin is a vector
-	 * @method draw
-	 **/
-	p.draw = function (ctx) {
-		var origin = this.origin;
-		ctx.save();
-		ctx.translate(origin.getX() , origin.getY() );
-	}
-
-
-
-sifPlayer.translate = translate;
+	
 }());
