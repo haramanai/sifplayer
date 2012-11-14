@@ -213,7 +213,7 @@
           </composite>
         </entry>
         <entry>
-          <composite type="bline_point" guid="5811A8FA65F42337189D432E48F070BD">
+          <composite type="bline_point">
             <point>
               <vector>
                 <x>1.8648157120</x>
@@ -232,7 +232,17 @@
             <t1>
               <radial_composite type="vector">
                 <radius>
-                  <real value="2.9033524719"/>
+                  <logarithm type="real">
+                    <link>
+                      <real value="0.1000000000"/>
+                    </link>
+                    <epsilon>
+                      <real value="0.0000010000"/>
+                    </epsilon>
+                    <infinite>
+                      <real value="999999.0000000000"/>
+                    </infinite>
+                  </logarithm>
                 </radius>
                 <theta>
                   <angle value="52.976967"/>
@@ -242,7 +252,7 @@
             <t2>
               <radial_composite type="vector">
                 <radius>
-                  <real value="2.9033524719"/>
+                  <real value="2.9033525276"/>
                 </radius>
                 <theta>
                   <angle value="52.976967"/>
@@ -484,7 +494,7 @@
           </composite>
         </entry>
         <entry>
-          <composite type="bline_point" guid="5811A8FA65F42337189D432E48F070BD">
+          <composite type="bline_point">
             <point>
               <vector>
                 <x>1.8648157120</x>
@@ -503,7 +513,17 @@
             <t1>
               <radial_composite type="vector">
                 <radius>
-                  <real value="2.9033524719"/>
+                  <logarithm type="real">
+                    <link>
+                      <real value="0.1000000000"/>
+                    </link>
+                    <epsilon>
+                      <real value="0.0000010000"/>
+                    </epsilon>
+                    <infinite>
+                      <real value="999999.0000000000"/>
+                    </infinite>
+                  </logarithm>
                 </radius>
                 <theta>
                   <angle value="52.976967"/>
@@ -513,7 +533,7 @@
             <t2>
               <radial_composite type="vector">
                 <radius>
-                  <real value="2.9033524719"/>
+                  <real value="2.9033525276"/>
                 </radius>
                 <theta>
                   <angle value="52.976967"/>

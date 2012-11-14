@@ -71,7 +71,15 @@ real.dotproduct = function () {
 	
 real.exp = function () {
 	return Math.exp(this.exp.exp.getValue()) * this.exp.scale.getValue();
-}	
+}
+
+real.logarithm = function () {
+	var link = this.logarithm.link.getValue();
+	if (link >= this.logarithm.epsilon.getValue()) {
+		return Math.log( link );
+	}
+	return -this.logarithm.infinite.getValue();
+}		
 
 
 
