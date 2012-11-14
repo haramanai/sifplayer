@@ -9,6 +9,7 @@ It's published under the MIT license.
 It is not complete future. 
 It supports the types of layers:
 	Region
+	Outline (without point width)
 	Circle
 	Import (image)
 	PasteCanvas
