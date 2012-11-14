@@ -29,7 +29,7 @@ this.sifPlayer.param = this.sifPlayer.param||{};
 var angle =  {};
 
 
-angle._setConvert = function (layer, param, wanted_type, is_type, animated) {
+angle._setConvert = function (layer, param, wanted_type, is_type) {
 	var type = sifPlayer.param.angle;
 	if (wanted_type === is_type) {
 		param.getValue = type.getValue;
@@ -38,7 +38,7 @@ angle._setConvert = function (layer, param, wanted_type, is_type, animated) {
 		param.getValue = type[is_type];
 	}
 	else {
-		alert('no convert for integer to ' + is_type);
+		alert('no convert for angle to ' + is_type);
 	}
 	
 
@@ -56,6 +56,10 @@ angle.add = function () {
 
 angle.scale = function () {
 	return this.scale.link.getValue() * this.scale.scalar.getValue();
+}
+
+angle.atan2 = function () {
+	return Math.atan2(this.atan2.y.getValue(), this.atan2.x.getValue()) / Math.PI * 180.0;;
 }
 	
 	

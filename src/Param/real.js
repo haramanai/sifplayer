@@ -38,7 +38,7 @@ real._setConvert = function (layer, param, wanted_type, is_type) {
 		param.getValue = type[is_type];
 	}
 	else {
-		alert('no convert for integer to ' + is_type);
+		alert('no convert for real to ' + is_type);
 	}
 	
 
@@ -54,6 +54,10 @@ real.add = function () {
 
 real.scale = function () {
 	return this.scale.link.getValue() * this.scale.scalar.getValue();
+}
+
+real.cos = function () {
+	return this.cos.amp.getValue() * Math.cos(this.cos.angle.getValue());
 }
 	
 	

@@ -41,12 +41,17 @@ Vector converts to:
 
 Real converts to:
 	add
+	scale
 
 Angle converts to:
 	add
+	scale
+	atan2
+	cos
 
 Integer converts to:
 	add
+	scale
 
 Bool converts to:
 	and

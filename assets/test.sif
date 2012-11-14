@@ -97,7 +97,21 @@
                   <real value="13.6414267309"/>
                 </radius>
                 <theta>
-                  <angle value="60.331280"/>
+                  <atan2 type="angle">
+                    <x>
+                      <cos type="real">
+                        <angle>
+                          <angle value="0.000000"/>
+                        </angle>
+                        <amp>
+                          <real value="0.5000000000"/>
+                        </amp>
+                      </cos>
+                    </x>
+                    <y>
+                      <real value="12.0000000000"/>
+                    </y>
+                  </atan2>
                 </theta>
               </radial_composite>
             </t1>
@@ -147,6 +161,45 @@
                 </radius>
                 <theta>
                   <angle value="-38.239429"/>
+                </theta>
+              </radial_composite>
+            </t2>
+          </composite>
+        </entry>
+        <entry>
+          <composite type="bline_point" guid="5811A8FA65F42337189D432E48F070BD">
+            <point>
+              <vector>
+                <x>1.8648157120</x>
+                <y>-1.4341326952</y>
+              </vector>
+            </point>
+            <width>
+              <real value="1.0000000000"/>
+            </width>
+            <origin>
+              <real value="0.5247622132"/>
+            </origin>
+            <split>
+              <bool value="false"/>
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.9033524719"/>
+                </radius>
+                <theta>
+                  <angle value="52.976967"/>
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.9033524719"/>
+                </radius>
+                <theta>
+                  <angle value="52.976967"/>
                 </theta>
               </radial_composite>
             </t2>
@@ -269,7 +322,21 @@
                   <real value="13.6414267309"/>
                 </radius>
                 <theta>
-                  <angle value="60.331280"/>
+                  <atan2 type="angle">
+                    <x>
+                      <cos type="real">
+                        <angle>
+                          <angle value="0.000000"/>
+                        </angle>
+                        <amp>
+                          <real value="0.5000000000"/>
+                        </amp>
+                      </cos>
+                    </x>
+                    <y>
+                      <real value="12.0000000000"/>
+                    </y>
+                  </atan2>
                 </theta>
               </radial_composite>
             </t1>
@@ -319,6 +386,45 @@
                 </radius>
                 <theta>
                   <angle value="-38.239429"/>
+                </theta>
+              </radial_composite>
+            </t2>
+          </composite>
+        </entry>
+        <entry>
+          <composite type="bline_point" guid="5811A8FA65F42337189D432E48F070BD">
+            <point>
+              <vector>
+                <x>1.8648157120</x>
+                <y>-1.4341326952</y>
+              </vector>
+            </point>
+            <width>
+              <real value="1.0000000000"/>
+            </width>
+            <origin>
+              <real value="0.5247622132"/>
+            </origin>
+            <split>
+              <bool value="false"/>
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.9033524719"/>
+                </radius>
+                <theta>
+                  <angle value="52.976967"/>
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.9033524719"/>
+                </radius>
+                <theta>
+                  <angle value="52.976967"/>
                 </theta>
               </radial_composite>
             </t2>

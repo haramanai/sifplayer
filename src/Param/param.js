@@ -92,7 +92,7 @@ var param = sifPlayer.param;
 				
 			param.convert._set( layer, that[param_name], wanted_type, 'add');
 			
-		}
+		}		//AND
 		else if (data.and) {
 			param_type = data.and._type;
 			
@@ -102,6 +102,28 @@ var param = sifPlayer.param;
 			param._set(layer, 'link2', param_type, that[param_name].and, data.and.link2);
 				
 			param.convert._set( layer, that[param_name], wanted_type, 'and');
+			
+		}		//ATAN2
+		else if (data.atan2) {
+			param_type = data.atan2._type;
+			that[param_name] = {};
+			that[param_name].atan2 = {};
+			if (data.atan2._x) data.atan2.x = layer.sifobj.sif.canvas.defs[data._x];
+			if (data.atan2._y) data.atan2.y = layer.sifobj.sif.canvas.defs[data._y];
+			param._set(layer, 'x', 'real', that[param_name].atan2, data.atan2.x);
+			param._set(layer, 'y', 'real', that[param_name].atan2, data.atan2.y);
+			param.convert._set( layer, that[param_name], wanted_type, 'atan2');
+			
+		}		//COS
+		else if (data.cos) {
+			param_type = data.cos._type;
+			that[param_name] = {};
+			that[param_name].cos = {};
+			if (data.cos._angle) data.cos._angle = layer.sifobj.sif.canvas.defs[data._angle];
+			if (data.cos._amp) data.cos.amp = layer.sifobj.sif.canvas.defs[data._amp];
+			param._set(layer, 'angle', 'angle', that[param_name].cos, data.cos.angle);
+			param._set(layer, 'amp', 'real', that[param_name].cos, data.cos.amp);
+			param.convert._set( layer, that[param_name], wanted_type, 'cos');
 			
 		}
 		else if (data.greyed) {
