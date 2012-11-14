@@ -71,10 +71,31 @@ var param = sifPlayer.param;
 		}		//COMPOSITE
 		else if (data.composite) {
 			param.composite._get(layer, param_name, wanted_type, that, data);
-		}		// CONVERT TYPES
+		}		//BLINE POINT => VERTEX
+		else if (data.bline_point) {
+			//This is a special conversion cause the bline_points are always passed as composite types
+			// so here is the place where all the converted bline points are going to be handled
+			// The trick here is to make any other type to look like a regular bline point
+			that[param_name] = {};
+			that[param_name].composite = {};
+			if (data.bline_point.vertex) { //This is a vertex bline point
+				param._set(layer, 'point', 'vector', that[param_name].composite, data.bline_point.vertex);
+				param._set(layer, 't1', 'vector', that[param_name].composite, data.bline_point.t1);
+				that[param_name].composite.split = {};
+				that[param_name].composite.split.getValue = function () {return false};
+				param.convert._set(layer, that[param_name].composite, wanted_type, 'bline_point');
+			} else {
+				alert('not converted bline point');
+			}
+
+		}	
+				// CONVERT TYPES
+				//SCALE
 		else if (data.scale || param_type === 'scale') {
 			that[param_name] = {};
 			that[param_name].scale = {};
+			if (data.scale._link) data.scale.link = layer.sifobj.sif.canvas.defs[data.scale._link];
+			if (data.scale._scalar) data.scale.scalar = layer.sifobj.sif.canvas.defs[data.scale._scalar];
 			param._set(layer, 'link', data.scale._type, that[param_name].scale, data.scale.link);
 			param._set(layer, 'scalar', 'real', that[param_name].scale, data.scale.scalar);
 			param.convert._set( layer, that[param_name], wanted_type, 'scale');		

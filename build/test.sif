@@ -8,121 +8,63 @@
   <meta name="guide_show" content="1"/>
   <meta name="guide_snap" content="0"/>
   <meta name="onion_skin" content="0"/>
-  <keyframe time="0f"/>
-  <keyframe time="6f"> (Duplicate)</keyframe>
-  <keyframe time="12f"> (Duplicate)</keyframe>
-  <keyframe time="1s"/>
-  <keyframe time="2s"/>
   <defs>
     <real value="1.2296869836" id="(stk)-body-r"/>
     <angle value="96.654427" id="(stk)-body-t"/>
-    <animated type="vector" id="(stk)-origin" guid="84CF74D6C2B6F234DAE106D924C3A84C">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <vector guid="3E5EAD60BA2076298538E0F9D91CCECB">
-          <x>0.1788193136</x>
-          <y>0.1974468678</y>
-        </vector>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <vector guid="8BC0F75BAAE2B91450B7DDB51BD7AEAB">
-          <x>0.1615037918</x>
-          <y>-0.2756704688</y>
-        </vector>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <vector guid="ACD9167499626C22D80EA5462C19E5B4">
-          <x>0.2136169672</x>
-          <y>0.4554304779</y>
-        </vector>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <vector guid="84D1E89F92F8B0D0114923BAC98D2701">
-          <x>0.1224189028</x>
-          <y>0.7687594295</y>
-        </vector>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <vector guid="F494EEE1DF60B52EE17B2520AB3540BE">
-          <x>0.1788193136</x>
-          <y>0.1974468678</y>
-        </vector>
-      </waypoint>
-    </animated>
+    <vector id="(stk)-origin">
+      <x>0.1788193136</x>
+      <y>0.1974468678</y>
+    </vector>
     <vector id="(stk)-hip2">
       <x>-0.2442805469</x>
       <y>-0.0407134257</y>
     </vector>
-    <real value="1.0970030253" id="(stk)-knee2-r"/>
-    <animated type="angle" id="(stk)-knee2-t" guid="EB360E315A32D1839C5F344A0ACA4645">
+    <animated type="real" id="(stk)-knee2-r" guid="58BC358330EC93D02FEB0AE2339B9E70">
       <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-112.594246" guid="B38D82964C398F01DFA9056D730E211F"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-153.217621" guid="D756828C39C20E39B5E2915A64764CCA"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-112.594246" guid="B38D82964C398F01DFA9056D730E211F"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-160.168579" guid="8992D3451329DF336D46CB844625F5F1"/>
+        <real value="0.8035707066" guid="93F9C9167B6E143EF01692AED15537B2"/>
       </waypoint>
       <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-112.594246" guid="8D1D2C3941F3CB57C352F00BC8882C4A"/>
+        <real value="0.9373681700" guid="0D3C870C519A3296069915FD0D0A3776"/>
       </waypoint>
     </animated>
-    <real value="0.9612022325" id="(stk)-heel2-r"/>
-    <animated type="angle" id="(stk)-heel2-t" guid="4BA3AAA5EC54FAC357078746D2730C65">
+    <animated type="angle" id="(stk)-knee2-t" guid="30D0F05EC1155578A7E92C8CE92C7AF1">
       <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="37.316910" guid="9C44C472DE5005C9784537539A129331"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="61.559639" guid="6F020E8FC0D9A749FF1AD5665B2E9545"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="37.316910" guid="9C44C472DE5005C9784537539A129331"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="82.939667" guid="E8E071417B44C5BD5092DF6091E2DB98"/>
+        <angle value="-101.373161" guid="A658CC45037FE7A55AE70E2566C41275"/>
       </waypoint>
       <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="37.316910" guid="9CCA7B516D24256468D50E82D0B392C6"/>
+        <angle value="-143.019501" guid="6A594F8099D4C4D338794DEFF7108E2A"/>
+      </waypoint>
+    </animated>
+    <animated type="real" id="(stk)-heel2-r" guid="64EF4FB9AA2AD2242D25397BB9F21DC6">
+      <waypoint time="0s" before="clamped" after="clamped">
+        <real value="0.9162782177" guid="53D0E07C942BCBC89B77905F84F5BF19"/>
+      </waypoint>
+    </animated>
+    <animated type="angle" id="(stk)-heel2-t" guid="8ECBA2A84F5DDA553BFD8DC58EE6B87D">
+      <waypoint time="0s" before="clamped" after="clamped">
+        <angle value="12.646185" guid="B09189D9194B627D53AE316867D4DD26"/>
       </waypoint>
     </animated>
     <real value="0.4400073159" id="(stk)-toe2-r"/>
-    <animated type="angle" id="(stk)-toe2-t" guid="C6D76565DB7A02918763B74A3049A815">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-102.598412" guid="D227F8189E3C64DBF7F3E240493A7776"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-86.601379" guid="36F5F48557EB1FFA64BE2D22D0D8D4D9"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-71.449997" guid="86D3C8BAF20375C55D5496C77683A23D"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-102.598412" guid="85BDC64F9F2825EDD3747EED35EB9FC8"/>
-      </waypoint>
-    </animated>
+    <angle value="-102.598412" id="(stk)-toe2-t"/>
     <vector id="(stk)-hip1">
-      <x>0.2690283656</x>
-      <y>-0.0956632942</y>
+      <x>0.4071342647</x>
+      <y>-0.0814268515</y>
     </vector>
-    <real value="0.9187553465" id="(stk)-heel1-r"/>
-    <animated type="angle" id="(stk)-heel1-t" guid="70997BA4080DF72E84D814D6A6F1E3E9">
+    <animated type="real" id="(stk)-heel1-r" guid="E4BFBC7BED5AA2A5C0C9FB05711C7143">
       <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-17.223257" guid="02241D8E20746BD7A1D2895A9B5EFCCA"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-57.792046" guid="AB238DB6E903E0D29A4681076B2DDDBE"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-17.223257" guid="02241D8E20746BD7A1D2895A9B5EFCCA"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-1.202684" guid="F27FE1990E067713767C36E0D259DDDE"/>
+        <real value="0.9587125846" guid="85D4368BA1A1B38D1CA0841AB5FE651D"/>
       </waypoint>
       <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-17.223257" guid="59E4E1BD15664F53F8C7D1D52EC6BB82"/>
+        <real value="0.7939118361" guid="30084C0CB9D1B77260776F837273F729"/>
+      </waypoint>
+    </animated>
+    <animated type="angle" id="(stk)-heel1-t" guid="B0774C503D654C56D5AA4C4B1035CC16">
+      <waypoint time="0s" before="clamped" after="clamped">
+        <angle value="-10.136999" guid="D8FF4099E73C3B6AED02AB9321637F60"/>
+      </waypoint>
+      <waypoint time="2s" before="clamped" after="clamped">
+        <angle value="-100.930573" guid="BAB7437AEAA5ACB65E48CC3B703783B3"/>
       </waypoint>
     </animated>
     <real value="0.5058991674" id="(stk)-toe1-r"/>
@@ -134,45 +76,27 @@
       <x>-0.1409048438</x>
       <y>-0.4890227020</y>
     </vector>
-    <animated type="angle" id="(stk)-wrist1-t" guid="07894CD29BB5631D3F6EA24564022A79">
-      <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-17.179234" guid="265D365F73C06C659C6C5E2CF1379765"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-17.179234" guid="265D365F73C06C659C6C5E2CF1379765"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-17.179234" guid="265D365F73C06C659C6C5E2CF1379765"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-82.464264" guid="FAA456EB79E90A9B15BA84CC91C0AD50"/>
-      </waypoint>
-      <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-17.179234" guid="02BC4205A80549407492CC7326DF4845"/>
-      </waypoint>
-    </animated>
+    <angle value="-17.179234" id="(stk)-wrist1-t"/>
     <real value="0.3000000000" id="(stk)-palm1-r"/>
     <angle value="-32.273991" id="(stk)-palm1-t"/>
     <vector id="(stk)-shoulder2">
       <x>-0.1397183239</x>
       <y>0.5595002174</y>
     </vector>
-    <real value="0.7914743074" id="(stk)-elbow2-r"/>
-    <animated type="angle" id="(stk)-elbow2-t" guid="18B5293ED987F990C1BA00BABBAA58FC">
+    <animated type="real" id="(stk)-elbow2-r" guid="A76636A6E9D7B0A5F84FF796B83CDEC0">
       <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-205.143082" guid="6D7ED143E1CF1E75D24E2D51E6E0020D"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-205.143082" guid="6D7ED143E1CF1E75D24E2D51E6E0020D"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-205.143082" guid="6D7ED143E1CF1E75D24E2D51E6E0020D"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-254.332123" guid="EDA0ED50F139BE16E1B0BD4B2DF94D7A"/>
+        <real value="0.9431195855" guid="67F93E3C2B4FF786ACF6A6E2D90B3B21"/>
       </waypoint>
       <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-205.143082" guid="987535ABC82211B404322A99A2AE7EA6"/>
+        <real value="0.9153225978" guid="4448A4B1656B9927F965AB7FFFBF4BF2"/>
+      </waypoint>
+    </animated>
+    <animated type="angle" id="(stk)-elbow2-t" guid="45C500B873C1842405BEF0BE86A0D7C1">
+      <waypoint time="0s" before="clamped" after="clamped">
+        <angle value="-224.273438" guid="68E7D7BC9470419C3E16A9BD7C44CC3E"/>
+      </waypoint>
+      <waypoint time="2s" before="clamped" after="clamped">
+        <angle value="-296.551727" guid="D84C5B2077F979F1F840F627CA067595"/>
       </waypoint>
     </animated>
     <real value="0.7133086109" id="(stk)-wrist2-r"/>
@@ -180,59 +104,39 @@
     <real value="0.3261906387" id="(stk)-palm2-r"/>
     <angle value="10.523929" id="(stk)-palm2-t"/>
     <real value="1.0000000000" id="(stk)-stickman-amount"/>
-    <real value="0.9879790492" id="(stk)-knee1-r"/>
-    <animated type="angle" id="(stk)-knee1-t" guid="13685E0361CD83A2559BE5646332BBC5">
+    <animated type="real" id="(stk)-knee1-r" guid="3C12E150B4193CDDFEC58B7AEFA94EB8">
       <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-74.198723" guid="C4A67A6636C62BEA353127F909CADE9B"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-32.109924" guid="53426B6811E9AFCB9D11CA8A5C10CBAD"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-74.198723" guid="C4A67A6636C62BEA353127F909CADE9B"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-46.165268" guid="4F4C2A8B631A3C8891C1C3D1595F7A27"/>
+        <real value="0.9578958320" guid="D0327D7000D30CCFF7BE2B74B051A027"/>
       </waypoint>
       <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-74.198723" guid="BBA8FE1E89851CD594B6AFD7CDAFB71E"/>
+        <real value="1.2265743988" guid="F0B7708688C2B2A22B9AC4F8AFBF8B2C"/>
       </waypoint>
     </animated>
-    <real value="0.8117041881" id="(stk)-elbow1-r"/>
-    <animated type="angle" id="(stk)-elbow1-t" guid="DC7830027EC01C3AA81784538B7AF3DF">
+    <animated type="angle" id="(stk)-knee1-t" guid="BCCFEF35A23A4A486C953833EEB4E13E">
       <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="-151.638428" guid="8C559CC45712B08B78D36999B539B98B"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="-151.638428" guid="8C559CC45712B08B78D36999B539B98B"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="-151.638428" guid="8C559CC45712B08B78D36999B539B98B"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="-88.064026" guid="C886BE54878B93EDEBA08CD6722F13DA"/>
+        <angle value="-76.210785" guid="5E6252069F8F7299D20B157D8BE7117A"/>
       </waypoint>
       <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="-151.638428" guid="E4184097FC30E34DDD19BC251F9E1486"/>
+        <angle value="33.550434" guid="BED7628246498E9E60EC43970091DC44"/>
       </waypoint>
     </animated>
-    <animated type="angle" id="(stk)-toe1-t" guid="ACEA51A5146FADA9863A43622F5F5F6E">
+    <animated type="real" id="(stk)-elbow1-r" guid="EC8E7B4756D603A2D802FD302A947EA3">
       <waypoint time="0s" before="clamped" after="clamped">
-        <angle value="95.118828" guid="3F3A9F0D57FAC69E9ABED6FD17967172"/>
-      </waypoint>
-      <waypoint time="0.25s" before="clamped" after="clamped">
-        <angle value="95.118828" guid="3F3A9F0D57FAC69E9ABED6FD17967172"/>
-      </waypoint>
-      <waypoint time="0.5s" before="clamped" after="clamped">
-        <angle value="62.950157" guid="DCDADC482B4722CA0282276B867DBE83"/>
-      </waypoint>
-      <waypoint time="1s" before="clamped" after="clamped">
-        <angle value="89.328255" guid="6B253DCFF27F8F534302A3BFEEF19363"/>
+        <real value="0.9455760344" guid="9C5F62BE382BC52818D3C29131762428"/>
       </waypoint>
       <waypoint time="2s" before="clamped" after="clamped">
-        <angle value="95.118828" guid="A53A873C334237E45C4276CF3075D87C"/>
+        <real value="1.1091931948" guid="C1114F23AD8284438D72DE42A0CB901E"/>
       </waypoint>
     </animated>
+    <animated type="angle" id="(stk)-elbow1-t" guid="7D832E4E0BD2298CC7E012581C8EF878">
+      <waypoint time="0s" before="clamped" after="clamped">
+        <angle value="-157.607605" guid="D71B043610DAA1C398B2CE2870DCCB1E"/>
+      </waypoint>
+      <waypoint time="2s" before="clamped" after="clamped">
+        <angle value="-81.338974" guid="1321DCD99B336D9D82A7BAC008481EC8"/>
+      </waypoint>
+    </animated>
+    <angle value="95.118828" id="(stk)-toe1-t"/>
     <real value="0.8028688461" id="(stk)-wrist1-r"/>
     <angle value="-7.152278" id="(stk)-head-t"/>
     <real value="1.0457836598" id="(stk)-head-r"/>
@@ -331,7 +235,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="D69756004D5F4C4F5F5C30FA21830F3C">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -370,7 +274,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -412,6 +316,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-elbow2" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-elbow2-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -431,6 +360,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="elbow2" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-elbow2-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -489,7 +433,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -515,7 +459,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-elbow2-r" theta=":(stk)-elbow2-t"/>
@@ -695,7 +639,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="8F66989DFA03CD4FB96646F3C74B2D34">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -734,7 +678,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -776,6 +720,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-wrist2" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-wrist2-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -795,6 +764,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="wrist2" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-wrist2-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -853,7 +837,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -879,7 +863,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-wrist2-r" theta=":(stk)-wrist2-t"/>
@@ -1077,7 +1061,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="33D348EA1DEC88EB1F1F3409DABE0543">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1116,7 +1100,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1158,6 +1142,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-palm2" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-palm2-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -1177,6 +1186,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="palm2" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-palm2-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -1279,7 +1303,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -1305,7 +1329,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-palm2-r" theta=":(stk)-palm2-t"/>
@@ -1521,7 +1545,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="D69756004D5F4C4F5F5C30FA21830F3C">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1560,7 +1584,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1602,6 +1626,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-elbow1" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-elbow1-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -1621,6 +1670,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="elbow1" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-elbow1-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -1679,7 +1743,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -1705,7 +1769,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-elbow1-r" theta=":(stk)-elbow1-t"/>
@@ -1885,7 +1949,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="8F66989DFA03CD4FB96646F3C74B2D34">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1924,7 +1988,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -1966,6 +2030,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-wrist1" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-wrist1-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -1985,6 +2074,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="wrist1" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-wrist1-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -2043,7 +2147,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -2069,7 +2173,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-wrist1-r" theta=":(stk)-wrist1-t"/>
@@ -2267,7 +2371,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="33D348EA1DEC88EB1F1F3409DABE0543">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2306,7 +2410,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2348,6 +2452,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-palm1" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-palm1-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -2367,6 +2496,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="palm1" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-palm1-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -2469,7 +2613,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -2495,7 +2639,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-palm1-r" theta=":(stk)-palm1-t"/>
@@ -2711,7 +2855,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2750,7 +2894,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2789,7 +2933,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2828,7 +2972,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2913,7 +3057,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2952,7 +3096,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -2991,7 +3135,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector guid="B352B6EEBC6CC775A74D7D9394A92D7C">
@@ -3030,7 +3174,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3132,7 +3276,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="false">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <greyed type="bline_point">
                               <link>
                                 <bline_point>
@@ -3158,7 +3302,7 @@
                               </link>
                             </greyed>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector guid="B352B6EEBC6CC775A74D7D9394A92D7C">
@@ -3221,6 +3365,38 @@
                         <bool value="true"/>
                       </param>
                     </layer>
+                    <layer type="zoom" active="true" version="0.1" desc="compensator-head" group="(stk)-stretches">
+                      <param name="amount">
+                        <scale type="real">
+                          <link>
+                            <logarithm type="real" guid="08F84E68F19EC2EC3DB7557C469B0381">
+                              <link>
+                                <scale type="real" link=":(stk)-head-r">
+                                  <scalar>
+                                    <real value="0.9657341500"/>
+                                  </scalar>
+                                </scale>
+                              </link>
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </logarithm>
+                          </link>
+                          <scalar>
+                            <real value="-1.0000000000"/>
+                          </scalar>
+                        </scale>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -3240,6 +3416,31 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="zoom" active="true" version="0.1" desc="head" group="(stk)-stretches">
+                <param name="amount">
+                  <logarithm type="real" guid="08F84E68F19EC2EC3DB7557C469B0381">
+                    <link>
+                      <scale type="real" link=":(stk)-head-r">
+                        <scalar>
+                          <real value="0.9657341500"/>
+                        </scalar>
+                      </scale>
+                    </link>
+                    <epsilon>
+                      <real value="0.0000010000"/>
+                    </epsilon>
+                    <infinite>
+                      <real value="999999.0000000000"/>
+                    </infinite>
+                  </logarithm>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -3415,7 +3616,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3454,7 +3655,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3496,6 +3697,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-body" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-body-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -3515,6 +3741,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="body" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-body-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -3573,7 +3814,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -3599,7 +3840,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-body-r" theta=":(stk)-body-t"/>
@@ -3758,7 +3999,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="2DA787A07D177461F1D0C43A14344142">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3797,7 +4038,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -3839,6 +4080,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-knee1" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-knee1-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -3858,6 +4124,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="knee1" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-knee1-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -3916,7 +4197,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -3942,7 +4223,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-knee1-r" theta=":(stk)-knee1-t"/>
@@ -4104,7 +4385,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="98C7C4D875790FE502D7280A49CF2857">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4143,7 +4424,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4185,6 +4466,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-foot1" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-heel1-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -4204,6 +4510,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="foot1" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-heel1-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -4262,7 +4583,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -4288,7 +4609,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-heel1-r" theta=":(stk)-heel1-t"/>
@@ -4468,7 +4789,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="FFE601811C4EC74C9C6EAE8A6DAAE294">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4507,7 +4828,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4549,6 +4870,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-toe1" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-toe1-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -4568,6 +4914,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="toe1" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-toe1-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -4670,7 +5031,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -4696,7 +5057,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-toe1-r" theta=":(stk)-toe1-t"/>
@@ -4894,7 +5255,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="2DA787A07D177461F1D0C43A14344142">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4933,7 +5294,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -4975,6 +5336,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-knee2" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-knee2-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -4994,6 +5380,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="knee2" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-knee2-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -5052,7 +5453,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -5078,7 +5479,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-knee2-r" theta=":(stk)-knee2-t"/>
@@ -5240,7 +5641,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="98C7C4D875790FE502D7280A49CF2857">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5279,7 +5680,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5321,6 +5722,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-foot2" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-heel2-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -5340,6 +5766,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="foot2" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-heel2-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -5398,7 +5839,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -5424,7 +5865,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-heel2-r" theta=":(stk)-heel2-t"/>
@@ -5604,7 +6045,7 @@
                       </param>
                       <param name="bline">
                         <bline type="bline_point" loop="true" guid="FFE601811C4EC74C9C6EAE8A6DAAE294">
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5643,7 +6084,7 @@
                               </t2>
                             </composite>
                           </entry>
-                          <entry on="0f, 6f, 12f, 1s">
+                          <entry>
                             <composite type="bline_point">
                               <point>
                                 <vector>
@@ -5685,6 +6126,31 @@
                         </bline>
                       </param>
                     </layer>
+                    <layer type="stretch" active="true" version="0.1" desc="compensator-toe2" group="(stk)-stretches">
+                      <param name="amount">
+                        <composite type="vector">
+                          <x>
+                            <reciprocal type="real" link=":(stk)-toe2-r">
+                              <epsilon>
+                                <real value="0.0000010000"/>
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000"/>
+                              </infinite>
+                            </reciprocal>
+                          </x>
+                          <y>
+                            <real value="1.0000000000"/>
+                          </y>
+                        </composite>
+                      </param>
+                      <param name="center">
+                        <vector>
+                          <x>0.0000000000</x>
+                          <y>0.0000000000</y>
+                        </vector>
+                      </param>
+                    </layer>
                   </canvas>
                 </param>
                 <param name="zoom">
@@ -5704,6 +6170,21 @@
                 </param>
                 <param name="outline_grow">
                   <real value="0.0000000000"/>
+                </param>
+              </layer>
+              <layer type="stretch" active="true" version="0.1" desc="toe2" group="(stk)-stretches">
+                <param name="amount">
+                  <composite type="vector" x=":(stk)-toe2-r">
+                    <y>
+                      <real value="1.0000000000"/>
+                    </y>
+                  </composite>
+                </param>
+                <param name="center">
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
                 </param>
               </layer>
               <layer type="rotate" active="true" version="0.1">
@@ -5806,7 +6287,7 @@
                 </param>
                 <param name="bline">
                   <bline type="bline_point" loop="false">
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <greyed type="bline_point">
                         <link>
                           <bline_point>
@@ -5832,7 +6313,7 @@
                         </link>
                       </greyed>
                     </entry>
-                    <entry on="0f, 6f, 12f, 1s">
+                    <entry>
                       <composite type="bline_point">
                         <point>
                           <radial_composite type="vector" radius=":(stk)-toe2-r" theta=":(stk)-toe2-t"/>

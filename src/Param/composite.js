@@ -83,11 +83,10 @@ composite._get = function (layer, param_name, wanted_type, that, data) {
 
 
 
-composite._setConvert = function (layer, param, wanted_type, is_type, animated) {
+composite._setConvert = function (layer, param, wanted_type, is_type) {
 	var type = composite;
 	
 	if ( is_type === 'bline_point' ) {
-
 		param.getPoint = type.getPoint;
 		param.getT1 = type.bline_point_getT1;
 		param.getT2 = type.bline_point_getT2;
