@@ -59,8 +59,19 @@ real.scale = function () {
 real.cos = function () {
 	return this.cos.amp.getValue() * Math.cos(this.cos.angle.getValue());
 }
+
+real.dotproduct = function () {
+	var x1,y1,x2,y2;
+	x1 = this.dotproduct.lhs.getX();
+	y1 = this.dotproduct.lhs.getY();
+	x2 = this.dotproduct.rhs.getX();
+	y2 = this.dotproduct.rhs.getY();
+	return x1*x2 + y1*y2;
+}
 	
-	
+real.exp = function () {
+	return Math.exp(this.exp.exp.getValue()) * this.exp.scale.getValue();
+}	
 
 
 

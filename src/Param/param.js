@@ -81,7 +81,7 @@ var param = sifPlayer.param;
 		}
 		else if (data.radial_composite || param_type === 'radial_composite') {
 			param._getRadial_composite( layer, param_name, wanted_type, that, data );
-		}
+		}		//ADD
 		else if (data.add) {
 			param_type = data.add._type;
 			that[param_name] = {};
@@ -108,8 +108,8 @@ var param = sifPlayer.param;
 			param_type = data.atan2._type;
 			that[param_name] = {};
 			that[param_name].atan2 = {};
-			if (data.atan2._x) data.atan2.x = layer.sifobj.sif.canvas.defs[data._x];
-			if (data.atan2._y) data.atan2.y = layer.sifobj.sif.canvas.defs[data._y];
+			if (data.atan2._x) data.atan2.x = layer.sifobj.sif.canvas.defs[data.atan2._x];
+			if (data.atan2._y) data.atan2.y = layer.sifobj.sif.canvas.defs[data.atan2._y];
 			param._set(layer, 'x', 'real', that[param_name].atan2, data.atan2.x);
 			param._set(layer, 'y', 'real', that[param_name].atan2, data.atan2.y);
 			param.convert._set( layer, that[param_name], wanted_type, 'atan2');
@@ -119,13 +119,37 @@ var param = sifPlayer.param;
 			param_type = data.cos._type;
 			that[param_name] = {};
 			that[param_name].cos = {};
-			if (data.cos._angle) data.cos._angle = layer.sifobj.sif.canvas.defs[data._angle];
-			if (data.cos._amp) data.cos.amp = layer.sifobj.sif.canvas.defs[data._amp];
+			if (data.cos._angle) data.cos.angle = layer.sifobj.sif.canvas.defs[data.cos._angle];
+			if (data.cos._amp) data.cos.amp = layer.sifobj.sif.canvas.defs[data.cos._amp];
 			param._set(layer, 'angle', 'angle', that[param_name].cos, data.cos.angle);
 			param._set(layer, 'amp', 'real', that[param_name].cos, data.cos.amp);
 			param.convert._set( layer, that[param_name], wanted_type, 'cos');
 			
-		}
+		}		//DOT PRODUCT
+		else if (data.dotproduct) {
+			param_type = data.dotproduct._type;
+			that[param_name] = {};
+			that[param_name].dotproduct = {};
+			if (data.dotproduct._lhs) data.dotproduct.lhs = layer.sifobj.sif.canvas.defs[data.dotproduct._lhs];
+			if (data.dotproduct._rhs) data.dotproduct.rhs = layer.sifobj.sif.canvas.defs[data.dotproduct._rhs];
+			param._set(layer, 'lhs', 'vector', that[param_name].dotproduct, data.dotproduct.lhs);
+			param._set(layer, 'rhs', 'vector', that[param_name].dotproduct, data.dotproduct.rhs);
+				
+			param.convert._set( layer, that[param_name], wanted_type, 'dotproduct');
+			
+		}		//EXPONENTIAL
+		else if (data.exp) {
+			param_type = data.exp._type;
+			that[param_name] = {};
+			that[param_name].exp = {};
+			if (data.exp._exp) data.exp.exp = layer.sifobj.sif.canvas.defs[data.exp._exp];
+			if (data.exp._scale) data.exp.scale = layer.sifobj.sif.canvas.defs[data.exp._scale];
+			param._set(layer, 'exp', 'real', that[param_name].exp, data.exp.exp);
+			param._set(layer, 'scale', 'real', that[param_name].exp, data.exp.scale);
+				
+			param.convert._set( layer, that[param_name], wanted_type, 'exp');
+			
+		}		
 		else if (data.greyed) {
 			param._set(layer, param_name, wanted_type, that, data.greyed.link);
 		}

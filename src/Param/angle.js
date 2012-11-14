@@ -59,10 +59,18 @@ angle.scale = function () {
 }
 
 angle.atan2 = function () {
-	return Math.atan2(this.atan2.y.getValue(), this.atan2.x.getValue()) / Math.PI * 180.0;;
+	return Math.atan2(this.atan2.y.getValue(), this.atan2.x.getValue()) / Math.PI * 180.0;
 }
 	
-	
+angle.dotproduct = function () {
+	var x1,y1,x2,y2, l;
+	x1 = this.dotproduct.lhs.getX();
+	y1 = this.dotproduct.lhs.getY();
+	x2 = this.dotproduct.rhs.getX();
+	y2 = this.dotproduct.rhs.getY();
+
+	return Math.acos( (x1*x2 + y1*y2) / (Math.sqrt(x1*x1 + y1*y1) * Math.sqrt(x2*x2 + y2*y2))) / Math.PI * 180.0;
+}
 
 
 

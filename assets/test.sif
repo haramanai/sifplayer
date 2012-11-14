@@ -109,7 +109,20 @@
                       </cos>
                     </x>
                     <y>
-                      <real value="12.0000000000"/>
+                      <dotproduct type="real">
+                        <lhs>
+                          <vector>
+                            <x>12.0000000000</x>
+                            <y>0.0000000000</y>
+                          </vector>
+                        </lhs>
+                        <rhs>
+                          <vector>
+                            <x>1.0000000000</x>
+                            <y>0.0000000000</y>
+                          </vector>
+                        </rhs>
+                      </dotproduct>
                     </y>
                   </atan2>
                 </theta>
@@ -121,7 +134,20 @@
                   <real value="13.6414267309"/>
                 </radius>
                 <theta>
-                  <angle value="60.331280"/>
+                  <dotproduct type="angle">
+                    <lhs>
+                      <vector>
+                        <x>0.4949843884</x>
+                        <y>0.8689019084</y>
+                      </vector>
+                    </lhs>
+                    <rhs>
+                      <vector>
+                        <x>1.1499999762</x>
+                        <y>0.1166666597</y>
+                      </vector>
+                    </rhs>
+                  </dotproduct>
                 </theta>
               </radial_composite>
             </t2>
@@ -147,10 +173,30 @@
             <t1>
               <radial_composite type="vector">
                 <radius>
-                  <real value="5.8558771417"/>
+                  <exp type="real">
+                    <exp>
+                      <real value="0.6000000000"/>
+                    </exp>
+                    <scale>
+                      <real value="5.8558771417"/>
+                    </scale>
+                  </exp>
                 </radius>
                 <theta>
-                  <angle value="-38.239429"/>
+                  <dotproduct type="angle">
+                    <lhs>
+                      <vector>
+                        <x>0.7854311466</x>
+                        <y>-0.6189490557</y>
+                      </vector>
+                    </lhs>
+                    <rhs>
+                      <vector>
+                        <x>0.9999999404</x>
+                        <y>0.8166666627</y>
+                      </vector>
+                    </rhs>
+                  </dotproduct>
                 </theta>
               </radial_composite>
             </t1>
@@ -334,7 +380,20 @@
                       </cos>
                     </x>
                     <y>
-                      <real value="12.0000000000"/>
+                      <dotproduct type="real">
+                        <lhs>
+                          <vector>
+                            <x>12.0000000000</x>
+                            <y>0.0000000000</y>
+                          </vector>
+                        </lhs>
+                        <rhs>
+                          <vector>
+                            <x>1.0000000000</x>
+                            <y>0.0000000000</y>
+                          </vector>
+                        </rhs>
+                      </dotproduct>
                     </y>
                   </atan2>
                 </theta>
@@ -346,7 +405,20 @@
                   <real value="13.6414267309"/>
                 </radius>
                 <theta>
-                  <angle value="60.331280"/>
+                  <dotproduct type="angle">
+                    <lhs>
+                      <vector>
+                        <x>0.4949843884</x>
+                        <y>0.8689019084</y>
+                      </vector>
+                    </lhs>
+                    <rhs>
+                      <vector>
+                        <x>1.1499999762</x>
+                        <y>0.1166666597</y>
+                      </vector>
+                    </rhs>
+                  </dotproduct>
                 </theta>
               </radial_composite>
             </t2>
@@ -372,10 +444,30 @@
             <t1>
               <radial_composite type="vector">
                 <radius>
-                  <real value="5.8558771417"/>
+                  <exp type="real">
+                    <exp>
+                      <real value="0.6000000000"/>
+                    </exp>
+                    <scale>
+                      <real value="5.8558771417"/>
+                    </scale>
+                  </exp>
                 </radius>
                 <theta>
-                  <angle value="-38.239429"/>
+                  <dotproduct type="angle">
+                    <lhs>
+                      <vector>
+                        <x>0.7854311466</x>
+                        <y>-0.6189490557</y>
+                      </vector>
+                    </lhs>
+                    <rhs>
+                      <vector>
+                        <x>0.9999999404</x>
+                        <y>0.8166666627</y>
+                      </vector>
+                    </rhs>
+                  </dotproduct>
                 </theta>
               </radial_composite>
             </t1>

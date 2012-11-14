@@ -42,12 +42,14 @@ Vector converts to:
 Real converts to:
 	add
 	scale
+	dotproduct
 
 Angle converts to:
 	add
 	scale
 	atan2
 	cos
+	dotproduct (remember that this is using two Math.sqrt)
 
 Integer converts to:
 	add
