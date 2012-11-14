@@ -100,7 +100,7 @@ var p = Layer.prototype;
 	 * @return {String} the equivalent type for blend
 	 **/	
 	p._getBlend = function () {
-		var blend = this.blend_method.value;		
+		var blend = this.blend_method.getValue();		
 		switch (blend) {
 			case 0:
 				//Composite

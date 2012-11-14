@@ -34,9 +34,11 @@ real._setConvert = function (layer, param, wanted_type, is_type) {
 	if (wanted_type === is_type) {
 		param.getValue = type.getValue;
 	}
-	else if ( is_type === 'add' ) {
-		
-		param.getValue = type.getAdd;
+	else if (type[is_type]){
+		param.getValue = type[is_type];
+	}
+	else {
+		alert('no convert for integer to ' + is_type);
 	}
 	
 
@@ -46,11 +48,13 @@ real.getValue = function () {
 	return this.value;
 }
 
-real.getAdd = function () {
+real.add = function () {
 	return ( this.add.lhs.getValue() + this.add.rhs.getValue() ) * this.add.scalar.getValue();
 }
 
-
+real.scale = function () {
+	return this.scale.link.getValue() * this.scale.scalar.getValue();
+}
 	
 	
 

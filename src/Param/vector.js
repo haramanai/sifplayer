@@ -115,6 +115,9 @@ vector._setConvert = function (layer, param, wanted_type, is_type) {
 		else if (param.scale.radial_composite) {
 			param.getX = type.getScaleRadialX;
 			param.getY = type.getScaleRadialY;
+		} else {
+			param.getX = type.getScaleX;
+			param.getY = type.getScaleY;
 		}
 
 	}
@@ -130,6 +133,14 @@ vector.getX = function () {
 
 vector.getY = function () {
 	return this.y;
+}
+
+vector.getScaleX = function () {
+	return this.scale.link.getX() * this.scale.scalar.getValue();
+}
+
+vector.getScaleY = function () {
+	return this.scale.link.getY() * this.scale.scalar.getValue();
 }
 
 vector.getScaleCompositeX = function () {

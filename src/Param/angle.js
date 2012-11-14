@@ -34,8 +34,11 @@ angle._setConvert = function (layer, param, wanted_type, is_type, animated) {
 	if (wanted_type === is_type) {
 		param.getValue = type.getValue;
 	}
-	else if ( is_type === 'add' ) {
-		param.getValue = type.getAdd;
+	else if (type[is_type]){
+		param.getValue = type[is_type];
+	}
+	else {
+		alert('no convert for integer to ' + is_type);
 	}
 	
 
@@ -46,10 +49,14 @@ angle.getValue = function () {
 	return this.value;
 }
 
-angle.getAdd = function () {
+angle.add = function () {
 	return ( this.add.lhs.getValue() + this.add.rhs.getValue() ) * this.add.scalar.getValue();
 }
 
+
+angle.scale = function () {
+	return this.scale.link.getValue() * this.scale.scalar.getValue();
+}
 	
 	
 

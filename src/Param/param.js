@@ -74,8 +74,9 @@ var param = sifPlayer.param;
 		}		// CONVERT TYPES
 		else if (data.scale || param_type === 'scale') {
 			that[param_name] = {};
-			param._set(layer, 'scale', data.scale.link._type, that[param_name], data.scale.link);
-			param._set(layer, 'scalar', 'real', that[param_name], data.scale.scalar);
+			that[param_name].scale = {};
+			param._set(layer, 'link', data.scale._type, that[param_name].scale, data.scale.link);
+			param._set(layer, 'scalar', 'real', that[param_name].scale, data.scale.scalar);
 			param.convert._set( layer, that[param_name], wanted_type, 'scale');		
 		}
 		else if (data.radial_composite || param_type === 'radial_composite') {
@@ -83,7 +84,6 @@ var param = sifPlayer.param;
 		}
 		else if (data.add) {
 			param_type = data.add._type;
-			
 			that[param_name] = {};
 			that[param_name].add = {};
 			param._set(layer, 'lhs', param_type, that[param_name].add, data.add.lhs);
