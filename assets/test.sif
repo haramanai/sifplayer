@@ -234,7 +234,17 @@
                 <radius>
                   <logarithm type="real">
                     <link>
-                      <real value="0.1000000000"/>
+                      <reciprocal type="real">
+                        <link>
+                          <real value="100.0000000000"/>
+                        </link>
+                        <epsilon>
+                          <real value="0.0000010000"/>
+                        </epsilon>
+                        <infinite>
+                          <real value="999999.0000000000"/>
+                        </infinite>
+                      </reciprocal>
                     </link>
                     <epsilon>
                       <real value="0.0000010000"/>
@@ -515,7 +525,17 @@
                 <radius>
                   <logarithm type="real">
                     <link>
-                      <real value="0.1000000000"/>
+                      <reciprocal type="real">
+                        <link>
+                          <real value="100.0000000000"/>
+                        </link>
+                        <epsilon>
+                          <real value="0.0000010000"/>
+                        </epsilon>
+                        <infinite>
+                          <real value="999999.0000000000"/>
+                        </infinite>
+                      </reciprocal>
                     </link>
                     <epsilon>
                       <real value="0.0000010000"/>

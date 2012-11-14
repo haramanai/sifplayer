@@ -43,6 +43,8 @@ Real converts to:
 	add
 	scale
 	dotproduct
+	logarithm
+	reciprocal
 
 Angle converts to:
 	add

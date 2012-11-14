@@ -79,8 +79,15 @@ real.logarithm = function () {
 		return Math.log( link );
 	}
 	return -this.logarithm.infinite.getValue();
-}		
+}
 
+real.reciprocal = function () {
+	var link = this.reciprocal.link.getValue();
+	if (link >= this.reciprocal.epsilon.getValue()) {
+		return 1/link;
+	}
+	return -this.reciprocal.infinite.getValue();
+}
 
 
 

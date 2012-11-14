@@ -161,7 +161,19 @@ var param = sifPlayer.param;
 			param._set(layer, 'infinite', 'real', that[param_name].logarithm, data.logarithm.infinite);	
 			param.convert._set( layer, that[param_name], wanted_type, 'logarithm');
 			
-		}			
+		}		//RECIPROCAL
+		else if (data.reciprocal) {
+			param_type = data.reciprocal._type;
+			that[param_name] = {};
+			that[param_name].reciprocal = {};
+			if (data.reciprocal._link) data.reciprocal.link = layer.sifobj.sif.canvas.defs[data.reciprocal._link];
+
+			param._set(layer, 'link', 'real', that[param_name].reciprocal, data.reciprocal.link);
+			param._set(layer, 'epsilon', 'real', that[param_name].reciprocal, data.reciprocal.epsilon);
+			param._set(layer, 'infinite', 'real', that[param_name].reciprocal, data.reciprocal.infinite);	
+			param.convert._set( layer, that[param_name], wanted_type, 'reciprocal');
+			
+		}				
 		else if (data.greyed) {
 			param._set(layer, param_name, wanted_type, that, data.greyed.link);
 		}
