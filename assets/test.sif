@@ -49,8 +49,22 @@
     </vector>
     <real value="0.7914743074" id="(stk)-elbow2-r"/>
     <angle value="-218.996719" id="(stk)-elbow2-t"/>
-    <real value="0.7133086109" id="(stk)-wrist2-r"/>
-    <angle value="15.119938" id="(stk)-wrist2-t"/>
+    <animated type="real" id="(stk)-wrist2-r" guid="1799ADE4602EAE1CF568F646D09B3F14">
+      <waypoint time="0s" before="clamped" after="clamped">
+        <real value="0.6535507941" guid="338F1FB06C04AD31FAC22AAD1C33C3D6"/>
+      </waypoint>
+      <waypoint time="2s" before="clamped" after="clamped">
+        <real value="0.6792689716" guid="75185F26A2B8ACCCA8050B6EA1AD2293"/>
+      </waypoint>
+    </animated>
+    <animated type="angle" id="(stk)-wrist2-t" guid="81151E1237C4730292111D65873F9FD5">
+      <waypoint time="0s" before="clamped" after="clamped">
+        <angle value="8.047619" guid="FFD78848F0A4EA45BAE8016FF0797F33"/>
+      </waypoint>
+      <waypoint time="2s" before="clamped" after="clamped">
+        <angle value="-53.841621" guid="5A9D32C16C08A3748512550E3AE1709E"/>
+      </waypoint>
+    </animated>
     <real value="0.3261906387" id="(stk)-palm2-r"/>
     <angle value="10.523929" id="(stk)-palm2-t"/>
     <real value="1.0000000000" id="(stk)-stickman-amount"/>

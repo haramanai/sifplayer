@@ -4,7 +4,7 @@
   <keyframe time="0f"/>
   <keyframe time="2s"/>
   <defs>
-    <animated type="vector" id="circleVector" guid="577AF0FC6D5236B7B77E27BC263EC7AF">
+    <animated type="vector" id="circleVector">
       <waypoint time="0s" before="clamped" after="clamped">
         <vector>
           <x>-4.6268529892</x>
@@ -156,10 +156,26 @@
         <entry>
           <composite type="bline_point">
             <point>
-              <vector>
-                <x>-1.1688232422</x>
-                <y>-0.3892347813</y>
-              </vector>
+              <animated type="vector">
+                <waypoint time="0s" before="clamped" after="clamped">
+                  <vector guid="F77242000B4889D862A0891C082971A9">
+                    <x>-1.1688232422</x>
+                    <y>-0.3892347813</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="1s" before="clamped" after="clamped">
+                  <vector guid="E19AE12F365A3FE7FEC48CF7F99C8542">
+                    <x>-0.7066912055</x>
+                    <y>-2.0335767269</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="2s" before="clamped" after="clamped">
+                  <vector guid="9D49EEC6A15DDE87CFCD1D332C541CD9">
+                    <x>-1.1688232422</x>
+                    <y>-0.3892347813</y>
+                  </vector>
+                </waypoint>
+              </animated>
             </point>
             <width>
               <real value="1.0000000000"/>
@@ -447,10 +463,26 @@
         <entry>
           <composite type="bline_point">
             <point>
-              <vector>
-                <x>-1.1688232422</x>
-                <y>-0.3892347813</y>
-              </vector>
+              <animated type="vector">
+                <waypoint time="0s" before="clamped" after="clamped">
+                  <vector guid="F77242000B4889D862A0891C082971A9">
+                    <x>-1.1688232422</x>
+                    <y>-0.3892347813</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="1s" before="clamped" after="clamped">
+                  <vector guid="E19AE12F365A3FE7FEC48CF7F99C8542">
+                    <x>-0.7066912055</x>
+                    <y>-2.0335767269</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="2s" before="clamped" after="clamped">
+                  <vector guid="9D49EEC6A15DDE87CFCD1D332C541CD9">
+                    <x>-1.1688232422</x>
+                    <y>-0.3892347813</y>
+                  </vector>
+                </waypoint>
+              </animated>
             </point>
             <width>
               <real value="1.0000000000"/>
