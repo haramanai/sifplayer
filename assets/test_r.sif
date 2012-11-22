@@ -99,14 +99,11 @@
                 <theta>
                   <atan2 type="angle">
                     <x>
-                      <cos type="real">
-                        <angle>
-                          <angle value="0.000000"/>
-                        </angle>
-                        <amp>
-                          <real value="0.5000000000"/>
-                        </amp>
-                      </cos>
+                      <greyed type="real">
+                        <link>
+                          <real value="-0.0868240967"/>
+                        </link>
+                      </greyed>
                     </x>
                     <y>
                       <dotproduct type="real">
@@ -158,19 +155,19 @@
             <point>
               <animated type="vector">
                 <waypoint time="0s" before="clamped" after="clamped">
-                  <vector guid="F77242000B4889D862A0891C082971A9">
+                  <vector>
                     <x>-1.1688232422</x>
                     <y>-0.3892347813</y>
                   </vector>
                 </waypoint>
                 <waypoint time="1s" before="clamped" after="clamped">
-                  <vector guid="E19AE12F365A3FE7FEC48CF7F99C8542">
+                  <vector>
                     <x>-0.7066912055</x>
                     <y>-2.0335767269</y>
                   </vector>
                 </waypoint>
                 <waypoint time="2s" before="clamped" after="clamped">
-                  <vector guid="9D49EEC6A15DDE87CFCD1D332C541CD9">
+                  <vector>
                     <x>-1.1688232422</x>
                     <y>-0.3892347813</y>
                   </vector>
@@ -290,10 +287,34 @@
         <entry>
           <composite type="bline_point">
             <point>
-              <vector>
-                <x>2.7129297256</x>
-                <y>2.0923979282</y>
-              </vector>
+              <subtract type="vector">
+                <lhs>
+                  <composite type="vector">
+                    <x>
+                      <cos type="real">
+                        <angle>
+                          <angle value="120.000000"/>
+                        </angle>
+                        <amp>
+                          <real value="2.7129297256"/>
+                        </amp>
+                      </cos>
+                    </x>
+                    <y>
+                      <real value="2.0923979282"/>
+                    </y>
+                  </composite>
+                </lhs>
+                <rhs>
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
+                </rhs>
+                <scalar>
+                  <real value="1.0000000000"/>
+                </scalar>
+              </subtract>
             </point>
             <width>
               <real value="1.0000000000"/>
@@ -406,14 +427,11 @@
                 <theta>
                   <atan2 type="angle">
                     <x>
-                      <cos type="real">
-                        <angle>
-                          <angle value="0.000000"/>
-                        </angle>
-                        <amp>
-                          <real value="0.5000000000"/>
-                        </amp>
-                      </cos>
+                      <greyed type="real">
+                        <link>
+                          <real value="-0.0868240967"/>
+                        </link>
+                      </greyed>
                     </x>
                     <y>
                       <dotproduct type="real">
@@ -465,19 +483,19 @@
             <point>
               <animated type="vector">
                 <waypoint time="0s" before="clamped" after="clamped">
-                  <vector guid="F77242000B4889D862A0891C082971A9">
+                  <vector>
                     <x>-1.1688232422</x>
                     <y>-0.3892347813</y>
                   </vector>
                 </waypoint>
                 <waypoint time="1s" before="clamped" after="clamped">
-                  <vector guid="E19AE12F365A3FE7FEC48CF7F99C8542">
+                  <vector>
                     <x>-0.7066912055</x>
                     <y>-2.0335767269</y>
                   </vector>
                 </waypoint>
                 <waypoint time="2s" before="clamped" after="clamped">
-                  <vector guid="9D49EEC6A15DDE87CFCD1D332C541CD9">
+                  <vector>
                     <x>-1.1688232422</x>
                     <y>-0.3892347813</y>
                   </vector>
@@ -597,10 +615,34 @@
         <entry>
           <composite type="bline_point">
             <point>
-              <vector>
-                <x>2.7129297256</x>
-                <y>2.0923979282</y>
-              </vector>
+              <subtract type="vector">
+                <lhs>
+                  <composite type="vector">
+                    <x>
+                      <cos type="real">
+                        <angle>
+                          <angle value="120.000000"/>
+                        </angle>
+                        <amp>
+                          <real value="2.7129297256"/>
+                        </amp>
+                      </cos>
+                    </x>
+                    <y>
+                      <real value="2.0923979282"/>
+                    </y>
+                  </composite>
+                </lhs>
+                <rhs>
+                  <vector>
+                    <x>0.0000000000</x>
+                    <y>0.0000000000</y>
+                  </vector>
+                </rhs>
+                <scalar>
+                  <real value="1.0000000000"/>
+                </scalar>
+              </subtract>
             </point>
             <width>
               <real value="1.0000000000"/>

@@ -53,6 +53,10 @@ angle.add = function () {
 	return ( this.add.lhs.getValue() + this.add.rhs.getValue() ) * this.add.scalar.getValue();
 }
 
+angle.subtract = function () {
+	return ( this.subtract.lhs.getValue() - this.subtract.rhs.getValue() ) * this.subtract.scalar.getValue();
+}
+
 
 angle.scale = function () {
 	return this.scale.link.getValue() * this.scale.scalar.getValue();

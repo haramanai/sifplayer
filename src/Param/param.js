@@ -107,6 +107,9 @@ var param = sifPlayer.param;
 			param_type = data.add._type;
 			that[param_name] = {};
 			that[param_name].add = {};
+			if (data.add._lhs) data.add.lhs = layer.sifobj.sif.canvas.defs[data.add._lhs];
+			if (data.add._rhs) data.add.rhs = layer.sifobj.sif.canvas.defs[data.add._rhs];
+			if (data.add._scaler) data.add.scaler = layer.sifobj.sif.canvas.defs[data.add._scaler];
 			param._set(layer, 'lhs', param_type, that[param_name].add, data.add.lhs);
 			param._set(layer, 'rhs', param_type, that[param_name].add, data.add.rhs);
 			param._set(layer, 'scalar', 'real', that[param_name].add, data.add.scalar);
@@ -194,7 +197,32 @@ var param = sifPlayer.param;
 			param._set(layer, 'infinite', 'real', that[param_name].reciprocal, data.reciprocal.infinite);	
 			param.convert._set( layer, that[param_name], wanted_type, 'reciprocal');
 			
-		}				
+		}		//SUBTRACT
+		else if (data.subtract) {
+			param_type = data.subtract._type;
+			that[param_name] = {};
+			that[param_name].subtract = {};
+			if (data.subtract._lhs) data.subtract.lhs = layer.sifobj.sif.canvas.defs[data.subtract._lhs];
+			if (data.subtract._rhs) data.subtract.rhs = layer.sifobj.sif.canvas.defs[data.subtract._rhs];
+			if (data.subtract._scaler) data.subtract.scaler = layer.sifobj.sif.canvas.defs[data.subtract._scaler];
+			param._set(layer, 'lhs', param_type, that[param_name].subtract, data.subtract.lhs);
+			param._set(layer, 'rhs', param_type, that[param_name].subtract, data.subtract.rhs);
+			param._set(layer, 'scalar', 'real', that[param_name].subtract, data.subtract.scalar);
+				
+			param.convert._set( layer, that[param_name], wanted_type, 'subtract');
+			
+		}		//SINE
+		else if (data.sine) {
+			param_type = data.sine._type;
+			that[param_name] = {};
+			that[param_name].sine = {};
+			if (data.sine._angle) data.sine.angle = layer.sifobj.sif.canvas.defs[data.sine._angle];
+			if (data.sine._amp) data.sine.amp = layer.sifobj.sif.canvas.defs[data.sine._amp];
+			param._set(layer, 'angle', 'angle', that[param_name].sine, data.sine.angle);
+			param._set(layer, 'amp', 'real', that[param_name].sine, data.sine.amp);
+			param.convert._set( layer, that[param_name], wanted_type, 'sine');
+			
+		}					
 		else if (data.greyed) {
 			param._set(layer, param_name, wanted_type, that, data.greyed.link);
 		}

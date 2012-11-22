@@ -121,6 +121,11 @@ vector._setConvert = function (layer, param, wanted_type, is_type) {
 		}
 
 	}
+	else if (is_type === 'subtract') {
+		param.getX = type.getSubX;
+		param.getY = type.getSubY;
+
+	}
 	
 	
 	
@@ -187,6 +192,14 @@ vector.getAddX = function () {
 	
 vector.getAddY = function () {
 	return ( this.add.lhs.getY() + this.add.rhs.getY() ) * this.add.scalar.getValue();
+}
+
+vector.getSubX = function () {
+	return ( this.subtract.lhs.getX() - this.subtract.rhs.getX() ) * this.subtract.scalar.getValue();
+}
+	
+vector.getSubY = function () {
+	return ( this.subtract.lhs.getY() - this.subtract.rhs.getY() ) * this.subtract.scalar.getValue();
 }	
 	
 

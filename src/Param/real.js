@@ -28,6 +28,7 @@ this.sifPlayer.param = this.sifPlayer.param||{};
 
 var real =  {};
 
+real.degsToRad = 0.0174532925;
 
 real._setConvert = function (layer, param, wanted_type, is_type) {
 	var type = sifPlayer.param.real;
@@ -52,12 +53,20 @@ real.add = function () {
 	return ( this.add.lhs.getValue() + this.add.rhs.getValue() ) * this.add.scalar.getValue();
 }
 
+real.subtract = function () {
+	return ( this.subtract.lhs.getValue() - this.subtract.rhs.getValue() ) * this.subtract.scalar.getValue();
+}
+
 real.scale = function () {
 	return this.scale.link.getValue() * this.scale.scalar.getValue();
 }
 
 real.cos = function () {
-	return this.cos.amp.getValue() * Math.cos(this.cos.angle.getValue());
+	return this.cos.amp.getValue() * Math.cos(this.cos.angle.getValue() * real.degsToRad);
+}
+
+real.sine = function () {
+	return this.sine.amp.getValue() * Math.sin(this.sine.angle.getValue() * real.degsToRad);
 }
 
 real.dotproduct = function () {
