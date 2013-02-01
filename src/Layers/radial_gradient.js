@@ -58,7 +58,8 @@ var p = radial_gradient.prototype = new sifPlayer.Layer();
 	 * Draws the layer
 	 * @method draw
 	 **/
-	p.draw = function (ctx) {
+	p.draw = function (track) {
+		var ctx = track.ctx;
 		var x = this.center.getX();
 		var y = this.center.getY();
 		var grd = ctx.createRadialGradient(x, y,0, x, y, this.radius.getValue() );

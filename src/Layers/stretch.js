@@ -58,13 +58,13 @@ var p = stretch.prototype = new sifPlayer.Layer();
 	 * Draws the layer if the origin is a vector
 	 * @method draw
 	 **/
-	p.draw = function (ctx) {
+	p.draw = function (track) {
 		var center = this.center;
 		var amount = this.amount;
-		ctx.save();
-		ctx.translate(center.getX(), center.getY() );
-		ctx.scale(amount.getX(), amount.getY());
-		ctx.translate(-center.getX(), -center.getY() );
+		track.save();
+		track.translate(center.getX(), center.getY() );
+		track.scale(amount.getX(), amount.getY());
+		track.translate(-center.getX(), -center.getY() );
 		
 	}
 

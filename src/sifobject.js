@@ -139,6 +139,7 @@ var p = SifObject.prototype;
 	p.draw = function (ctx) {
 
 		var canvas = this.sif.canvas;
+		var track = canvas.track = new sifPlayer.Tracker(ctx);
 		var layer = this.sif.canvas.layer;
 		var bg = canvas.bgcolor;
 		//Clears
@@ -150,19 +151,19 @@ var p = SifObject.prototype;
 		ctx.closePath();
 		ctx.clip();
 		
-		ctx.save();
+		track.save();
 		
 		//Set the transform to much the sif
-		ctx.setTransform( this.width / (canvas.view_box[2] - canvas.view_box[0]), 0, 0,
+		track.setMatrix( [this.width / (canvas.view_box[2] - canvas.view_box[0]), 0, 0,
 				this.height / (canvas.view_box[3] - canvas.view_box[1]),
-				this.x + this.width / 2, this.y + this.height / 2)
+				this.x + this.width / 2, this.y + this.height / 2])
 				
 		//Draw the layers
 		for (var i = 0; i < layer.length; i++) {
-			layer[i].draw(ctx);
+			layer[i].draw(track);
 		}
 		
-		ctx.restore();
+		track.restore();
 		
 		//Draw the background color
 		

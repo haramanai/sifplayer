@@ -185,7 +185,7 @@ this.sifPlayer = this.sifPlayer || {};
 	
 	
 	/**
-	 * Gets the time in seconds and returns it to milliseconds
+	 * This function creates and return a new layer for the sifObject
 	 * @function sifPlayer._getLayer
 	 * @param {Object} parent The parent of new Layer
 	 * @param {Object} data the data for the layer
@@ -204,7 +204,7 @@ this.sifPlayer = this.sifPlayer || {};
 
 	
 	/**
-	 * Gets the time in seconds and returns it to milliseconds
+	 * Returns a string to a sif value
 	 * 
 	 * @function sifPlayer._toSifValue
 	 * @param {String} value The value to be converted to a sif value
@@ -239,7 +239,7 @@ this.sifPlayer = this.sifPlayer || {};
 
 		return false;
 	}
-	
+
 
 	
 	

@@ -52,8 +52,8 @@ var p = restore.prototype = new sifPlayer.Layer();
 	 * Draw for restore layer.
 	 * @method draw
 	 **/
-	p.draw = function (ctx) {
-		ctx.restore();
+	p.draw = function (track) {
+		track.restore();
 	}
 
 

@@ -2,6 +2,7 @@ import subprocess
 
 subprocess.call(['java', '-jar', '../tools/compiler.jar',
 				'--js', '../src/sifplayer.js' ,
+				'--js', '../src/tracker.js' ,
 				'--js', '../src/Ease.js' ,
 				'--js', '../src/sifobject.js' ,
 				'--js', '../src/Param/param.js' ,

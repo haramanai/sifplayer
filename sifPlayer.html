@@ -14,7 +14,7 @@ overflow: hidden;
 <canvas id="canvas" width="640" height="480"></canvas>
 <script type='text/javascript' src="libs/Ticker.js"></script>
 <script type='text/javascript' src="libs/tweenjs-0.3.0.min.js"></script>
-<script type='text/javascript' src="libs/transform.js"></script>
+<script type='text/javascript' src="src/tracker.js"></script>
 <script type='text/javascript' src="src/sifplayer.js"></script>
 <script type='text/javascript' src="src/Ease.js"></script>
 <script type='text/javascript' src="src/sifobject.js"></script>
@@ -43,7 +43,7 @@ overflow: hidden;
 
 <script type='text/javascript'>
 function main() {
-	var xmlDoc = loadXML('assets/test.sif');
+	var xmlDoc = loadXML('assets/plane.sif');
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 

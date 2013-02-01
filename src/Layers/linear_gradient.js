@@ -59,7 +59,8 @@ var p = linear_gradient.prototype = new sifPlayer.Layer();
 	 * Draws the layer
 	 * @method draw
 	 **/
-	p.draw = function (ctx) {
+	p.draw = function (track) {
+		var ctx = track.ctx;
 		var grd = ctx.createLinearGradient(this.p1.getX(), this.p1.getY(), this.p2.getX(), this.p2.getY() );
 		var color = this.gradient.color;
 		var vb = this.sifobj.sif.canvas.view_box;

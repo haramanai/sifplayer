@@ -62,8 +62,8 @@ var p = outline.prototype = new sifPlayer.Layer();
 	 * @method draw
 	 * @param {CanvasRenderingContext2D} } ctx The canvas 2D context object to draw into.
 	 **/	
-	p.draw = function (ctx) {
-		
+	p.draw = function (track) {
+		var ctx = track.ctx;
 		var e1,e2;
 		
 		
@@ -72,8 +72,8 @@ var p = outline.prototype = new sifPlayer.Layer();
 		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + this.color.a  + ')';
 		
 		ctx.globalAlpha = this._getTotalAmount();
-		ctx.save();
-		ctx.translate(this.origin.getX(), this.origin.getY() );
+		track.save();
+		track.translate(this.origin.getX(), this.origin.getY() );
 		ctx.globalCompositeOperation = this._getBlend();
 
 		ctx.beginPath();
@@ -109,7 +109,7 @@ var p = outline.prototype = new sifPlayer.Layer();
 		ctx.lineWidth = this.width.getValue();
 
 		ctx.stroke();
-		ctx.restore();
+		track.restore();
 
 	}
 

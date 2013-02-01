@@ -55,10 +55,10 @@ var p = translate.prototype = new sifPlayer.Layer();
 	 * Draws the layer if the origin is a vector
 	 * @method draw
 	 **/
-	p.draw = function (ctx) {
+	p.draw = function (track) {
 		var origin = this.origin;
-		ctx.save();
-		ctx.translate(origin.getX() , origin.getY() );
+		track.save();
+		track.translate(origin.getX() , origin.getY() );
 	}
 
 

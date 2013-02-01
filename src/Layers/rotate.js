@@ -55,11 +55,11 @@ var p = rotate.prototype = new sifPlayer.Layer();
 	 * Draws the layer
 	 * @method draw
 	 **/
-	p.draw = function (ctx) {
-		ctx.save();
-		ctx.translate(this.origin.getX(), this.origin.getY());
-		ctx.rotate(this.amount.value * Math.PI/180);
-		ctx.translate(-this.origin.getX(), -this.origin.getY());
+	p.draw = function (track) {
+		track.save();
+		track.translate(this.origin.getX(), this.origin.getY());
+		track.rotate(this.amount.value * Math.PI/180);
+		track.translate(-this.origin.getX(), -this.origin.getY());
 	}
 
 

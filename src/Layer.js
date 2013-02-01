@@ -79,7 +79,6 @@ var p = Layer.prototype;
 			this.sifobj.desc[this.desc] = this;
 		}
 		
-		this.tween = [];
 
 	}
 

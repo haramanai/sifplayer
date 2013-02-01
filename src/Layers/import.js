@@ -64,12 +64,13 @@ var p = Import.prototype = new sifPlayer.Layer();
 	 * Draws the layer
 	 * @method draw
 	 **/	
-	p.draw = function (ctx) {
-		ctx.save();
+	p.draw = function (track) {
+		var ctx = track.ctx;
+		track.save();
 		ctx.globalAlpha = this._getTotalAmount();
 		ctx.globalCompositeOperation = this._getBlend();
 		this._drawImage(ctx);
-		ctx.restore();
+		track.restore();
 	}
 	
 	/**

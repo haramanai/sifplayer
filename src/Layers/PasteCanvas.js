@@ -53,6 +53,8 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		_set(this, 'focus', 'vector', this, data.focus);
 
 		this._getLayers(data.canvas.canvas.layer);
+		
+		this.dCanvas = document.createElement('canvas');
 	}
 	
 	/** 
@@ -72,24 +74,35 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 	 * Draws the PasteCanvas
 	 * @method draw
 	 **/	
-	p.draw = function (ctx) {
+	p.draw = function (track) {
 		var zoom = Math.exp(this.zoom.getValue() );
 		var layer = this.layer;
 		var focus = this.focus;
 		var origin = this.origin;
-		
-		ctx.save();
-		ctx.translate(focus.getX(), focus.getY() );
-		ctx.scale(zoom, zoom);
-		ctx.translate(-focus.getX(), -focus.getY() );
-		ctx.translate(origin.getX() / zoom, origin.getY() / zoom);
+		this.dCanvas.height = 0;
+		this.dCanvas.height = this.sifobj.height;
+		this.dCanvas.width = this.sifobj.width;
+		var nt = new sifPlayer.Tracker(this.dCanvas.getContext('2d'));
 
+
+		track.save();
+		track.translate(focus.getX(), focus.getY() );
+		track.scale(zoom, zoom);
+		track.translate(-focus.getX(), -focus.getY() );
+		track.translate(origin.getX() / zoom, origin.getY() / zoom);
+
+		nt.setMatrix(track.getMatrix());
+		
 		for (var i = 0, ii = layer.length; i < ii; i++) {
 			
-			layer[i].draw(ctx);
+			layer[i].draw(nt);
 		}
+		track.setMatrix( [1, 0, 0, 1, 0, 0] );
+		track.ctx.drawImage(nt.ctx.canvas, origin.getX() , origin.getY());
+		
+		track.restore();
 
-		ctx.restore();
+
 	}
 
 
