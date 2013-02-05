@@ -159,7 +159,7 @@ var p = SifObject.prototype;
 				this.x + this.width / 2, this.y + this.height / 2])
 				
 		//Draw the layers
-		for (var i = 0; i < layer.length; i++) {
+		for (var i = 0, ii = layer.length; i < ii; i++) {
 			layer[i].draw(track);
 		}
 		

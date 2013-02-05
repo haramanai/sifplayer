@@ -98,8 +98,10 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 			layer[i].draw(nt);
 		}
 		track.setMatrix( [1, 0, 0, 1, 0, 0] );
-		track.ctx.drawImage(nt.ctx.canvas, origin.getX() , origin.getY());
-		
+		track.ctx.globalCompositeOperation = this._getBlend();
+		track.ctx.globalAlpha = this._getTotalAmount();
+		track.ctx.drawImage(nt.ctx.canvas, 0, 0);
+		console.log(this.origin.getY());
 		track.restore();
 
 

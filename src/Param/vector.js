@@ -50,19 +50,15 @@ vector._get = function (layer, param_name, wanted_type, that, data) {
 			time = sifPlayer._secsToMillis(w[0]._time);
 			tw.to( {x: w[0][param_type].x, y: w[0][param_type].y},
 				time, sifPlayer._getEase(w[0]._before) );
-
 		}
 
 				
 		for (var i = 0; i < w.length - 1; i++) {
 			time = sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time)
-			if (w[i][param_type].x !== w[i + 1][param_type].x && w[i][param_type].y !== w[i + 1][param_type].y) {
-				tw.to( {x: w[i + 1][param_type].x, y: w[i + 1][param_type].y},
-					time, sifPlayer._getEase(w[i + 1]._before) );
+			tw.to( {x: w[i + 1][param_type].x, y: w[i + 1][param_type].y},
+				time, sifPlayer._getEase(w[i + 1]._before) );
 
-			} else {
-				tw.wait(time);
-			}
+
 		}
 		
 

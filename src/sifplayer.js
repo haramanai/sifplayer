@@ -229,7 +229,7 @@ this.sifPlayer = this.sifPlayer || {};
 	 **/	
 	sifPlayer._getEase = function (ease_type) {
 
-		if (ease_type === 'linear') return createjs.Ease.linear;
+		if (ease_type === 'linear') return createjs.Ease.none;
 		if (ease_type === 'clamped') return createjs.Ease.none;
 		//EaseInOut
 		if (ease_type === 'halt') return createjs.Ease.none;
