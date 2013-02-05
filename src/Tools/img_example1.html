@@ -1,0 +1,126 @@
+
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+body {
+margin: 0px;
+overflow: hidden;
+}
+</style>
+</head>
+
+<input type="file" onchange="startRead(this.files)" />
+
+<div id='sifPlayer'></div>
+<canvas id="canvas" width="640" height="480"></canvas>
+<script type='text/javascript' src="../../libs/Ticker.js"></script>
+<script type='text/javascript' src="../../libs/tweenjs-0.3.0.min.js"></script>
+<script type='text/javascript' src="../../build/sifplayer.min.js"></script>
+<script type='text/javascript' src="img.js"></script>
+<script>
+
+
+function startRead(files) {  
+  // obtain input element through DOM 
+  
+  //var file = document.getElementById('file').files[0];
+  var file = files[0];
+  if(file){
+    getAsXML(file);
+  }
+}
+
+function getAsXML(readFile) {
+        
+  var reader = new FileReader();
+  
+  // Read file into memory as UTF-8      
+  reader.readAsText(readFile, "UTF-8");
+  
+  // Handle progress, success, and errors
+  reader.onprogress = updateProgress;
+  reader.onload = loaded;
+  reader.onerror = errorHandler;
+}
+
+function updateProgress(evt) {
+  if (evt.lengthComputable) {
+    // evt.loaded and evt.total are ProgressEvent properties
+    var loaded = (evt.loaded / evt.total);
+    if (loaded < 1) {
+      // Increase the prog bar length
+      // style.width = (loaded * 200) + "px";
+    }
+  }
+}
+
+function loaded(evt) {  
+	var file = evt.target.result;
+	var xmlDoc = StringtoXML(file);
+	main( xmlDoc );
+
+}
+
+function errorHandler(evt) {
+  if(evt.target.error.name == "NotReadableError") {
+    // The file could not be read
+  }
+}
+
+function main(xmlDoc) {
+
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+
+
+	
+	var so = new sifPlayer.SifObject(xmlDoc , {x: 0, y: 0 , width: 640, height: 480, sifPath: 'assets/'});
+	var fps = 30;
+	var end_frame = parseInt(so.sif.canvas.end_time / fps);
+	
+	var def = { sifobj: so, fps: fps, start_frame: 0, end_frame: end_frame};
+
+	var img = sifPlayer.img.getCanvasArray(def);
+	
+	var pos = 0;
+	
+	var looper = {
+
+		tick: function () {
+			
+			canvas.width = so.width;
+			canvas.height = so.height;
+			ctx.drawImage( img[pos], 0, 0 );
+
+			
+			if (pos < img.length - 1) {
+				pos += 1;
+			} else {
+				pos = 0;
+			}
+				
+		}
+		
+	}
+	
+	createjs.Ticker.useRaf = false;
+	createjs.Ticker.setFPS(fps);
+	createjs.Ticker.addListener(looper);
+}
+
+
+function StringtoXML(text){
+	if (window.ActiveXObject){
+		var doc=new ActiveXObject('Microsoft.XMLDOM');
+		doc.async='false';
+		doc.loadXML(text);
+	} else {
+		var parser=new DOMParser();
+		var doc=parser.parseFromString(text,'text/xml');
+	}
+	return doc;
+}
+</script>
+
