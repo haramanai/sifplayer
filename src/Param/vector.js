@@ -34,7 +34,7 @@ vector._get = function (layer, param_name, wanted_type, that, data) {
 	var param_type = 'vector';
 	var w, tw, time;
 	var tw_def = {paused: true, useTick: true};
-	var timeline = layer.sifobj.timeline;
+	var timeline = layer.timeline;
 	that[param_name] = {};
 	
 	if (data.animated) {

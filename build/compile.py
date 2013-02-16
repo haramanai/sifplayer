@@ -26,4 +26,5 @@ subprocess.call(['java', '-jar', '../tools/compiler.jar',
 				'--js', '../src/Layers/stretch.js' ,
 				'--js', '../src/Layers/translate.js' ,
 				'--js', '../src/Layers/zoom.js' ,
+				'--js', '../src/Layers/timeloop.js' ,
 				'--js_output_file', '../build/sifplayer.min.js'])

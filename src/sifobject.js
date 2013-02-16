@@ -123,9 +123,9 @@ var p = SifObject.prototype;
 		
 		this.timeline = new createjs.Timeline();
 		
-		this.timeline.setPaused(true);
-		
+		this.timeline.setPaused(true);	
 		this._getCanvasData(data);
+		this.timeline.duration = 2000;
 		
 
 		
@@ -140,7 +140,7 @@ var p = SifObject.prototype;
 
 		var canvas = this.sif.canvas;
 		var track = canvas.track = new sifPlayer.Tracker(ctx);
-		var layer = this.sif.canvas.layer;
+		var layers = this.sif.canvas.layer;
 		var bg = canvas.bgcolor;
 		//Clears
 		ctx.clearRect(this.x, this.y, this.width, this.height);
@@ -159,8 +159,8 @@ var p = SifObject.prototype;
 				this.x + this.width / 2, this.y + this.height / 2])
 				
 		//Draw the layers
-		for (var i = 0, ii = layer.length; i < ii; i++) {
-			layer[i].draw(track);
+		for (var i = 0, ii = layers.length; i < ii; i++) {
+			layers[i].draw(track);
 		}
 		
 		track.restore();
@@ -172,11 +172,21 @@ var p = SifObject.prototype;
 		ctx.fillStyle = 'rgba(' + bg.r + ', ' + bg.g  + ', ' + bg.b  + ', ' + bg.a +')';
 		ctx.fillRect(this.x, this.y, this.width, this.height);
 
+	}
 
-		
-			
-		
+	/**
+	 * 
+	 * @method tick
+	 * @param {Integer} delta
+	 **/		
+	p.tick = function (delta) {
+		this.timeline.tick(delta);
 
+		var layers = this.sif.canvas.layer;
+		var position = this.timeline.position;
+		for (var i = 0, ii = layers.length; i < ii; i++) {
+			position = layers[i].setPosition(position);			
+		}
 	}
 	
 

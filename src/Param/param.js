@@ -62,6 +62,10 @@ var param = sifPlayer.param;
 		else if (data.bool || param_type === 'bool') {
 			param.bool._get( layer, param_name, wanted_type, that, data);
 		}
+		else if (data.time || param_type === 'time') {
+			that[param_name] = {};
+			that[param_name].value = sifPlayer._secsToMillis(data.time._value);
+		}
 
 		else if (data.color || param_type === 'color') {
 			param._getColor( layer, param_name, wanted_type, that, data );
@@ -250,7 +254,7 @@ var param = sifPlayer.param;
 	param._getNumber = function (layer, param_name, wanted_type, that, data, param_type) {	
 		var w, tw, time;
 		var tw_def = {paused: true, useTick: true};
-		var timeline = layer.sifobj.timeline;
+		var timeline = layer.timeline;
 		var ease;
 		that[param_name] = {};
 		
@@ -341,7 +345,7 @@ var param = sifPlayer.param;
 		//NOT CONVERTED.
 		var param_type = 'color';
 		var tw_def = {paused: true, useTick: true};
-		var timeline = layer.sifobj.timeline;
+		var timeline = layer.timeline;
 		that[param_name] = {};
 		that[param_name].animated = true;
 		
@@ -389,7 +393,7 @@ var param = sifPlayer.param;
 		//NOT CONVERTED.
 		var param_type = 'gradient';
 		var tw_def = {paused: true, useTick: true};
-		var timeline = layer.sifobj.timeline;
+		var timeline = layer.timeline;
 		that[param_name] = {};
 		
 		var pcolor,dcolor;

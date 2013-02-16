@@ -59,7 +59,7 @@ var p = Layer.prototype;
 
 	/** 
 	 * Initialization method.
-	 * @method init
+	 * @method initLayer
 	 * @param {Object} parent The parent of the Layer
 	 * @param {Object} data The data that will be used
 	 **/
@@ -79,6 +79,9 @@ var p = Layer.prototype;
 			this.sifobj.desc[this.desc] = this;
 		}
 		
+		this.timeline = new createjs.Timeline();
+		this.timeline.setPaused(true);
+		
 
 	}
 
@@ -90,6 +93,17 @@ var p = Layer.prototype;
 	 **/		
 	p.draw = function (ctx) {
 		//console.log('Cant render ' + this.type + ' yet');
+	}
+	
+	
+	/**
+	 * moves the time line of the layer to the position
+	 * @method setPosition
+	 * param {Integer}
+	 **/	
+	p.setPosition = function (position) {
+		this.timeline.setPosition(position);
+		return position;
 	}
 	
 	

@@ -101,14 +101,13 @@ this.sifPlayer = this.sifPlayer || {};
 								case 'rotate': case 'translate': case 'zoom': case 'stretch':
 									Add('layer', {_type: 'restore'});
 									data.layer.unshift(sifPlayer._getData(cn));
+									break;
 
-									
-									break
+								case 'timeloop':
+									data.layer.unshift(sifPlayer._getData(cn));
 
 								default:
-									Add(cn.nodeName, sifPlayer._getData(cn))
-								
-								
+									Add(cn.nodeName, sifPlayer._getData(cn))							
 									break;
 										
 								

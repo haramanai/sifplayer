@@ -13,7 +13,7 @@ overflow: hidden;
 <div id='sifPlayer'></div>
 <canvas id="canvas" width="640" height="480"></canvas>
 <script type='text/javascript' src="libs/Ticker.js"></script>
-<script type='text/javascript' src="libs/tweenjs-0.3.0.min.js"></script>
+<script type='text/javascript' src="libs/tweenjs-0.4.0.min.js"></script>
 <script type='text/javascript' src="src/tracker.js"></script>
 <script type='text/javascript' src="src/sifplayer.js"></script>
 <script type='text/javascript' src="src/Ease.js"></script>
@@ -39,6 +39,7 @@ overflow: hidden;
 <script type='text/javascript' src="src/Layers/linear_gradient.js"></script>
 <script type='text/javascript' src="src/Layers/radial_gradient.js"></script>
 <script type='text/javascript' src="src/Layers/stretch.js"></script>
+<script type='text/javascript' src="src/Layers/timeloop.js"></script>
 
 
 <script type='text/javascript'>
@@ -51,18 +52,19 @@ function main() {
 	
 	var so = new sifPlayer.SifObject(xmlDoc , {x: 0, y: 0 , width: 320, height: 240, sifPath: 'assets/'});
 	so.timeline.loop = true;
-	so.timeline.setPaused( false );
-
+	//so.timeline.setPaused( false );
+	createjs.Ticker.removeListener(so.timeline);
 	//console.log(so.desc['NewBLine162 Region'].tweens[0]);
 	var looper = {
 
-		tick: function () {
+		tick: function (delta) {
 			so.draw(ctx);
 		}
 	}
 	
-	createjs.Ticker.useRaf = false;
+	createjs.Ticker.useRaf = true;
 	createjs.Ticker.addListener(looper);
+	createjs.Ticker.addListener(so);
 	
 }
 
