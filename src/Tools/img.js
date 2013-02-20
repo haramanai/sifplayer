@@ -41,7 +41,7 @@ img.getCanvasArray = function (def) {
 		var ctx = canvas.getContext('2d');
 		
 		//Timeline is in millisecs 
-		so.timeline.setPosition( fps * (start_frame + i) );
+		so.tick(1000 / fps);
 		so.draw(ctx);
 		
 		

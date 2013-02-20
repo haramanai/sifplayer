@@ -125,7 +125,6 @@ var p = SifObject.prototype;
 		
 		this.timeline.setPaused(true);	
 		this._getCanvasData(data);
-		this.timeline.duration = 2000;
 		
 
 		

@@ -11,7 +11,7 @@ overflow: hidden;
 </head>
 <body onload="main()">
 <div id='sifPlayer'></div>
-<canvas id="canvas" width="640" height="480"></canvas>
+<canvas id="canvas"</canvas>
 <script type='text/javascript' src="libs/Ticker.js"></script>
 <script type='text/javascript' src="libs/tweenjs-0.4.0.min.js"></script>
 <script type='text/javascript' src="src/tracker.js"></script>
@@ -47,24 +47,27 @@ function main() {
 	var xmlDoc = loadXML('assets/test.sif');
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
-
-
 	
-	var so = new sifPlayer.SifObject(xmlDoc , {x: 0, y: 0 , width: 320, height: 240, sifPath: 'assets/'});
+	var sif_width = xmlDoc.getElementsByTagName('canvas')[0].getAttribute('width');
+	var sif_height = xmlDoc.getElementsByTagName('canvas')[0].getAttribute('height');
+	setCanvasToWindowSize(canvas, sif_width, sif_height);
+	
+	var so = new sifPlayer.SifObject(xmlDoc , {x: 0, y: 0 , width: canvas.width, height: canvas.height, sifPath: 'assets/'});
 	so.timeline.loop = true;
-	//so.timeline.setPaused( false );
+
 	createjs.Ticker.removeListener(so.timeline);
-	//console.log(so.desc['NewBLine162 Region'].tweens[0]);
+
 	var looper = {
 
 		tick: function (delta) {
+			so.tick(delta);
 			so.draw(ctx);
 		}
 	}
 	
 	createjs.Ticker.useRaf = true;
 	createjs.Ticker.addListener(looper);
-	createjs.Ticker.addListener(so);
+
 	
 }
 
@@ -81,6 +84,30 @@ function loadXML (file) {
 	var xmlDoc=xmlhttp.responseXML;
 	return xmlDoc;
 }
+
+function setCanvasToWindowSize(canvas, width, height) {
+	var wh = width / height;
+	var iwh = window.innerWidth / window.innerHeight;
+	if (wh > 1) {
+		if (wh >= iwh) {
+			canvas.width = window.innerWidth;
+			canvas.height = canvas.width / wh;
+		} else {
+			canvas.height = window.innerHeight;
+			canvas.width = canvas.height * wh;
+		}
+	} else {
+		if (wh <= iwh) {
+			canvas.height = window.innerHeight;
+			canvas.width = canvas.height * wh;
+		} else {
+			canvas.width = window.innerWidth;
+			canvas.height = canvas.width / wh;
+		}
+		
+	}
+}
+
 
 </script>
 </body>
