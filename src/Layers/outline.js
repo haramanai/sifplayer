@@ -58,7 +58,7 @@ var p = outline.prototype = new sifPlayer.Layer();
 // public methods:
 
 	/**
-	 * Draws the region
+	 * Draws the outline
 	 * @method draw
 	 * @param {CanvasRenderingContext2D} } ctx The canvas 2D context object to draw into.
 	 **/	
@@ -69,7 +69,7 @@ var p = outline.prototype = new sifPlayer.Layer();
 		
 		//var color = layer.color.color;
 
-		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + this.color.a  + ')';
+		ctx.strokeStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + this.color.a  + ')';
 		
 		ctx.globalAlpha = this._getTotalAmount();
 		track.save();

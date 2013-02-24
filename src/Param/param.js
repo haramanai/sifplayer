@@ -208,7 +208,7 @@ var param = sifPlayer.param;
 			that[param_name].subtract = {};
 			if (data.subtract._lhs) data.subtract.lhs = layer.sifobj.sif.canvas.defs[data.subtract._lhs];
 			if (data.subtract._rhs) data.subtract.rhs = layer.sifobj.sif.canvas.defs[data.subtract._rhs];
-			if (data.subtract._scaler) data.subtract.scaler = layer.sifobj.sif.canvas.defs[data.subtract._scaler];
+			if (data.subtract._scalar) data.subtract.scalar = layer.sifobj.sif.canvas.defs[data.subtract._scalar];
 			param._set(layer, 'lhs', param_type, that[param_name].subtract, data.subtract.lhs);
 			param._set(layer, 'rhs', param_type, that[param_name].subtract, data.subtract.rhs);
 			param._set(layer, 'scalar', 'real', that[param_name].subtract, data.subtract.scalar);
@@ -226,7 +226,14 @@ var param = sifPlayer.param;
 			param._set(layer, 'amp', 'real', that[param_name].sine, data.sine.amp);
 			param.convert._set( layer, that[param_name], wanted_type, 'sine');
 			
-		}					
+		}	//vectorangle
+		else if (data.vectorangle) {
+			param_type = data.vectorangle._type;
+			that[param_name] = {};
+			that[param_name].vectorangle = {};
+			param._set(layer, 'vector', 'vector', that[param_name].vectorangle, data.vectorangle.vector);
+			param.convert._set( layer, that[param_name], wanted_type, 'vectorangle');
+		}		
 		else if (data.greyed) {
 			param._set(layer, param_name, wanted_type, that, data.greyed.link);
 		}

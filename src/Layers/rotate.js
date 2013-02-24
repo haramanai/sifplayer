@@ -58,7 +58,7 @@ var p = rotate.prototype = new sifPlayer.Layer();
 	p.draw = function (track) {
 		track.save();
 		track.translate(this.origin.getX(), this.origin.getY());
-		track.rotate(this.amount.value * Math.PI/180);
+		track.rotate(this.amount.getValue() * Math.PI/180);
 		track.translate(-this.origin.getX(), -this.origin.getY());
 	}
 

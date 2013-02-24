@@ -69,7 +69,7 @@ composite._get = function (layer, param_name, wanted_type, that, data) {
 	else if (data.composite._type === 'bline_point') {
 		var composite = that[param_name].composite;
 		var param_type = data.composite._type;
-		
+		if (data.composite._point) data.composite.point = layer.sifobj.sif.canvas.defs[data.composite._point];
 		_set(layer, 'point', 'vector', composite, data.composite.point);
 		_set(layer, 'width', 'real', composite, data.composite.width);
 		_set(layer, 'origin', 'real', composite, data.composite.origin);

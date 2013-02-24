@@ -76,6 +76,10 @@ angle.dotproduct = function () {
 	return Math.acos( (x1*x2 + y1*y2) / (Math.sqrt(x1*x1 + y1*y1) * Math.sqrt(x2*x2 + y2*y2))) / Math.PI * 180.0;
 }
 
+angle.vectorangle = function () {
+	return Math.atan2(this.vectorangle.vector.getY(), this.vectorangle.vector.getX()) / Math.PI * 180.0;
+}
+
 
 
 
