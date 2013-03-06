@@ -64,14 +64,8 @@ var p = Layer.prototype;
 	 * @param {Object} data The data that will be used
 	 **/
 	p.initLayer = function (parent, data) {
-		if (parent.hasOwnProperty('sifPath')) {
-			
-			this.sifobj = parent;
-		} else {
-			this.parent = parent;
-			this.sifobj = parent.sifobj;
-		}
-		
+
+		Layer.setParent(this, parent);
 		this.type = data._type;
 		if (data._desc) {
 			this.desc = data._desc;
@@ -82,7 +76,19 @@ var p = Layer.prototype;
 		this.timeline = new createjs.Timeline();
 		this.timeline.setPaused(true);
 		
+		
+		
 
+	}
+	
+	Layer.setParent = function (layer, parent) {
+		if (parent.hasOwnProperty('sifPath')) {
+			
+			layer.sifobj = parent;
+		} else {
+			layer.parent = parent;
+			layer.sifobj = parent.sifobj;
+		}
 	}
 
 // public methods:
@@ -157,13 +163,8 @@ var p = Layer.prototype;
 		var amount = this.amount.getValue();
 		var parent = this.parent;
 		if (parent) return parent._getTotalAmount() * amount;
-		return amount;
+		return Math.exp(amount);
 	}
-	
-
-	
-
-
 
 
 sifPlayer.Layer = Layer;

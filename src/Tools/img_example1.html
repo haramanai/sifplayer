@@ -19,6 +19,7 @@ overflow: hidden;
 <script type='text/javascript' src="../../libs/tweenjs-0.3.0.min.js"></script>
 <script type='text/javascript' src="../../build/sifplayer.min.js"></script>
 <script type='text/javascript' src="img.js"></script>
+<script type='text/javascript' src="helper.js"></script>
 <script>
 
 
@@ -58,7 +59,7 @@ function updateProgress(evt) {
 
 function loaded(evt) {  
 	var file = evt.target.result;
-	var xmlDoc = StringtoXML(file);
+	var xmlDoc = sifPlayer.helper.StringtoXML(file);
 	main( xmlDoc );
 
 }
@@ -76,7 +77,15 @@ function main(xmlDoc) {
 
 
 	
-	var so = new sifPlayer.SifObject(xmlDoc , {x: 0, y: 0 , width: 640, height: 480, sifPath: 'assets/'});
+	var so = new sifPlayer.SifObject(xmlDoc , {sifPath: 'assets/'});
+	so.width = so.sif.canvas.width;
+	
+	so.height = so.sif.canvas.height;
+
+	sifPlayer.helper.setCanvasToWindowSize(canvas, so.width, so.height);
+	so.width = canvas.width;
+	so.height = canvas.height;
+	
 	var fps = 30;
 	var end_frame = parseInt(so.sif.canvas.end_time / fps);
 	
@@ -89,9 +98,8 @@ function main(xmlDoc) {
 	var looper = {
 
 		tick: function () {
-			
-			canvas.width = so.width;
-			canvas.height = so.height;
+			canvas.height = 0;
+			sifPlayer.helper.setCanvasToWindowSize(canvas, so.width, so.height);
 			ctx.drawImage( img[pos], 0, 0 );
 
 			
@@ -110,17 +118,5 @@ function main(xmlDoc) {
 	createjs.Ticker.addListener(looper);
 }
 
-
-function StringtoXML(text){
-	if (window.ActiveXObject){
-		var doc=new ActiveXObject('Microsoft.XMLDOM');
-		doc.async='false';
-		doc.loadXML(text);
-	} else {
-		var parser=new DOMParser();
-		var doc=parser.parseFromString(text,'text/xml');
-	}
-	return doc;
-}
 </script>
 

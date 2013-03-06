@@ -1,6 +1,6 @@
 /*
 * Copyright (c) 2012 haramanai.
-* img for sifPlayer
+* helper for sifPlayer
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -24,34 +24,49 @@
 */
 //requires sifPlayer
 (function() { 
-var img = {};
+var helper = {};
 
-img.getCanvasArray = function (def) {
-	var so = def.sifobj;
-	var a = [];
-	var fps = def.fps;
-	var start_frame = def.start_frame;
-	var end_frame = def.end_frame;
-	var total_frames = end_frame - start_frame;
-	
-	for (var i = 0; i < total_frames; i++) {
-		var canvas = document.createElement('canvas');
-		canvas.height = so.height;
-		canvas.width = so.width;
-		var ctx = canvas.getContext('2d');
-		
-		//Timeline is in millisecs 
-		so.tick(1000 / fps);
-		so.draw();
-		ctx.drawImage(so.dCanvas, 0 , 0);
-		
-		
-		a[i] = canvas;
-	}
-	
-	return a;
+helper.loadXML = function (file) {
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.open("GET",file,false);
+	xmlhttp.send();
+	var xmlDoc=xmlhttp.responseXML;
+	return xmlDoc;
+};
+
+helper.StringtoXML = function (text) {
+	var parser=new DOMParser();
+	var doc=parser.parseFromString(text,'text/xml');
+	return doc;
 }
+	
+helper.setCanvasToWindowSize = function (canvas, width, height) {
+	var wh = width / height;
+	var iwh = window.innerWidth / window.innerHeight;
 
 
-sifPlayer.img = img;
+	if (wh >= 1) {
+		
+		if (wh >= iwh) {
+			canvas.width = window.innerWidth;
+			canvas.height = canvas.width / wh;
+		} else {
+			canvas.height = window.innerHeight;
+			canvas.width = window.innerHeight * wh;
+		}
+	} else {
+		if (wh <= iwh) {
+			
+			canvas.height = window.innerHeight;
+			canvas.width = canvas.height * wh;
+		} else {
+			
+			canvas.width = window.innerWidth;
+			canvas.height = canvas.width / wh;
+		}
+		
+	}
+};
+
+sifPlayer.helper = helper;
 }());

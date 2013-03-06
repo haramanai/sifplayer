@@ -105,6 +105,7 @@ this.sifPlayer = this.sifPlayer || {};
 
 								case 'timeloop':
 									data.layer.unshift(sifPlayer._getData(cn));
+									break;
 
 								default:
 									Add(cn.nodeName, sifPlayer._getData(cn))							

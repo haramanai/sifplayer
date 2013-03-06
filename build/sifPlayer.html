@@ -8,6 +8,7 @@
 <script type='text/javascript' src="../libs/Ticker.js"></script>
 <script type='text/javascript' src="../libs/tweenjs-0.4.0.min.js"></script>
 <script type='text/javascript' src="sifplayer.min.js"></script>
+<script type='text/javascript' src="../src/tools/helper.js"></script>
 <script type='text/javascript'>
 function main() {
 	var xmlDoc = loadXML('test.sif');
@@ -23,8 +24,13 @@ function main() {
 	//console.log(so.desc['NewBLine162 Region'].tweens[0]);
 	var looper = {
 
-		tick: function () {
-			so.draw(ctx);
+		tick: function (delta) {
+			canvas.height = 0;
+			canvas.height = 640;
+			canvas.width = 480;
+			so.tick(delta);
+			so.draw();
+			ctx.drawImage(so.dCanvas, 0 , 0);
 		}
 	}
 	

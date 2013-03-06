@@ -46,37 +46,45 @@ var p = timeloop.prototype = new sifPlayer.Layer();
 	 * @param {Object} data The data for the Layer
 	 **/
 	p.init = function (parent, data) {
-		var _set = sifPlayer.param._set;		
+		var _set = sifPlayer.param._set;	
 		this.initLayer(parent, data);
-		_set(this, 'link_time', 'real', this, data.link_time);
-		_set(this, 'local_time', 'real', this, data.local_time);
-		_set(this, 'duration', 'real', this, data.duration);
+		
+		_set(this, 'link_time', 'integer', this, data.link_time);
+		_set(this, 'local_time', 'integer', this, data.local_time);
+		_set(this, 'duration', 'integer', this, data.duration);
 
 
-
+		this.timeline.duration = this.sifobj.sif.canvas.end_time - this.sifobj.sif.canvas.begin_time;
 		this.timeline.loop = true;
-		this.timeline.duration = this.duration.value;
 		
 	};
+	
 	
 	/**
 	 * moves the time line of the layer to the position
 	 * @method goto
 	 **/		
 	p.setPosition = function (position) {
-		var duration = this.duration.value;
-		var link_time = this.link_time.value;
+		this.timeline.tick( position - this.timeline.position);
+		
+		var duration = this.duration.getValue();
+		var link_time = this.link_time.getValue();
 		var new_pos = position % duration;
-		if (duration >= 0) {	
-			new_pos += link_time;
+		if (duration != 0) {
+			if (duration >= 0) {	
+				new_pos += link_time;
+			} else {
+				new_pos = link_time - new_pos;
+			}
 		} else {
-			new_pos = link_time - new_pos;
+			new_pos = link_time;
 		}
-			
-	
-		//console.log(duration - new_pos);
+
+		
 		return new_pos;
 	}
+	
+	
 	
 
 

@@ -16,6 +16,7 @@ overflow: hidden;
 <script type='text/javascript' src="libs/tweenjs-0.4.0.min.js"></script>
 <script type='text/javascript' src="src/tracker.js"></script>
 <script type='text/javascript' src="src/sifplayer.js"></script>
+<script type='text/javascript' src="src/Tools/helper.js"></script>
 <script type='text/javascript' src="src/Ease.js"></script>
 <script type='text/javascript' src="src/sifobject.js"></script>
 <script type='text/javascript' src="src/Param/param.js"></script>
@@ -42,17 +43,16 @@ overflow: hidden;
 <script type='text/javascript' src="src/Layers/timeloop.js"></script>
 
 
+
 <script type='text/javascript'>
 function main() {
-	var xmlDoc = loadXML('assets/test.sif');
+	var xmlDoc = sifPlayer.helper.loadXML('assets/test.sif');
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	
-	var sif_width = xmlDoc.getElementsByTagName('canvas')[0].getAttribute('width');
-	var sif_height = xmlDoc.getElementsByTagName('canvas')[0].getAttribute('height');
-	setCanvasToWindowSize(canvas, sif_width, sif_height);
 	
-	var so = new sifPlayer.SifObject(xmlDoc , {x: 0, y: 0 , width: canvas.width, height: canvas.height, sifPath: 'assets/'});
+	var so = new sifPlayer.SifObject(xmlDoc , {sifPath: 'assets/'});
+	sifPlayer.helper.setCanvasToWindowSize(canvas, so.sif.canvas.width, so.sif.canvas.height);
 	so.timeline.loop = true;
 
 	createjs.Ticker.removeListener(so.timeline);
@@ -60,8 +60,13 @@ function main() {
 	var looper = {
 
 		tick: function (delta) {
+			canvas.height = 0;
+			sifPlayer.helper.setCanvasToWindowSize(canvas, so.sif.canvas.width, so.sif.canvas.height);
+			so.height = canvas.height;
+			so.width = canvas.width;
 			so.tick(delta);
-			so.draw(ctx);
+			so.draw();
+			ctx.drawImage(so.dCanvas, 0,0);
 		}
 	}
 	
@@ -71,42 +76,7 @@ function main() {
 	
 }
 
-function loadXML (file) {
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
-		var xmlhttp=new XMLHttpRequest();
 
-	} else {// code for IE6, IE5
-		var xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.open("GET",file,false);
-	xmlhttp.send();
-	var xmlDoc=xmlhttp.responseXML;
-	return xmlDoc;
-}
-
-function setCanvasToWindowSize(canvas, width, height) {
-	var wh = width / height;
-	var iwh = window.innerWidth / window.innerHeight;
-	if (wh > 1) {
-		if (wh >= iwh) {
-			canvas.width = window.innerWidth;
-			canvas.height = canvas.width / wh;
-		} else {
-			canvas.height = window.innerHeight;
-			canvas.width = canvas.height * wh;
-		}
-	} else {
-		if (wh <= iwh) {
-			canvas.height = window.innerHeight;
-			canvas.width = canvas.height * wh;
-		} else {
-			canvas.width = window.innerWidth;
-			canvas.height = canvas.width / wh;
-		}
-		
-	}
-}
 
 
 </script>

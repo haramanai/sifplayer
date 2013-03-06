@@ -47,7 +47,6 @@ function SifObject(xmlDoc, props) {
 	this.sifPath = this.sifPath || '';	
 	
 	this.init(xmlDoc);
-	this.canvas = document.createElement('canvas');
 
 }
 
@@ -126,71 +125,14 @@ var p = SifObject.prototype;
 		this.timeline.setPaused(true);	
 		this._getCanvasData(data);
 		
-
+		this.dCanvas = document.createElement('canvas');
+		this.dCtx = this.dCanvas.getContext('2d');
+		
+		
 		
 	}
 	
-// public methods:
-	/**
-	 * Prepares for drawing and draws the layers of the SifObject 
-	 * @method draw
-	 **/	
-	p.draw = function (ctx) {
-
-		var canvas = this.sif.canvas;
-		var track = canvas.track = new sifPlayer.Tracker(ctx);
-		var layers = this.sif.canvas.layer;
-		var bg = canvas.bgcolor;
-		//Clears
-		ctx.clearRect(this.x, this.y, this.width, this.height);
-		
-		//Clip so the drawing will fit only our SifObject space.
-		ctx.beginPath();
-		ctx.rect(this.x, this.y, this.width, this.height);
-		ctx.closePath();
-		ctx.clip();
-		
-		track.save();
-		
-		//Set the transform to much the sif
-		track.setMatrix( [this.width / (canvas.view_box[2] - canvas.view_box[0]), 0, 0,
-				this.height / (canvas.view_box[3] - canvas.view_box[1]),
-				this.x + this.width / 2, this.y + this.height / 2])
-				
-		//Draw the layers
-		for (var i = 0, ii = layers.length; i < ii; i++) {
-			layers[i].draw(track);
-		}
-		
-		track.restore();
-		
-		//Draw the background color
-		
-		ctx.globalAlpha = 1;
-		ctx.globalCompositeOperation = 'destination-over';
-		ctx.fillStyle = 'rgba(' + bg.r + ', ' + bg.g  + ', ' + bg.b  + ', ' + bg.a +')';
-		ctx.fillRect(this.x, this.y, this.width, this.height);
-
-	}
-
-	/**
-	 * 
-	 * @method tick
-	 * @param {Integer} delta
-	 **/		
-	p.tick = function (delta) {
-		this.timeline.tick(delta);
-
-		var layers = this.sif.canvas.layer;
-		var position = this.timeline.position;
-		for (var i = 0, ii = layers.length; i < ii; i++) {
-			position = layers[i].setPosition(position);			
-		}
-	}
-	
-
-
-// private methods:
+	// private methods:
 
 	/**
 	 * @method _getCanvasData
@@ -224,7 +166,10 @@ var p = SifObject.prototype;
 		
 		
 		this.sif.canvas.defs = this._getDefs(data.defs);
+		
+		//Create the fake PasteCanvas
 		this.sif.canvas.layer = [];
+		this.sif.canvas.draw = sifPlayer.PasteCanvas.prototype.draw;
 		
 		this.timeline.duration = this.sif.canvas.end_time;
 		
@@ -276,6 +221,79 @@ var p = SifObject.prototype;
 		//alert(JSON.stringify(defs));
 		return defs;
 	}
+	
+// public methods:
+	/**
+	 * Prepares for drawing and draws the layers of the SifObject 
+	 * @method draw
+	 **/	
+	p.draw = function () {
+		var sifCanvas = this.sif.canvas;
+		this.dCanvas.height = 0;
+		this.dCanvas.height = this.height;
+		this.dCanvas.width = this.width;
+		var ctx = this.dCtx;
+		var track = this.tracker = new sifPlayer.Tracker(ctx);
+		var layers = this.sif.canvas.layer;
+		var bg = sifCanvas.bgcolor;
+		//Clears
+		
+		
+		//Clip so the drawing will fit only our SifObject space.
+		ctx.beginPath();
+		ctx.rect(this.x, this.y, this.width, this.height);
+		ctx.clip();
+		//ctx.clearRect(this.x, this.y, this.width, this.height);
+		
+		track.save();
+		
+		//Set the transform to much the sif
+		track.setMatrix( [this.width / (sifCanvas.view_box[2] - sifCanvas.view_box[0]), 0, 0,
+				this.height / (sifCanvas.view_box[3] - sifCanvas.view_box[1]),
+				this.x + this.width / 2, this.y + this.height / 2])
+				
+		//Draw the layers
+		for (var i = 0, ii = layers.length; i < ii; i++) {
+			layers[i].draw(track);
+		}
+
+		track.restore();
+		
+		ctx.restore(); //clip
+
+	}
+
+	/**
+	 * 
+	 * @method tick
+	 * @param {Integer} delta
+	 **/		
+	p.tick = function (delta) {
+		this.timeline.tick(delta);
+
+		var layers = this.sif.canvas.layer;
+		var position = this.timeline.position;
+		for (var i = 0, ii = layers.length; i < ii; i++) {
+			position = layers[i].setPosition(position);			
+		}
+	}
+	
+	/**
+	 * 
+	 * @method setPosition
+	 * @param {Integer} time
+	 **/	
+	p.setPosition = function (time) {
+		this.timeline.setPosition(time);
+		var layers = this.sif.canvas.layer;
+		var position = this.timeline.position;
+		for (var i = 0, ii = layers.length; i < ii; i++) {
+			position = layers[i].setPosition(position);			
+		}
+	}
+
+
+
 
 sifPlayer.SifObject = SifObject;
 }());

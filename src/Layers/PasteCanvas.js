@@ -55,6 +55,7 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		this._getLayers(data.canvas.canvas.layer);
 		
 		this.dCanvas = document.createElement('canvas');
+		this.tracker = new sifPlayer.Tracker(this.dCanvas.getContext('2d'));
 	}
 	
 	/** 
@@ -64,8 +65,10 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 	 **/	
 	p._getLayers = function (_layer) {
 		this.layer = [];
-		for (var i = 0; i < _layer.length; i++) {
-			this.layer.push( sifPlayer._getLayer( this, _layer[i] ));
+		if (_layer) {
+			for (var i = 0; i < _layer.length; i++) {
+				this.layer.push( sifPlayer._getLayer( this, _layer[i] ));
+			}
 		}
 		
 	}
@@ -82,24 +85,23 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		this.dCanvas.height = 0;
 		this.dCanvas.height = this.sifobj.height;
 		this.dCanvas.width = this.sifobj.width;
-		var nt = new sifPlayer.Tracker(this.dCanvas.getContext('2d'));
+		
+		this.tracker.setMatrix(track.getMatrix());
+		this.tracker.translate(focus.getX(), focus.getY() );
+		this.tracker.scale(zoom, zoom);
+		this.tracker.translate(-focus.getX(), -focus.getY() );
+		this.tracker.translate(origin.getX() / zoom, origin.getY() / zoom);
 
-
-		track.save();
-		track.translate(focus.getX(), focus.getY() );
-		track.scale(zoom, zoom);
-		track.translate(-focus.getX(), -focus.getY() );
-		track.translate(origin.getX() / zoom, origin.getY() / zoom);
-
-		nt.setMatrix(track.getMatrix());
+		
 		
 		for (var i = 0, ii = layer.length; i < ii; i++) {
-			layer[i].draw(nt);
+			layer[i].draw(this.tracker);
 		}
+		track.save();
 		track.setMatrix( [1, 0, 0, 1, 0, 0] );
 		track.ctx.globalCompositeOperation = this._getBlend();
 		track.ctx.globalAlpha = this._getTotalAmount();
-		track.ctx.drawImage(nt.ctx.canvas, 0, 0);
+		track.ctx.drawImage(this.tracker.ctx.canvas, 0, 0);
 		track.restore();
 
 
@@ -108,7 +110,7 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 
 	/**
 	 * moves the time line of the layer to the position
-	 * @method goto
+	 * @method setPosition
 	 * param {Integer}
 	 **/		
 	p.setPosition = function (position) {		
@@ -119,6 +121,7 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		}
 		return position;
 	}
+	
 
 
 sifPlayer.PasteCanvas = PasteCanvas;

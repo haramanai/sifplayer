@@ -70,12 +70,9 @@ var p = radial_gradient.prototype = new sifPlayer.Layer();
 		}
 		
 		ctx.globalAlpha = this._getTotalAmount();
-		ctx.globalCompositeOperation = this._getBlend();		
+				
+		ctx.globalCompositeOperation = this._getBlend();
 		ctx.fillStyle = grd;
-		//ctx.fillRect(vb[0] , -vb[1], vb[2] * 2, vb[2] * 2);
-		//We render more than we need but it's the only solution I found
-		// looks like that we don't get lower framerate by the size of the 
-		// rect. So it's ok to do it like this.
 		ctx.fillRect(-1000, -1000, 2000 , 2000);
 
 

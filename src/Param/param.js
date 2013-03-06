@@ -45,6 +45,7 @@ var param = sifPlayer.param;
 		if (data._type) param_type = data._type;
 		
 		if (data._use) {
+			//To change
 			param._set(layer, param_name, wanted_type, that, layer.sifobj.sif.canvas.defs[data._use]);
 		}		//VECTOR
 		else if (data.vector || param_type === 'vector') {
@@ -63,8 +64,7 @@ var param = sifPlayer.param;
 			param.bool._get( layer, param_name, wanted_type, that, data);
 		}
 		else if (data.time || param_type === 'time') {
-			that[param_name] = {};
-			that[param_name].value = sifPlayer._secsToMillis(data.time._value);
+			param._getTime( layer, param_name, wanted_type, that, data);
 		}
 
 		else if (data.color || param_type === 'color') {
@@ -263,6 +263,7 @@ var param = sifPlayer.param;
 		var tw_def = {paused: true, useTick: true};
 		var timeline = layer.timeline;
 		var ease;
+		var stm = sifPlayer._secsToMillis;
 		that[param_name] = {};
 		
 		
@@ -277,7 +278,7 @@ var param = sifPlayer.param;
 
 			if (w[0]._time !== "0s") {
 				ease = sifPlayer._getEase(w[0]._before);
-				time = sifPlayer._secsToMillis(w[0]._time);
+				time = stm(w[0]._time);
 				tw.to( {value: w[0][param_type]._value},
 					time, ease);
 			}
@@ -285,15 +286,11 @@ var param = sifPlayer.param;
 					
 			for (var i = 0; i < w.length - 1; i++) {
 				ease = sifPlayer._getEase(w[i + 1]._before);
-				time = sifPlayer._secsToMillis(w[i + 1]._time) - sifPlayer._secsToMillis(w[i]._time);						
-				if (w[i][param_type]._value !== w[i + 1][param_type]._value) {
-					tw.to( {value: w[i + 1][param_type]._value},
-						time, ease );
-				} else {
-					tw.wait(time);
-				}
+				time = stm(w[i + 1]._time) - stm(w[i]._time);						
+				tw.to( {value: w[i + 1][param_type]._value},
+					time, ease );
 			}
-			
+
 
 			
 			
@@ -305,6 +302,66 @@ var param = sifPlayer.param;
 			if (!data[param_type]) alert(JSON.stringify(data) + "param_type : " + param_type + ' param_name : ' + param_name + ' layer type : ' + this.type);
 			that[param_name].value = data[param_type]._value;
 			param.convert._set( layer, that[param_name], wanted_type, param_type);
+		}
+	}
+	
+	/**
+	 * TIME
+	 * @function param._getRadial_composite
+	 * @param {Object} layer the layer that contains the param
+	 * @param {String} param_name the name of the param
+	 * @param {String} wanted_type the type that the param wands to be
+	 * @param {Object} that the holder of the values
+	 * @param {Object} data the data that holds the values.
+	 * @param {Object} param_type the type of the data param.
+	 **/
+	param._getTime = function (layer, param_name, wanted_type, that, data) {
+		var param_type = 'time'; //We will get the time as millisecs..
+		var w, tw, time;
+		var tw_def = {paused: true, useTick: true};
+		var timeline = layer.timeline;
+		var ease;
+		
+		var stm = sifPlayer._secsToMillis;
+		that[param_name] = {};
+		
+		
+		
+		if (data.animated) {
+
+			w = data.animated.waypoint
+			that[param_name].value = stm(w[0][param_type]._value);
+
+			tw = createjs.Tween.get(that[param_name], tw_def);
+
+
+			if (w[0]._time !== "0s") {
+				ease = sifPlayer._getEase(w[0]._before);
+				time = stm(w[0]._time);
+				tw.to( {value: stm(w[0][param_type]._value)},
+					time, ease);
+				
+			}
+
+					
+			for (var i = 0; i < w.length - 1; i++) {
+				ease = sifPlayer._getEase(w[i + 1]._before);
+				time = stm(w[i + 1]._time) - stm(w[i]._time);						
+				tw.to( {value: stm(w[i + 1][param_type]._value)},
+					time, ease );
+				
+			}
+			
+			
+			
+			timeline.addTween(tw);
+
+			
+			param.convert._set( layer, that[param_name], wanted_type, 'integer');
+		} else {
+			if (!data[param_type]) alert(JSON.stringify(data) + "param_type : " + param_type + ' param_name : ' + param_name + ' layer type : ' + this.type);
+			that[param_name].value = stm(data[param_type]._value);
+			param.convert._set( layer, that[param_name], wanted_type, 'integer');
 		}
 	}
 	
