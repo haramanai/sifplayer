@@ -90,12 +90,17 @@ bool._setConvert = function (layer, param, wanted_type, is_type, animated) {
 	var type = sifPlayer.param.bool;
 	if (wanted_type === is_type) {
 		param.getValue = type.getValue;
+		param.setValue = type.setValue;
 	}
 	else if ( is_type === 'and' ) {
 		param.getValue = type.getAnd;
 	}
 }
 	
+
+bool.setValue = function (v) {
+	this.value = v;
+}
 	
 bool.getValue = function () {
 	return this.value;

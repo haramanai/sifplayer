@@ -12,7 +12,7 @@ It supports the types of layers:
 	Outline (without point width)
 	Circle
 	Import (image)
-	PasteCanvas
+	Group layer
 	Scale
 	Translate
 	Rotate
@@ -20,6 +20,7 @@ It supports the types of layers:
 	Stretch
 	Linear Gradient (without the params zigzag and loop)
 	Radial Gradient (without the params zigzag and loop)
+	Timeloop
 
 The blend methods that much the globalCompositeOperation of the context2d
 
@@ -37,24 +38,32 @@ Vector converts to:
 	radial composite
 	composite
 	add
+	subtract
 	scale
 
 Real converts to:
 	add
+	subtract
 	scale
+	cos
+	sine
+	expotential
 	dotproduct
 	logarithm
 	reciprocal
 
 Angle converts to:
 	add
+	subtract
 	scale
 	atan2
 	cos
 	dotproduct (remember that this is using two Math.sqrt)
+	vectorAngle
 
 Integer converts to:
 	add
+	subtract
 	scale
 
 Bool converts to:
@@ -69,24 +78,40 @@ Run the sifPlayer.html to see it in action. There is a min version and an exampl
 Also in the /assets/ are sifparser.html  you can run it to have an understanding of how the data looks like. But keep in mind that the defs will change in the init of the SifObject to be accessed by the id of the defs.
 
 How to use it :
-var def = {x: 100 , y: 100, width: 320, height: 240, sifPath: 'assets/'};
-var mySif = sifPlayer.SifObject( xmlDoc, def);
+var def = {width: 320, height: 240, sifPath: 'assets/'};
+var sifobj = sifPlayer.SifObject( xmlDoc, def);
 
 As you can see the first param is an XML Document object.
 The def param is an javascript object everything that you may wand to add to the SifObject like the x position that will be the upper left corner of the SifObject in the context
 the width that you wand the SifObject to have
-And the necessary sifPath that you will need if you use imagies. With sifPath SifObject will no where to search for the imagies that your sif animation used.
+And the necessary sifPath that you will need if you use imagies. With sifPath SifObject will know where to search for the imagies that your sif animation used.
 
-after the object is created it will be paused so to get it running you must tell the timeline of the SifObject to stop beeing paused
-mySif.timeline.setPaused( false );
+sifobj.draw() //will draw the sifobj in the sifobj.dCanvas canvas.
+sifobj.dCanvas //is the canvas that sifobject is drawing it's self.
 
-Also if you wand your animation to loop you can tell the timeline again to loop
+sifobj.tick(delta) //moves the sifobject's timeline 'delta' milliseconds.
+
+sifobj.setPosition( pos ) // set the position of sifobject's timeline to the 'pos' millisecs.
+
+To draw a sifobject on a context just use the sifobject's dCanvas as an image.
+
+ctx.drawImage( sifobj.dCanvas, 10 , 10 );
+
+Just remember that you must draw your sifobject first.
+
+
+For example :
+sifobj.tick( 65 ); //First move it
+sifobj.draw(); //Then make the internal draw.
+ctx.drawImage( sifobj.dCanvas, 10 , 10 ); // then draw it on your context.
+
+
+
+Also if you wand your animation to loop you can tell the timeline loop
 mySif.timeline.loop = true;
 
 For more information about the timeline see the createjs tweenjs documentations.
+---------------------------------------
+A note about the limitations. 
 
-Then to render the sif on a context you must run 
-mySif.draw( context );
-
-In this state the animations will change by the Ticker.js from the createjs easeljs. You can make the sifPlayer to not be dependent by the Ticker.js but you will have to find a way to suits your needs.
 

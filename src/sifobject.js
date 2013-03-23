@@ -168,14 +168,15 @@ var p = SifObject.prototype;
 		this.sif.canvas.defs = this._getDefs(data.defs);
 		
 		//Create the fake PasteCanvas
-		this.sif.canvas.layer = [];
-		this.sif.canvas.draw = sifPlayer.PasteCanvas.prototype.draw;
+		this.sif.canvas.pCanvas = sifPlayer.PasteCanvas.makeFake(this);
+		this.sif.canvas.pCanvas.layer = [];
+
 		
 		this.timeline.duration = this.sif.canvas.end_time;
 		
 		//Get the layers
 		for (var i = 0; i < data.layer.length; i++) {			
-			this.sif.canvas.layer.push( sifPlayer._getLayer(this, data.layer[i]) );
+			this.sif.canvas.pCanvas.layer.push( sifPlayer._getLayer(this.sif.canvas.pCanvas, data.layer[i]) );
 		}
 
 		
@@ -234,7 +235,6 @@ var p = SifObject.prototype;
 		this.dCanvas.width = this.width;
 		var ctx = this.dCtx;
 		var track = this.tracker = new sifPlayer.Tracker(ctx);
-		var layers = this.sif.canvas.layer;
 		var bg = sifCanvas.bgcolor;
 		//Clears
 		
@@ -252,11 +252,9 @@ var p = SifObject.prototype;
 				this.height / (sifCanvas.view_box[3] - sifCanvas.view_box[1]),
 				this.x + this.width / 2, this.y + this.height / 2])
 				
-		//Draw the layers
-		for (var i = 0, ii = layers.length; i < ii; i++) {
-			layers[i].draw(track);
-		}
-
+		//Draw the fake PasteCanvas that holds the layers
+		this.sif.canvas.pCanvas.draw(track);
+		
 		track.restore();
 		
 		ctx.restore(); //clip
@@ -270,12 +268,8 @@ var p = SifObject.prototype;
 	 **/		
 	p.tick = function (delta) {
 		this.timeline.tick(delta);
-
-		var layers = this.sif.canvas.layer;
 		var position = this.timeline.position;
-		for (var i = 0, ii = layers.length; i < ii; i++) {
-			position = layers[i].setPosition(position);			
-		}
+		this.sif.canvas.pCanvas.setPosition(position);
 	}
 	
 	/**
@@ -285,11 +279,8 @@ var p = SifObject.prototype;
 	 **/	
 	p.setPosition = function (time) {
 		this.timeline.setPosition(time);
-		var layers = this.sif.canvas.layer;
 		var position = this.timeline.position;
-		for (var i = 0, ii = layers.length; i < ii; i++) {
-			position = layers[i].setPosition(position);			
-		}
+		this.sif.canvas.pCanvas.setPosition(position);
 	}
 
 

@@ -87,7 +87,7 @@ function main(xmlDoc) {
 	so.height = canvas.height;
 	
 	var fps = 30;
-	var end_frame = parseInt(so.sif.canvas.end_time / fps);
+	var end_frame = Math.round(so.sif.canvas.end_time / fps);
 	
 	var def = { sifobj: so, fps: fps, start_frame: 0, end_frame: end_frame};
 

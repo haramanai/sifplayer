@@ -89,6 +89,9 @@ vector._setConvert = function (layer, param, wanted_type, is_type) {
 	if (wanted_type === is_type) {
 		param.getX = type.getX;
 		param.getY = type.getY;
+		param.setVector = type.setVector;
+		param.setX = type.setX;
+		param.setY = type.setY;
 	} else if (is_type === 'radial_composite') {
 		param.getX = type.getRadialX;
 		param.getY = type.getRadialY;
@@ -127,6 +130,18 @@ vector._setConvert = function (layer, param, wanted_type, is_type) {
 	
 } 
 
+vector.setVector = function (x, y) {
+	this.x = x;
+	this.y = y;
+}
+
+vector.setX = function (x) {
+	this.x = x;
+}
+
+vector.setY = function (y) {
+	this.y = y;
+}
 
 vector.getX = function () {
 	return this.x;

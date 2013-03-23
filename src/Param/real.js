@@ -34,6 +34,7 @@ real._setConvert = function (layer, param, wanted_type, is_type) {
 	var type = sifPlayer.param.real;
 	if (wanted_type === is_type) {
 		param.getValue = type.getValue;
+		param.setValue = type.setValue;
 	}
 	else if (type[is_type]){
 		param.getValue = type[is_type];
@@ -44,7 +45,11 @@ real._setConvert = function (layer, param, wanted_type, is_type) {
 	
 
 }
-	
+
+real.setValue = function (v) {
+	this.value = v;
+}
+
 real.getValue = function () {
 	return this.value;
 }
