@@ -99,8 +99,8 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		}
 		track.save();
 		track.setMatrix( [1, 0, 0, 1, 0, 0] );
-		//Only the blend not the amount
 		track.ctx.globalCompositeOperation = this._getBlend();
+		track.ctx.globalAlpha = this._getTotalAmount();
 		track.ctx.drawImage(this.tracker.ctx.canvas, 0, 0);
 		track.restore();
 
@@ -120,13 +120,6 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 			position = layers[i].setPosition(position);		
 		}
 		return position;
-	}
-	
-	PasteCanvas.makeFake = function (parent) {
-		//An Empty PasteCanvas to be used for the sifobject's root layers
-		//This way we can link functionallity of PasteCanvas with the sifobject
-		var data = {"_type":"PasteCanvas","_active":true,"_version":0.1,"z_depth":{"_name":"z_depth","real":{"_value":0}},"amount":{"_name":"amount","real":{"_value":1}},"blend_method":{"_name":"blend_method","integer":{"_value":0}},"origin":{"_name":"origin","vector":{"x":0,"y":0}},"canvas":{"_name":"canvas","canvas":{}},"zoom":{"_name":"zoom","real":{"_value":0}},"time_offset":{"_name":"time_offset","time":{"_value":"0s"}},"children_lock":{"_name":"children_lock","bool":{"_value":false,"_static":true}},"focus":{"_name":"focus","vector":{"x":0,"y":0}},"outline_grow":{"_name":"outline_grow","real":{"_value":0}}};
-		return new sifPlayer[data._type](parent, data);
 	}
 	
 

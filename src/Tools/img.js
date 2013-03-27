@@ -32,7 +32,7 @@ img.getCanvasArray = function (def) {
 	var fps = def.fps;
 	var start_frame = def.start_frame;
 	var end_frame = def.end_frame;
-	var total_frames = Math.round(end_frame - start_frame);
+	var total_frames = end_frame - start_frame;
 	
 	for (var i = 0; i < total_frames; i++) {
 		var canvas = document.createElement('canvas');
@@ -41,13 +41,12 @@ img.getCanvasArray = function (def) {
 		var ctx = canvas.getContext('2d');
 		
 		//Timeline is in millisecs 
-		
+		so.tick(1000 / fps);
 		so.draw();
 		ctx.drawImage(so.dCanvas, 0 , 0);
 		
 		
 		a[i] = canvas;
-		so.setPosition(fps * i);	
 	}
 	
 	return a;

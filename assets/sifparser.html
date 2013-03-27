@@ -4,13 +4,12 @@
 </head>
 <body onload="main()">
 <div id='sifParser'></div>
-<script type='text/javascript' src="../build/sifplayer.min.js"></script>
 <script type='text/javascript'>
 function main() {
-	var xmlDoc = sifPlayer.helper.loadXML('test.sif');
+	var xmlDoc = loadXML('test.sif');
 	var c = xmlDoc.getElementsByTagName('canvas')[0];
 	//alert(c.nodeName);
-	var sif = sifPlayer._getData(c);//sifJson.getFromXMLDoc(xmlDoc);
+	var sif = getData(c);//sifJson.getFromXMLDoc(xmlDoc);
 
 	document.write(JSON.stringify(sif));
 
@@ -31,7 +30,104 @@ function loadXML (file) {
 	return xmlDoc;
 }
 
+function getData (node) {
+	var	data = {};
 
+	// append a value
+	function Add(name, value) {
+
+		if (data[name]) {
+			if (data[name].constructor != Array) {
+				data[name] = [data[name]];
+			}
+			data[name][data[name].length] = value;
+		}
+		else {
+			data[name] = value;
+		}
+	};
+	
+	// element attributes
+	var c, cn, cname;
+	for (c = 0; cn = node.attributes[c]; c++) {
+		Add("_" + cn.name, cn.value);
+	}
+	
+	// child elements
+	for (c = 0; cn = node.childNodes[c]; c++) {
+		if (cn.nodeType == 1) {
+			cname = cn.nodeName;
+			if (cn.childNodes.length == 1 && cn.firstChild.nodeType == 3) {
+				// text value
+				Add(cn.nodeName, cn.firstChild.nodeValue);
+			}
+			else {
+				// A switch to help catch the changes we wand
+				
+				switch (cname) {
+					
+						
+						
+					case 'param':
+						/* To get the params out the param array 
+						*and set the name as propertie we will get
+						* the ugly: 
+						* bline.bline.entry[0].point.vector.x
+						* canvas.canvas.layer for the PasteCanvas
+						* color.color.a
+						* and some more but it's the best solution for
+						* a clean json 
+						* */
+						data[cn.getAttribute('name')] = getData(cn);
+						break;
+						
+						
+					case 'layer':
+						/* layer and waypoint must always be array
+						 * 
+						 * */
+						 
+						var layer_type = cn.getAttribute('type');
+						if (typeof data[cname] == 'undefined') data[cname] = [];
+						/*		Switch Layer Type
+						*	Push a fake layer of type restore and unshift the layer
+						* 	This is needed for rendering.
+						* */
+						switch (layer_type) {
+							case 'rotate': case 'translate': case 'zoom':
+								Add('layer', {_type: 'restore'});
+								data.layer.unshift(getData(cn));
+
+								
+								break
+
+							default:
+								Add(cn.nodeName, getData(cn))
+							
+							
+								break;
+									
+							
+								
+								
+						} //Switch Layer Type Over
+						break; //layer
+							
+					case 'waypoint':
+						/*  To be sure that it will be an array
+						 * */
+							if (typeof data[cname] == 'undefined') data[cname] = [];
+							//No break here just wanted to be sure that it will be an array.
+								
+					default:
+						Add(cname, getData(cn))
+						break
+				} //Switch (cn.nodeName) END
+			}
+		}
+	}
+	return data;
+}
 </script>
 </body>
 </html>

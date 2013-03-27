@@ -33,7 +33,6 @@ integer._setConvert = function (layer, param, wanted_type, is_type) {
 	var type = sifPlayer.param.integer;
 	if (wanted_type === is_type) {
 		param.getValue = type.getValue;
-		param.setValue = type.setValue;
 	}
 	else if (type[is_type]){
 		param.getValue = type[is_type];
@@ -44,21 +43,13 @@ integer._setConvert = function (layer, param, wanted_type, is_type) {
 	
 }
 	
-
-integer.setValue = function (v) {
-	this.value = v;
-}
-
+	
 integer.getValue = function () {
 	return this.value;
 }
 
 integer.add = function () {
 	return ( this.add.lhs.getValue() + this.add.rhs.getValue() ) * this.add.scalar.getValue();
-}
-
-integer.subtract = function () {
-	return ( this.subtract.lhs.getValue() - this.subtract.rhs.getValue() ) * this.subtract.scalar.getValue();
 }
 
 integer.scale = function () {

@@ -31,10 +31,8 @@ var angle =  {};
 
 angle._setConvert = function (layer, param, wanted_type, is_type) {
 	var type = sifPlayer.param.angle;
-	
 	if (wanted_type === is_type) {
 		param.getValue = type.getValue;
-		param.setValue = type.setValue;
 	}
 	else if (type[is_type]){
 		param.getValue = type[is_type];
@@ -43,14 +41,10 @@ angle._setConvert = function (layer, param, wanted_type, is_type) {
 		alert('no convert for angle to ' + is_type);
 	}
 	
-	
+
 }
 	
-angle.setValue = function (v) {
-	this.value = v;
-}
-
-
+	
 angle.getValue = function () {
 	return this.value;
 }
