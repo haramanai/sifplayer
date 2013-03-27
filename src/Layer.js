@@ -76,7 +76,7 @@ var p = Layer.prototype;
 		this.timeline = new createjs.Timeline();
 		this.timeline.setPaused(true);
 		
-		
+		this.tracker = new sifPlayer.Tracker();
 		
 
 	}
@@ -157,14 +157,6 @@ var p = Layer.prototype;
 		}
 	}
 	
-
-	
-	p._getTotalAmount = function () {
-		var amount = this.amount.getValue();
-		var parent = this.parent;
-		if (parent) return parent._getTotalAmount() * amount;
-		return amount;
-	}
 
 
 sifPlayer.Layer = Layer;

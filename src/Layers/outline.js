@@ -68,11 +68,11 @@ var p = outline.prototype = new sifPlayer.Layer();
 		
 		
 		//var color = layer.color.color;
-
+		track.save();
 		ctx.strokeStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + this.color.a  + ')';
 		
-		ctx.globalAlpha = this._getTotalAmount();
-		track.save();
+		ctx.globalAlpha = this.amount.getValue();
+		
 		track.translate(this.origin.getX(), this.origin.getY() );
 		ctx.globalCompositeOperation = this._getBlend();
 

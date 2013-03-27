@@ -99,7 +99,7 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		}
 		track.save();
 		track.setMatrix( [1, 0, 0, 1, 0, 0] );
-		//Only the blend not the amount
+		track.ctx.globalAlpha = this.amount.getValue();
 		track.ctx.globalCompositeOperation = this._getBlend();
 		track.ctx.drawImage(this.tracker.ctx.canvas, 0, 0);
 		track.restore();

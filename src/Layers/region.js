@@ -70,7 +70,7 @@ var p = region.prototype = new sifPlayer.Layer();
 
 		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + this.color.a  + ')';
 		
-		ctx.globalAlpha = this._getTotalAmount();
+		ctx.globalAlpha = this.amount.getValue();
 		track.save();
 		track.translate(this.origin.getX(), this.origin.getY() );
 		ctx.globalCompositeOperation = this._getBlend();

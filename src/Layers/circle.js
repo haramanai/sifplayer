@@ -64,8 +64,9 @@ var p = circle.prototype = new sifPlayer.Layer();
 	p.draw = function (track) {
 		var origin = this.origin;
 		var ctx = track.ctx;
+		
 		ctx.fillStyle = 'rgba('+ Math.round(this.color.r * 256) + ', ' + Math.round(this.color.g * 256)  + ', ' + Math.round(this.color.b * 256)  + ', ' + this.color.a  + ')';		
-		ctx.globalAlpha = this._getTotalAmount();
+		ctx.globalAlpha = this.amount.getValue();
 		ctx.globalCompositeOperation = this._getBlend();
 		
 		ctx.beginPath();

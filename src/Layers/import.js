@@ -67,7 +67,7 @@ var p = Import.prototype = new sifPlayer.Layer();
 	p.draw = function (track) {
 		var ctx = track.ctx;
 		track.save();
-		ctx.globalAlpha = this._getTotalAmount();
+		ctx.globalAlpha = this.amount.getValue();
 		ctx.globalCompositeOperation = this._getBlend();
 		this._drawImage(ctx);
 		track.restore();

@@ -67,9 +67,11 @@ function main() {
 			so.tick(delta);
 			so.draw();
 			ctx.drawImage(so.dCanvas, 0,0);
+			console.log(createjs.Ticker.getMeasuredFPS());
 		}
 	}
 	
+	createjs.Ticker.setFPS(60);
 	createjs.Ticker.useRaf = true;
 	createjs.Ticker.addListener(looper);
 

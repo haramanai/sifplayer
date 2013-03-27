@@ -69,7 +69,7 @@ var p = linear_gradient.prototype = new sifPlayer.Layer();
 			grd.addColorStop(color[i].pos, 'rgba('+ Math.round(color[i].r * 256) + ', ' + Math.round(color[i].g * 256)  + ', ' + Math.round(color[i].b * 256)  + ', ' + color[i].a  + ')');
 		}
 		
-		ctx.globalAlpha = this._getTotalAmount();
+		ctx.globalAlpha = this.amount.getValue();
 		ctx.globalCompositeOperation = this._getBlend();		
 		ctx.fillStyle = grd;
 		//ctx.fillRect(vb[0] , -vb[1], vb[2] * 2, vb[2] * 2);
