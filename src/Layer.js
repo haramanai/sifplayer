@@ -163,7 +163,7 @@ var p = Layer.prototype;
 		var amount = this.amount.getValue();
 		var parent = this.parent;
 		if (parent) return parent._getTotalAmount() * amount;
-		return Math.exp(amount);
+		return amount;
 	}
 
 
