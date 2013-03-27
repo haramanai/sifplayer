@@ -86,11 +86,13 @@ function main() {
 
 				frames[f].getContext('2d').drawImage(so.dCanvas, 0, 0);
 				ctx.drawImage(frames[f], 0, 0);
-				console.log(f + ' render');
+				
+				ctx.fillRect(0,0,10,10);
+				//console.log(f + ' render');
 			} else {				
 				this.delta_add += delta;
 				ctx.drawImage(frames[f], 0, 0);
-				console.log(f + ' draw');
+				//console.log(f + ' draw');
 			}
 		}
 	}

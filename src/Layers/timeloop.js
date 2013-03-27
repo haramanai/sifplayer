@@ -72,7 +72,7 @@ var p = timeloop.prototype = new sifPlayer.Layer();
 		var local_time = this.local_time.getValue();
 		var new_pos = (position + local_time) % duration;
 		if (duration != 0) {
-			if (duration >= 0) {	
+			if (duration > 0) {	
 				new_pos += link_time;
 			} else {
 				new_pos = link_time - new_pos;
