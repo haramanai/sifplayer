@@ -125,8 +125,8 @@ var p = SifObject.prototype;
 		this.timeline.setPaused(true);	
 		this._getCanvasData(data);
 		
-		this.dCanvas = document.createElement('canvas');
-		this.dCtx = this.dCanvas.getContext('2d');
+		//Just a reference 
+		this.dCanvas = this.sif.canvas.pCanvas.dCanvas;
 		
 		
 		
@@ -230,34 +230,18 @@ var p = SifObject.prototype;
 	 **/	
 	p.draw = function () {
 		var sifCanvas = this.sif.canvas;
-		this.dCanvas.height = 0;
-		this.dCanvas.height = this.height;
-		this.dCanvas.width = this.width;
-		var ctx = this.dCtx;
-		var track = this.tracker = new sifPlayer.Tracker(ctx);
+		var track = this.tracker = new sifPlayer.Tracker();
 		var bg = sifCanvas.bgcolor;
-		//Clears
-		
-		
-		//Clip so the drawing will fit only our SifObject space.
-		ctx.beginPath();
-		ctx.rect(this.x, this.y, this.width, this.height);
-		ctx.clip();
-		//ctx.clearRect(this.x, this.y, this.width, this.height);
-		
-		track.save();
+
 		
 		//Set the transform to much the sif
-		track.setMatrix( [this.width / (sifCanvas.view_box[2] - sifCanvas.view_box[0]), 0, 0,
+		track.matrix = [this.width / (sifCanvas.view_box[2] - sifCanvas.view_box[0]), 0, 0,
 				this.height / (sifCanvas.view_box[3] - sifCanvas.view_box[1]),
-				this.x + this.width / 2, this.y + this.height / 2])
+				this.x + this.width / 2, this.y + this.height / 2];
 				
 		//Draw the fake PasteCanvas that holds the layers
 		this.sif.canvas.pCanvas.draw(track);
-		
-		track.restore();
-		
-		ctx.restore(); //clip
+
 
 	}
 

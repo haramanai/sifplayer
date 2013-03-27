@@ -105,13 +105,17 @@ sifobj.tick( 65 ); //First move it
 sifobj.draw(); //Then make the internal draw.
 ctx.drawImage( sifobj.dCanvas, 10 , 10 ); // then draw it on your context.
 
-
+The desc.
+The sifObject contains a propertie name desc. Fesc is a reference of all the layers by name.
+For example I wand the canvas of the Group Layer named 'myGroup' I can get it this way:
+sifobj.desc['myGroup'].dCanvas
 
 Also if you wand your animation to loop you can tell the timeline loop
-mySif.timeline.loop = true;
+sifobj.timeline.loop = true;
 
 For more information about the timeline see the createjs tweenjs documentations.
 ---------------------------------------
 A note about the limitations. 
+
 
 

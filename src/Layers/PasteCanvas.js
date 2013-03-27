@@ -86,7 +86,7 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		this.dCanvas.height = this.sifobj.height;
 		this.dCanvas.width = this.sifobj.width;
 		
-		this.tracker.setMatrix(track.getMatrix());
+		this.tracker.setMatrix(track.matrix);
 		this.tracker.translate(focus.getX(), focus.getY() );
 		this.tracker.scale(zoom, zoom);
 		this.tracker.translate(-focus.getX(), -focus.getY() );
@@ -97,12 +97,15 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		for (var i = 0, ii = layer.length; i < ii; i++) {
 			layer[i].draw(this.tracker);
 		}
-		track.save();
-		track.setMatrix( [1, 0, 0, 1, 0, 0] );
-		track.ctx.globalAlpha = this.amount.getValue();
-		track.ctx.globalCompositeOperation = this._getBlend();
-		track.ctx.drawImage(this.tracker.ctx.canvas, 0, 0);
-		track.restore();
+		//If not track ctx then this is the sifObjects fake pastecanvas
+		if (track.ctx) {
+			track.save();
+			track.setMatrix( [1, 0, 0, 1, 0, 0] );
+			track.ctx.globalAlpha = this.amount.getValue();
+			track.ctx.globalCompositeOperation = this._getBlend();
+			track.ctx.drawImage(this.tracker.ctx.canvas, 0, 0);
+			track.restore();
+		}
 
 
 	}
