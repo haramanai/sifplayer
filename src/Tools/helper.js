@@ -68,5 +68,7 @@ helper.setCanvasToWindowSize = function (canvas, width, height) {
 	}
 };
 
+
+
 sifPlayer.helper = helper;
 }());
