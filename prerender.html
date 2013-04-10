@@ -1,0 +1,111 @@
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+body {
+margin: 0px;
+overflow: hidden;
+}
+</style>
+</head>
+<body onload="main()">
+<div id='sifPlayer'></div>
+<canvas id="canvas"</canvas>
+<script type='text/javascript' src="libs/Ticker.js"></script>
+<script type='text/javascript' src="libs/tweenjs-0.4.0.min.js"></script>
+<script type='text/javascript' src="src/tracker.js"></script>
+<script type='text/javascript' src="src/sifplayer.js"></script>
+<script type='text/javascript' src="src/Tools/helper.js"></script>
+<script type='text/javascript' src="src/Ease.js"></script>
+<script type='text/javascript' src="src/sifobject.js"></script>
+<script type='text/javascript' src="src/Param/param.js"></script>
+<script type='text/javascript' src="src/Param/vector.js"></script>
+<script type='text/javascript' src="src/Param/composite.js"></script>	
+<script type='text/javascript' src="src/Param/integer.js"></script>
+<script type='text/javascript' src="src/Param/real.js"></script>
+<script type='text/javascript' src="src/Param/angle.js"></script>
+<script type='text/javascript' src="src/Param/bool.js"></script>
+<script type='text/javascript' src="src/Param/convert.js"></script>
+<script type='text/javascript' src="src/Layer.js"></script>
+<script type='text/javascript' src="src/Layers/PasteCanvas.js"></script>
+<script type='text/javascript' src="src/Layers/region.js"></script>
+<script type='text/javascript' src="src/Layers/outline.js"></script>
+<script type='text/javascript' src="src/Layers/restore.js"></script>
+<script type='text/javascript' src="src/Layers/translate.js"></script>
+<script type='text/javascript' src="src/Layers/rotate.js"></script>
+<script type='text/javascript' src="src/Layers/zoom.js"></script>
+<script type='text/javascript' src="src/Layers/import.js"></script>
+<script type='text/javascript' src="src/Layers/circle.js"></script>
+<script type='text/javascript' src="src/Layers/linear_gradient.js"></script>
+<script type='text/javascript' src="src/Layers/radial_gradient.js"></script>
+<script type='text/javascript' src="src/Layers/stretch.js"></script>
+<script type='text/javascript' src="src/Layers/timeloop.js"></script>
+<script type='text/javascript' src="src/Tools/img.js"></script>
+
+
+
+<script type='text/javascript'>
+function main() {
+	createjs.Ticker.setPaused(true);
+	var xmlDoc = sifPlayer.helper.loadXML('assets/test.sif');
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	
+	var so = new sifPlayer.SifObject(xmlDoc , {sifPath: 'assets/'});
+
+		
+	so.width = so.sif.canvas.width;
+	
+	so.height = so.sif.canvas.height;
+
+	sifPlayer.helper.setCanvasToWindowSize(canvas, so.width, so.height);
+	so.width = canvas.width;
+	so.height = canvas.height;
+	
+	var fps = 30;
+	var end_frame = Math.round(so.sif.canvas.end_time / fps);
+	
+	var def = { sifobj: so, fps: fps, start_frame: 0, end_frame: end_frame};
+
+	var img = sifPlayer.img.getCanvasArray(def);
+	
+	var pos = 0;
+	
+	var looper = {
+
+		tick: function () {
+			canvas.height = 0;
+			canvas.height = so.height;
+			canvas.width = so.width;
+			if (img.sifReady < 1) {
+				
+				ctx.drawImage(img[0], 0, 0);
+				pos = 0;
+			} else {
+				ctx.drawImage( img[pos], 0, 0 );
+			}
+
+			
+			if (pos < img.length - 1) {
+				pos += 1;
+			} else {
+				pos = 0;
+			}
+				
+		}
+		
+	}
+
+	
+	setInterval(looper.tick, fps);
+
+	
+}
+
+
+
+
+</script>
+</body>
+</html>

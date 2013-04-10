@@ -124,6 +124,7 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		}
 		return position;
 	}
+
 	
 	PasteCanvas.makeFake = function (parent) {
 		//An Empty PasteCanvas to be used for the sifobject's root layers
@@ -131,6 +132,8 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		var data = {"_type":"PasteCanvas","_active":true,"_version":0.1,"z_depth":{"_name":"z_depth","real":{"_value":0}},"amount":{"_name":"amount","real":{"_value":1}},"blend_method":{"_name":"blend_method","integer":{"_value":0}},"origin":{"_name":"origin","vector":{"x":0,"y":0}},"canvas":{"_name":"canvas","canvas":{}},"zoom":{"_name":"zoom","real":{"_value":0}},"time_offset":{"_name":"time_offset","time":{"_value":"0s"}},"children_lock":{"_name":"children_lock","bool":{"_value":false,"_static":true}},"focus":{"_name":"focus","vector":{"x":0,"y":0}},"outline_grow":{"_name":"outline_grow","real":{"_value":0}}};
 		return new sifPlayer[data._type](parent, data);
 	}
+	
+	
 	
 
 

@@ -64,13 +64,19 @@ var p = Layer.prototype;
 	 * @param {Object} data The data that will be used
 	 **/
 	p.initLayer = function (parent, data) {
+		var _set = sifPlayer.param._set;
 
 		Layer.setParent(this, parent);
+		
 		this.type = data._type;
 		if (data._desc) {
 			this.desc = data._desc;
 			//keep refernce of the layer to the sifobj so we can reach it.
 			this.sifobj.desc[this.desc] = this;
+		}
+		
+		if (data.z_depth) {
+			_set(this, 'z_depth', 'real', this, data.z_depth);
 		}
 		
 		this.timeline = new createjs.Timeline();
@@ -108,6 +114,7 @@ var p = Layer.prototype;
 	 * param {Integer}
 	 **/	
 	p.setPosition = function (position) {
+		
 		this.timeline.setPosition(position);
 		return position;
 	}

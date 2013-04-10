@@ -28,29 +28,44 @@ var img = {};
 
 img.getCanvasArray = function (def) {
 	var so = def.sifobj;
-	var a = [];
 	var fps = def.fps;
-	var start_frame = def.start_frame;
-	var end_frame = def.end_frame;
-	var total_frames = Math.round(end_frame - start_frame);
-	
-	for (var i = 0; i < total_frames; i++) {
+	var f = 0;
+	var end_frame = Math.round(so.sif.canvas.end_time / fps);
+	var img = [];
+	img.sifReady = 0;
+
+	function render() {
 		var canvas = document.createElement('canvas');
 		canvas.height = so.height;
 		canvas.width = so.width;
 		var ctx = canvas.getContext('2d');
 		
 		//Timeline is in millisecs 
-		
+		so.setPosition(fps * f);
 		so.draw();
+		
 		ctx.drawImage(so.dCanvas, 0 , 0);
 		
 		
-		a[i] = canvas;
-		so.setPosition(fps * i);	
+		img[f] = canvas;
+		if (f === 0) {
+			img.firstFrame = document.createElement('canvas');
+			img.firstFrame.width = so.width;
+			img.firstFrame.height = so.height;
+			var cctx = img.firstFrame.getContext('2d');
+			cctx.drawImage( so.dCanvas,0 ,0);
+		}
+		f +=1;
+		if (f <= end_frame) {
+			img.sifReady = f / end_frame;		
+			setTimeout(arguments.callee, 0);
+		}
+
 	}
 	
-	return a;
+	render();
+	
+	return img;
 }
 
 
