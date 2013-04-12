@@ -79,6 +79,8 @@ var p = Layer.prototype;
 			_set(this, 'z_depth', 'real', this, data.z_depth);
 		}
 		
+		this.active = data._active;
+		
 		this.timeline = new createjs.Timeline();
 		this.timeline.setPaused(true);
 		

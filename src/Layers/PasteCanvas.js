@@ -95,7 +95,9 @@ var p = PasteCanvas.prototype = new sifPlayer.Layer();
 		
 		
 		for (var i = 0, ii = layer.length; i < ii; i++) {
-			layer[i].draw(this.tracker);
+			if (layer[i].active) {
+				layer[i].draw(this.tracker);
+			}
 		}
 		//If not track ctx then this is the sifObjects fake pastecanvas
 		if (track.ctx) {

@@ -49,32 +49,11 @@ img.getCanvasArray = function (def) {
 		ctx.drawImage(so.dCanvas, 0 , 0);
 		
 		img[f] = canvas;
-		if (f === 0) {
-			img.firstFrame = document.createElement('canvas');
-			img.firstFrame.width = so.width;
-			img.firstFrame.height = so.height;
-			img.firstFrame.getContext('2d').drawImage( so.dCanvas,0 ,0);
-		}
+
 		f +=1;
 		if (f <= end_frame) {
-			img.sifReady = f / end_frame;
-			
-			img[0].height = 0;
-			img[0].height = img.firstFrame.height;
-			var cctx = img[0].getContext('2d');
-			cctx.globalAlpha = f / end_frame;
-			cctx.drawImage( img.firstFrame, 0, 0 );
-			cctx.font="30px Arial";
-			cctx.globalAlpha = 1;
-			cctx.fillStyle = 'rgb(255, 255, 255)';
-			cctx.strokeStyle = 'rgb(0, 0, 0)';
-			cctx.textAlign = 'center';
-			cctx.fillText("Rendering..",canvas.width / 2,canvas.height / 2);
-			cctx.fillText(Math.round((img.sifReady * 100)) + '%',canvas.width / 2,canvas.height / 2 + 30);
-			
+			img.sifReady = f / end_frame;			
 			setTimeout(arguments.callee, 0);
-		} else {
-			img[0] = img.firstFrame;
 		}
 
 	}
@@ -113,7 +92,15 @@ img.playSif = function (file, inCanvas, fps) {
 		canvas.height = so.height;
 		canvas.width = so.width;
 		if (img.sifReady < 1) {
-			ctx.drawImage(img[0], 0, 0);
+			ctx.globalAlpha = img.sifReady;
+			ctx.drawImage( img[0], 0, 0 );
+			ctx.font="30px Arial";
+			ctx.globalAlpha = 1;
+			ctx.fillStyle = 'rgb(255, 255, 255)';
+			ctx.strokeStyle = 'rgb(0, 0, 0)';
+			ctx.textAlign = 'center';
+			ctx.fillText("Rendering..",canvas.width / 2,canvas.height / 2);
+			ctx.fillText(Math.round((img.sifReady * 100)) + '%',canvas.width / 2,canvas.height / 2 + 30);
 			pos = 0;
 		} else {
 		

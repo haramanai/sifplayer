@@ -16903,12 +16903,12 @@
                   </animated>
                 </param>
                 <param name="local_time">
-                  <animated type="time" guid="BF77BB96791BD39604FFA97E7B0E63C9">
+                  <animated type="time">
                     <waypoint time="1.33333337s" before="constant" after="constant">
-                      <time value="0s" guid="313C169A5B23C828ADB626F461F82DA0"/>
+                      <time value="0s"/>
                     </waypoint>
                     <waypoint time="2s" before="constant" after="constant">
-                      <time value="0.66666669s" guid="6262278CB77FBA8216B52528485CC0FA"/>
+                      <time value="0.66666669s"/>
                     </waypoint>
                   </animated>
                 </param>
