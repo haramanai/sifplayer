@@ -73,11 +73,25 @@ Bool converts to:
 
 
 
-Run the sifPlayer.html to see it in action. There is a min version and an example of how to use in the build folder
+
+Run the sifPlayer.html to see it in realtime rendering. 
+Run the prerender.html to see it rendering and then playing.
+
+Use prerender if your animation is heavy.
+
+There is a min version and an example of how to use in the build folder
 
 Also in the /assets/ are sifparser.html  you can run it to have an understanding of how the data looks like. But keep in mind that the defs will change in the init of the SifObject to be accessed by the id of the defs.
 
-How to use it :
+		How to use it :
+
+---For simple method check the prerender.html
+You only need one function call => sifPlayer.img.playSif('the sif file', 'the name of your canvas element', 'the frames per seccond you wand to  render and play'.
+	e.g.	
+	sifPlayer.img.playSif('assets/test.sif', 'canvas', 60);
+	
+--- Advanced and realtime rendering information.
+	
 var def = {width: 320, height: 240, sifPath: 'assets/'};
 var sifobj = sifPlayer.SifObject( xmlDoc, def);
 
@@ -115,7 +129,9 @@ sifobj.timeline.loop = true;
 
 For more information about the timeline see the createjs tweenjs documentations.
 ---------------------------------------
-A note about the limitations. 
+
+Don't forget that .sif files are xml files.
+
 
 
 
