@@ -14,35 +14,7 @@ overflow: hidden;
 <canvas id="canvas"</canvas>
 <script type='text/javascript' src="libs/Ticker.js"></script>
 <script type='text/javascript' src="libs/tweenjs-0.4.0.min.js"></script>
-<script type='text/javascript' src="src/tracker.js"></script>
-<script type='text/javascript' src="src/sifplayer.js"></script>
-<script type='text/javascript' src="src/Tools/helper.js"></script>
-<script type='text/javascript' src="src/Ease.js"></script>
-<script type='text/javascript' src="src/sifobject.js"></script>
-<script type='text/javascript' src="src/Param/param.js"></script>
-<script type='text/javascript' src="src/Param/vector.js"></script>
-<script type='text/javascript' src="src/Param/composite.js"></script>	
-<script type='text/javascript' src="src/Param/integer.js"></script>
-<script type='text/javascript' src="src/Param/real.js"></script>
-<script type='text/javascript' src="src/Param/angle.js"></script>
-<script type='text/javascript' src="src/Param/bool.js"></script>
-<script type='text/javascript' src="src/Param/convert.js"></script>
-<script type='text/javascript' src="src/Layer.js"></script>
-<script type='text/javascript' src="src/Layers/PasteCanvas.js"></script>
-<script type='text/javascript' src="src/Layers/region.js"></script>
-<script type='text/javascript' src="src/Layers/outline.js"></script>
-<script type='text/javascript' src="src/Layers/restore.js"></script>
-<script type='text/javascript' src="src/Layers/translate.js"></script>
-<script type='text/javascript' src="src/Layers/rotate.js"></script>
-<script type='text/javascript' src="src/Layers/zoom.js"></script>
-<script type='text/javascript' src="src/Layers/import.js"></script>
-<script type='text/javascript' src="src/Layers/circle.js"></script>
-<script type='text/javascript' src="src/Layers/linear_gradient.js"></script>
-<script type='text/javascript' src="src/Layers/radial_gradient.js"></script>
-<script type='text/javascript' src="src/Layers/stretch.js"></script>
-<script type='text/javascript' src="src/Layers/timeloop.js"></script>
-
-
+<script type='text/javascript' src="build/sifplayer.min.js"></script>
 
 <script type='text/javascript'>
 function main() {
@@ -67,7 +39,7 @@ function main() {
 			so.tick(delta);
 			so.draw();
 			ctx.drawImage(so.dCanvas, 0,0);
-			console.log(createjs.Ticker.getMeasuredFPS());
+			//console.log(createjs.Ticker.getMeasuredFPS());
 		}
 	}
 	

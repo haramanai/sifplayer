@@ -11,11 +11,12 @@ overflow: hidden;
 </head>
 <body onload="main()">
 <div id='sifPlayer'></div>
-<canvas id="canvas" width="640" height="480"></canvas>
+<canvas id="canvas"</canvas>
 <script type='text/javascript' src="libs/Ticker.js"></script>
-<script type='text/javascript' src="libs/tweenjs-0.3.0.min.js"></script>
+<script type='text/javascript' src="libs/tweenjs-0.4.0.min.js"></script>
 <script type='text/javascript' src="src/tracker.js"></script>
 <script type='text/javascript' src="src/sifplayer.js"></script>
+<script type='text/javascript' src="src/Tools/helper.js"></script>
 <script type='text/javascript' src="src/Ease.js"></script>
 <script type='text/javascript' src="src/sifobject.js"></script>
 <script type='text/javascript' src="src/Param/param.js"></script>
@@ -39,61 +40,46 @@ overflow: hidden;
 <script type='text/javascript' src="src/Layers/linear_gradient.js"></script>
 <script type='text/javascript' src="src/Layers/radial_gradient.js"></script>
 <script type='text/javascript' src="src/Layers/stretch.js"></script>
-<script type='text/javascript' src="src/Tools/img.js"></script>
+<script type='text/javascript' src="src/Layers/timeloop.js"></script>
+
 
 
 <script type='text/javascript'>
 function main() {
-	var xmlDoc = loadXML('assets/test_r.sif');
+	var xmlDoc = sifPlayer.helper.loadXML('assets/test.sif');
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
-
-
 	
-	var so = new sifPlayer.SifObject(xmlDoc , {x: 0, y: 0 , width: 640, height: 480, sifPath: 'assets/'});
-
-	var def = { sifobj: so, fps: 30, start_frame: 0, end_frame: 30};
-
-	var img = sifPlayer.img.getCanvasArray(def);
 	
-	var pos = 0;
-	
+	var so = new sifPlayer.SifObject(xmlDoc , {sifPath: 'assets/'});
+	sifPlayer.helper.setCanvasToWindowSize(canvas, so.sif.canvas.width, so.sif.canvas.height);
+	so.timeline.loop = true;
+
+	createjs.Ticker.removeListener(so.timeline);
+
 	var looper = {
 
-		tick: function () {
-			
-			canvas.width = so.width;
-			canvas.height = so.height;
-			ctx.drawImage( img[pos], 0, 0 );
-
-			
-			if (pos < img.length - 1) {
-				pos += 1;
-			} else {
-				pos = 0;
-			}
-				
+		tick: function (delta) {
+			canvas.height = 0;
+			sifPlayer.helper.setCanvasToWindowSize(canvas, so.sif.canvas.width, so.sif.canvas.height);
+			so.height = canvas.height;
+			so.width = canvas.width;
+			so.tick(delta);
+			so.draw();
+			ctx.drawImage(so.dCanvas, 0,0);
+			//console.log(createjs.Ticker.getMeasuredFPS());
 		}
-		
 	}
 	
-	createjs.Ticker.useRaf = false;
+	createjs.Ticker.setFPS(30);
+	createjs.Ticker.useRaf = true;
 	createjs.Ticker.addListener(looper);
+
+	
 }
 
-function loadXML (file) {
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
-		var xmlhttp=new XMLHttpRequest();
 
-	} else {// code for IE6, IE5
-		var xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.open("GET",file,false);
-	xmlhttp.send();
-	var xmlDoc=xmlhttp.responseXML;
-	return xmlDoc;
-}
+
 
 </script>
 </body>

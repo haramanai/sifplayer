@@ -79,7 +79,12 @@ var p = Layer.prototype;
 			_set(this, 'z_depth', 'real', this, data.z_depth);
 		}
 		
-		this.active = data._active;
+		//Get if the layer is active. 
+		if (data._active === false) {
+			this.active = false;
+		} else {
+			this.active = true;
+		}
 		
 		this.timeline = new createjs.Timeline();
 		this.timeline.setPaused(true);
