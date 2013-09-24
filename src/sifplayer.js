@@ -239,9 +239,71 @@ this.sifPlayer = this.sifPlayer || {};
 
 		return false;
 	}
-
-
 	
+	sifPlayer.aabbFromEntries = function (e) {
+		var a = [e[0][0], e[0][1], e[0][0], e[0][1]];
+		for (var i = 0, ii = e.length; i < ii; i++) {
+			if (e[i][0] < a[0]) {
+				a[0] = e[i][0]
+			} 
+			else if (e[i][0] > a[2]) {
+				a[2] = e[i][0];
+			}
+			
+			if (e[i][2] < a[0]) {
+				a[0] = e[i][2]
+			} 
+			else if (e[i][2] > a[2]) {
+				a[2] = e[i][2];
+			}
+			
+			if (e[i][4] < a[0]) {
+				a[0] = e[i][4]
+			} 
+			else if (e[i][4] > a[2]) {
+				a[2] = e[i][4];
+			}
+			
+			
+			//Y
+			
+			if (e[i][1] < a[1]) {
+				a[1] = e[i][1]
+			} 
+			else if (e[i][1] > a[3]) {
+				a[3] = e[i][1];
+			}
+			
+			if (e[i][3] < a[1]) {
+				a[1] = e[i][3]
+			} 
+			else if (e[i][3] > a[3]) {
+				a[3] = e[i][3];
+			}
+			
+			if (e[i][5] < a[1]) {
+				a[1] = e[i][5]
+			} 
+			else if (e[i][5] > a[3]) {
+				a[3] = e[i][5];
+			}
+			
+
+			
+
+		}
+		return a;
+	}
+
+
+	sifPlayer._addToDesc = function (o, data) {
+		if (data._desc) {
+			o.name = data._desc;
+			//keep refernce of the layer to the sifobj so we can reach it.
+			o.sifobj.desc[o.name] = o;
+			
+		}
+	}
 	
 
 
